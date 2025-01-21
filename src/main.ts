@@ -13,17 +13,18 @@ import {
   uniform,
 } from "three/tsl";
 
-async function main() {
+async function introScene() {
   let camera: THREE.PerspectiveCamera;
   let controls: OrbitControls;
   let scene: THREE.Scene;
   let renderer: THREE.WebGLRenderer;
+  let bottomLight: THREE.DirectionalLight;
 
   let panIn = false;
 
   setTimeout(() => {
     panIn = true;
-  }, 2000);
+  }, 8000);
 
   init();
 
@@ -57,10 +58,10 @@ async function main() {
     controls.listenToKeyEvents(window); // optional
     controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
     controls.dampingFactor = 0.05;
-    controls.screenSpacePanning = false;
-    controls.minDistance = 100;
-    controls.maxDistance = 500;
-    controls.maxPolarAngle = Math.PI / 2;
+    controls.screenSpacePanning = true;
+    //controls.minDistance = 100;
+    //controls.maxDistance = 500;
+    //controls.maxPolarAngle = Math.PI / 2;
     //
 
     //world
@@ -123,13 +124,13 @@ async function main() {
       scene.add(mesh);
     }
 
-    const dirLight1 = new THREE.DirectionalLight(0xffffff, 10);
-    dirLight1.position.set(0, 0, 0);
-    scene.add(dirLight1);
+    //const dirLight1 = new THREE.DirectionalLight(0xffffff, 10);
+    //dirLight1.position.set(0, 0, 0);
+    //scene.add(dirLight1);
 
-    const dirLight2 = new THREE.DirectionalLight(0xffffff, 3);
-    dirLight2.position.set(1, 1, 1);
-    scene.add(dirLight2);
+    bottomLight = new THREE.DirectionalLight(0xffffff, 10);
+    bottomLight.position.set(1, 1, 1);
+    scene.add(bottomLight);
 
     // ground
 
@@ -146,10 +147,23 @@ async function main() {
     scene.add(ground);
 
     //add fog
-    scene.fog = new THREE.Fog(0x00FFF, 0, 800);
+    scene.fog = new THREE.Fog(0x304463, 0, 500);
 
     //const ambientLight = new THREE.AmbientLight(0x002288);
     //scene.add(ambientLight);
+
+    const listener = new THREE.AudioListener();
+    camera.add(listener);
+
+    const sound = new THREE.Audio(listener);
+
+    const audioLoader = new THREE.AudioLoader();
+    audioLoader.load("/audiomass-output.mp3", function (buffer) {
+      sound.setBuffer(buffer);
+      sound.setLoop(false);
+      sound.setVolume(0.5);
+      sound.play();
+    });
 
     window.addEventListener("resize", onWindowResize);
   }
@@ -163,19 +177,28 @@ async function main() {
 
   let camera_rotation_speed = 0.0001;
 
+  //cube.position.z = Math.sin(time * 0.001) * 2;
   function animate(time: DOMHighResTimeStamp) {
     controls.update(); // only required if controls.enableDamping = true, or if controls.autoRotate = true
-    //cube.position.z = Math.sin(time * 0.001) * 2;
 
     //camera.position.y = Math.sin(time * 0.001) * 200;
 
     //camera_rotation_speed += 0.0001;
-    
+
     if (panIn) {
       camera_rotation_speed = 0.0003;
       camera.position.y -= time * 0.001;
     }
-    
+
+    if (camera.position.y < 20) {
+    }
+
+    if (camera.position.y < 20) {
+      scene.fog = new THREE.Fog(0x00fff, 1, 0);
+      bottomLight.intensity = 0;
+      bottomLight.color = new THREE.Color(0x000);
+    }
+
     camera.rotation.z += time * camera_rotation_speed;
     render();
   }
@@ -185,4 +208,50 @@ async function main() {
   }
 }
 
-main();
+//introScene();
+
+async function mainScene() {
+  //Create h1
+
+  const div = document.createElement("div");
+  div.style.width = "100%";
+  div.style.height = "100%";
+  div.style.display = "flex";
+  div.style.justifyContent = "center";
+  div.style.flexDirection = "column";
+  div.style.alignItems = "center";
+
+  document.body.appendChild(div);
+
+  const h1 = document.createElement("h1");
+  h1.innerText = "Start the experience";
+  h1.style["textAlign"] = "center";
+  div.appendChild(h1);
+
+  //Create button
+  const button = document.createElement("button");
+  button.style.display = "block";
+  button.innerText = "Start";
+
+  button.onclick = () => {
+    div.remove();
+    introScene();
+  };
+
+  div.appendChild(button);
+
+  //warn user about use of audio
+  const audioWarning = document.createElement("p");
+  audioWarning.innerText = "Works best with headphones, audio will play";
+  audioWarning.style["textAlign"] = "center";
+  audioWarning.style["marginTop"] = "20px";
+  //add backgorund color and rounded corners
+  audioWarning.style["backgroundColor"] = "#f4f4f4";
+  audioWarning.style["padding"] = "10px";
+  audioWarning.style["borderRadius"] = "10px";
+  audioWarning.style["boxShadow"] = "0 0 10px rgba(0,0,0,0.1)";
+  audioWarning.style["color"] = "#333";
+  div.appendChild(audioWarning);
+}
+
+mainScene();
