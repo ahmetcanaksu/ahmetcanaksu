@@ -8,7 +8,7 @@ A modern, responsive, and accessible personal portfolio website built with React
 ## ✨ Features
 
 - **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
-- **Dark/Light Theme**: Automatic theme switching with localStorage persistence  
+- **Dark/Light Theme**: Automatic theme switching with localStorage persistence
 - **Accessible**: WCAG 2.1 AA compliant with semantic HTML and ARIA attributes
 - **Fast Performance**: Built with Vite for optimal loading speeds
 - **SEO Optimized**: Proper meta tags and structured content
@@ -28,7 +28,7 @@ A modern, responsive, and accessible personal portfolio website built with React
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - pnpm (install with `npm install -g pnpm`)
 
 ### Installation & Development
@@ -90,6 +90,7 @@ src/
 ### 1. Personal Information
 
 Update personal details in:
+
 - `src/pages/Home.jsx` - Hero section
 - `src/pages/About.jsx` - Bio and background
 - `src/components/Footer.jsx` - Social links
@@ -155,7 +156,7 @@ Set up these DNS records with your domain provider:
 ```
 Type    Name    Value
 A       @       185.199.108.153
-A       @       185.199.109.153  
+A       @       185.199.109.153
 A       @       185.199.110.153
 A       @       185.199.111.153
 CNAME   www     ahmetcanaksu.github.io
@@ -173,13 +174,13 @@ The `CNAME` file is already included in `public/CNAME`.
 
 ## 🔧 Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `pnpm run dev` | Start development server |
-| `pnpm run build` | Build for production |
+| Command            | Description              |
+| ------------------ | ------------------------ |
+| `pnpm run dev`     | Start development server |
+| `pnpm run build`   | Build for production     |
 | `pnpm run preview` | Preview production build |
-| `pnpm run deploy` | Deploy to GitHub Pages |
-| `pnpm run lint` | Run ESLint |
+| `pnpm run deploy`  | Deploy to GitHub Pages   |
+| `pnpm run lint`    | Run ESLint               |
 
 ## 📝 Content Guidelines
 

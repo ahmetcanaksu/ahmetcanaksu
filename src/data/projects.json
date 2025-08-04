@@ -1,0 +1,36 @@
+[
+    {
+        "id": 1,
+        "name": "Ellie Language",
+        "description": "A type-safe programming language designed for embedded and sandboxed environments (WebAssembly, ARM) with focus on performance and safety.",
+        "longDescription": "Ellie is a compiled programming language that I built from scratch, featuring a complete parser, compiler, and virtual machine. It's designed for embedded systems and WebAssembly targets with advanced memory management, stack/heap allocation, garbage collection, and bytecode optimization.",
+        "techTags": [
+            "Rust",
+            "Compiler Design",
+            "Virtual Machine",
+            "WebAssembly",
+            "ARM"
+        ],
+        "repoUrl": "https://github.com/behemehal/ellie-language",
+        "liveUrl": "https://behemehal.org",
+        "featured": true,
+        "status": "active",
+        "year": "2021-2024"
+    },
+    {
+        "id": 2,
+        "name": "UtilStation",
+        "description": "Your one-stop shop for all development tools - a comprehensive collection of utilities for various programming situations.",
+        "longDescription": "UtilStation provides developers with a unified platform containing all the tools they need in one single app. From JSON formatters to regex testers, color pickers to code converters - everything a developer needs in their daily workflow.",
+        "techTags": [
+            "React",
+            "TypeScript",
+            "Node.js",
+            "Web Development"
+        ],
+        "liveUrl": "https://utilstation.com",
+        "featured": true,
+        "status": "active",
+        "year": "2023-2024"
+    }
+]
