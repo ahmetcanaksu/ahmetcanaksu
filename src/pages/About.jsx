@@ -15,8 +15,7 @@ const About = () => {
           </h1>
 
           <p className="text-xl text-base-content/80 max-w-2xl mx-auto">
-            Software developer, open-source enthusiast, and programming language
-            designer from Beykoz, Istanbul, Turkey.
+            Software developer and open-source enthusiast from Beykoz, Istanbul, Turkey.
           </p>
         </div>
 
@@ -177,7 +176,7 @@ const About = () => {
 
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <div className="badge badge-primary badge-lg">�</div>
+                    <div className="badge badge-primary badge-lg">📟</div>
                     <div>
                       <h4 className="font-semibold">Backend Development</h4>
                       <p className="text-sm text-base-content/70">
@@ -188,7 +187,7 @@ const About = () => {
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <div className="badge badge-secondary badge-lg">�🚀</div>
+                    <div className="badge badge-secondary badge-lg">🚀</div>
                     <div>
                       <h4 className="font-semibold">Language Design</h4>
                       <p className="text-sm text-base-content/70">
@@ -210,7 +209,7 @@ const About = () => {
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <div className="badge badge-info badge-lg">�</div>
+                    <div className="badge badge-info badge-lg">💻</div>
                     <div>
                       <h4 className="font-semibold">Developer Tools</h4>
                       <p className="text-sm text-base-content/70">
