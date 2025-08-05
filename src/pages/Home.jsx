@@ -1,16 +1,22 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import blogsData from "../data/blogs.json";
+import projectsData from "../data/projects.json";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     setPosts(blogsData);
+    setProjects(projectsData);
   }, []);
 
   // Get featured posts
   const featuredPosts = posts.filter((post) => post.featured);
+
+  // Get featured projects
+  const featuredProjects = projects.filter((project) => project.featured);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -180,47 +186,25 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="card bg-base-200 shadow-xl card-hover">
-              <div className="card-body">
-                <h3 className="card-title">Ellie Language</h3>
-                <p>
-                  Type-safe programming language for embedded and sandboxed
-                  environments
-                </p>
-                <div className="card-actions justify-end">
-                  <span className="badge badge-primary">Rust</span>
-                  <span className="badge badge-secondary">WebAssembly</span>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto justify-items-center">
+            {featuredProjects.map((project) => (
+              <div
+                key={project.id}
+                className="card bg-base-200 shadow-xl card-hover w-full max-w-sm"
+              >
+                <div className="card-body">
+                  <h3 className="card-title">{project.name}</h3>
+                  <p>{project.description}</p>
+                  <div className="card-actions justify-end">
+                    {project.techTags.slice(0, 2).map((tag, index) => (
+                      <span key={index} className="badge badge-primary">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="card bg-base-200 shadow-xl card-hover">
-              <div className="card-body">
-                <h3 className="card-title">UtilStation</h3>
-                <p>
-                  Your one-stop shop for all development tools and utilities
-                </p>
-                <div className="card-actions justify-end">
-                  <span className="badge badge-primary">React</span>
-                  <span className="badge badge-secondary">TypeScript</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="card bg-base-200 shadow-xl card-hover">
-              <div className="card-body">
-                <h3 className="card-title">Behemehal</h3>
-                <p>
-                  Open-source organization for programming languages and dev
-                  tools
-                </p>
-                <div className="card-actions justify-end">
-                  <span className="badge badge-primary">Open Source</span>
-                  <span className="badge badge-secondary">Community</span>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div className="text-center mt-12">

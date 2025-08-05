@@ -15,7 +15,8 @@ const About = () => {
           </h1>
 
           <p className="text-xl text-base-content/80 max-w-2xl mx-auto">
-            Software developer and open-source enthusiast from Beykoz, Istanbul, Turkey.
+            Software developer and open-source enthusiast from Beykoz, Istanbul,
+            Turkey.
           </p>
         </div>
 
@@ -46,11 +47,10 @@ const About = () => {
 
               <p className="text-lg leading-relaxed mb-6">
                 Currently, I work as a Backend Developer at Fonmap Financial
-                Technologies, where I lead backend and frontend development
-                initiatives on Turkey's leading digital investment platform.
-                Previously, I was a Full Stack Developer at Qpien, contributing
-                to an all-in-one e-commerce platform with real-time messaging
-                capabilities.
+                Technologies, where I lead backend development initiatives on
+                Turkey's leading digital investment platform. Previously, I was
+                a Full Stack Developer at Qpien, contributing to an all-in-one
+                e-commerce platform with real-time messaging capabilities.
               </p>
 
               <p className="text-lg leading-relaxed mb-6">
@@ -255,8 +255,8 @@ const About = () => {
                     </span>
                   </div>
                   <p className="text-sm text-base-content/70 mb-2">
-                    Leading backend and frontend development initiatives on
-                    Turkey's premier digital investment platform.
+                    Backend and frontend development initiatives on Turkey's
+                    premier digital investment platform.
                   </p>
                   <ul className="text-sm space-y-1 list-disc list-inside text-base-content/70">
                     <li>

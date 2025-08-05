@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "name": "Rusty6502",
+        "description": "A Rust 6502 emulator",
+        "longDescription": "A complete emulation of the MOS Technology 6502 microprocessor written in Rust. This project explores low-level system emulation, instruction set architecture implementation, and cycle-accurate timing simulation.",
+        "techTags": [
+            "Rust",
+            "Emulation",
+            "Systems Programming",
+            "Assembly",
+            "Computer Architecture"
+        ],
+        "repoUrl": "https://github.com/ahmetcanaksu/Rusty6502",
+        "liveUrl": null,
+        "category": "Computer Architecture",
+        "status": "active",
+        "year": "2023"
+    },
+    {
+        "id": 2,
+        "name": "RemoteWindow",
+        "description": "A window sharer app that shares windows over network",
+        "longDescription": "Network-based window sharing application that allows real-time sharing of application windows across different machines. Research into remote desktop protocols, network streaming, and efficient graphics transmission.",
+        "techTags": [
+            "Rust",
+            "Networking",
+            "Graphics",
+            "Real-time Systems",
+            "Desktop Applications"
+        ],
+        "repoUrl": "https://github.com/ahmetcanaksu/RemoteWindow",
+        "liveUrl": null,
+        "category": "Networking",
+        "status": "active",
+        "year": "2023"
+    },
+    {
+        "id": 3,
+        "name": "TunnelExperiment",
+        "description": "A middleman server that forwards incoming TCP requests to given server",
+        "longDescription": "Experimental TCP proxy server that acts as a middleman for forwarding network requests. Research into network protocols, load balancing, connection management, and proxy server architectures.",
+        "techTags": [
+            "Networking",
+            "TCP",
+            "Proxy Server",
+            "Systems Programming",
+            "Network Architecture"
+        ],
+        "repoUrl": "https://github.com/ahmetcanaksu/TunnelExperiment",
+        "liveUrl": null,
+        "category": "Networking",
+        "status": "experimental",
+        "year": "2023"
+    },
+    {
+        "id": 4,
+        "name": "LaserNet",
+        "description": "A bi-directional laser communication research project for understanding timings bi-directional communication and package loss, made with microcontrollers",
+        "longDescription": "Experimental bi-directional laser communication system built with microcontrollers to study optical communication protocols, timing synchronization, packet loss analysis, and signal integrity in free-space optical networks. This project explores the challenges of implementing reliable communication over laser links.",
+        "techTags": [
+            "Microcontrollers",
+            "Optical Communication",
+            "Embedded Systems",
+            "Signal Processing",
+            "Communication Protocols"
+        ],
+        "repoUrl": "https://github.com/ahmetcanaksu/LaserNet",
+        "liveUrl": null,
+        "category": "Embedded Systems",
+        "status": "experimental",
+        "year": "2023"
+    }
+]
