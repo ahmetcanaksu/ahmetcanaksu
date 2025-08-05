@@ -1,23 +1,6 @@
 [
     {
         "id": 1,
-        "title": "Building Ellie Language: Lessons from Creating a Memory-Safe Programming Language",
-        "excerpt": "A deep dive into the design decisions and challenges faced while building Ellie, a modern programming language focused on memory safety and performance.",
-        "date": "2024-01-15",
-        "readTime": "8 min read",
-        "tags": [
-            "Programming Languages",
-            "Rust",
-            "Compiler Design",
-            "Memory Safety"
-        ],
-        "author": "Ahmetcan Aksu",
-        "slug": "building-ellie-language",
-        "featured": true,
-        "type": "internal"
-    },
-    {
-        "id": 2,
         "title": "Rust ile WebAssembly yazıyoruz",
         "excerpt": "Rust programlama dili kullanarak WebAssembly modülleri nasıl geliştirileceğini öğrenin. Modern web uygulamalarında yüksek performans için Rust+WASM kombinasyonu.",
         "date": "2023-12-01",
@@ -35,7 +18,7 @@
         "platform": "LinkedIn"
     },
     {
-        "id": 3,
+        "id": 2,
         "title": "Rust ile web servisi yazıyoruz",
         "excerpt": "Rust programlama dili ile yüksek performanslı web servisleri nasıl geliştirilir? Pratik örnekler ve best practice'ler ile Rust web development rehberi.",
         "date": "2023-11-15",
@@ -53,7 +36,7 @@
         "platform": "LinkedIn"
     },
     {
-        "id": 4,
+        "id": 3,
         "title": "Rust ile HTTP üzerinden dosya indirmek",
         "excerpt": "Rust programlama dili kullanarak HTTP protokolü üzerinden dosya indirme işlemlerini nasıl gerçekleştireceğinizi öğrenin. Asenkron programlama ve error handling dahil.",
         "date": "2023-11-01",
