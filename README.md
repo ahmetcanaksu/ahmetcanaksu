@@ -1,256 +1,187 @@
-# Ahmetcan Aksu - Personal Portfolio
-
-A modern, responsive, and accessible personal portfolio website built with React, Tailwind CSS, and daisyUI. Deployed on GitHub Pages with custom domain support.
-
-🌐 **Live Site**: [ahmetcanaksu.com](https://ahmetcanaksu.com)  
-🚀 **GitHub Pages**: [ahmetcanaksu.github.io/ahmetcanaksu](https://ahmetcanaksu.github.io/ahmetcanaksu)
-
-## ✨ Features
-
-- **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
-- **Dark/Light Theme**: Automatic theme switching with localStorage persistence  
-- **Accessible**: WCAG 2.1 AA compliant with semantic HTML and ARIA attributes
-- **Fast Performance**: Built with Vite for optimal loading speeds
-- **SEO Optimized**: Proper meta tags and structured content
-- **GitHub Pages Ready**: Automated deployment via GitHub Actions
-
-## 🛠️ Tech Stack
-
-- **Frontend**: React 19+ with JavaScript
-- **Styling**: Tailwind CSS + daisyUI components
-- **Routing**: React Router v6+ with HashRouter (GitHub Pages compatible)
-- **Build Tool**: Vite for fast development and building
-- **Package Manager**: pnpm for efficient dependency management
-- **Deployment**: GitHub Pages with custom domain
-- **CI/CD**: GitHub Actions for automated deployment
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Node.js 18+ 
-- pnpm (install with `npm install -g pnpm`)
-
-### Installation & Development
-
-```bash
-# Clone the repository
-git clone https://github.com/ahmetcanaksu/ahmetcanaksu.git
-cd ahmetcanaksu
-
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm run dev
-
-# Open http://localhost:5173 in your browser
-```
-
-### Build & Deploy
-
-```bash
-# Build for production
-pnpm run build
-
-# Preview production build locally
-pnpm run preview
-
-# Deploy to GitHub Pages
-pnpm run deploy
-```
-
-## 📁 Project Structure
-
-```
-src/
-├── components/          # Reusable UI components
-│   ├── Header.jsx       # Navigation bar with theme toggle
-│   ├── Footer.jsx       # Footer with social links
-│   ├── ThemeToggle.jsx  # Dark/light theme switcher
-│   ├── ProjectCard.jsx  # Project display cards
-│   └── ResumeEmbed.jsx  # PDF resume viewer
-├── pages/               # Route components
-│   ├── Home.jsx         # Landing page with hero section
-│   ├── About.jsx        # About me page
-│   ├── Projects.jsx     # Projects showcase
-│   ├── Blog.jsx         # Blog posts listing
-│   ├── Utilities.jsx    # UtilStation tools showcase
-│   ├── Resume.jsx       # Resume/CV page
-│   └── Contact.jsx      # Contact form and info
-├── data/
-│   └── projects.json    # Project data (EDIT THIS)
-├── content/
-│   └── blog/            # Blog posts in Markdown
-└── App.jsx              # Main app with routing
-```
-
-## 🎨 Customization
-
-### 1. Personal Information
-
-Update personal details in:
-- `src/pages/Home.jsx` - Hero section
-- `src/pages/About.jsx` - Bio and background
-- `src/components/Footer.jsx` - Social links
-- `src/components/Header.jsx` - Navigation
-
-### 2. Projects
-
-Edit `src/data/projects.json` to add/modify projects:
-
-```json
-{
-  "id": 1,
-  "name": "Project Name",
-  "description": "Short description",
-  "longDescription": "Detailed description",
-  "techTags": ["React", "Node.js"],
-  "repoUrl": "https://github.com/user/repo",
-  "liveUrl": "https://example.com",
-  "featured": true,
-  "status": "active",
-  "year": "2024"
-}
-```
-
-### 3. Blog Posts
-
-Add Markdown files to `src/content/blog/`:
-
-```markdown
----
-title: "Your Blog Post Title"
-date: "2024-01-15"
-excerpt: "Brief description"
-tags: ["Programming", "React"]
-author: "Your Name"
----
-
-# Your content here...
-```
-
-### 4. Resume/CV
-
-Replace `public/cv.pdf` with your actual PDF resume.
-
-### 5. Theme Customization
-
-Modify `tailwind.config.js` to customize colors and themes:
-
-```javascript
-daisyui: {
-  themes: ["light", "dark", "cupcake", "synthwave"], // Add your preferred themes
-}
-```
-
-## 🌐 DNS & Domain Setup
-
-For custom domain (like `ahmetcanaksu.com`):
-
-### DNS Configuration
-
-Set up these DNS records with your domain provider:
-
-```
-Type    Name    Value
-A       @       185.199.108.153
-A       @       185.199.109.153  
-A       @       185.199.110.153
-A       @       185.199.111.153
-CNAME   www     ahmetcanaksu.github.io
-```
-
-### GitHub Pages Settings
-
-1. Go to your repo → Settings → Pages
-2. Source: Deploy from a branch
-3. Branch: `gh-pages` / `/ (root)`
-4. Custom domain: `yourdomain.com`
-5. ✅ Enforce HTTPS
-
-The `CNAME` file is already included in `public/CNAME`.
-
-## 🔧 Available Scripts
-
-| Command | Description |
-|---------|-------------|
-| `pnpm run dev` | Start development server |
-| `pnpm run build` | Build for production |
-| `pnpm run preview` | Preview production build |
-| `pnpm run deploy` | Deploy to GitHub Pages |
-| `pnpm run lint` | Run ESLint |
-
-## 📝 Content Guidelines
-
-### Projects
-
-- Include both `repoUrl` and `liveUrl` when available
-- Use descriptive `techTags` for filtering
-- Mark important projects as `featured: true`
-- Keep descriptions concise but informative
-
-### Blog Posts
-
-- Use consistent frontmatter format
-- Include relevant tags for filtering
-- Write engaging excerpts for the listing page
-- Structure content with proper headings
-
-### Images & Assets
-
-- Place images in `public/` directory
-- Use descriptive alt text for accessibility
-- Optimize images for web (WebP format recommended)
-- Reference images with absolute paths: `/image.jpg`
-
-## 🚀 Deployment
-
-### Automatic Deployment
-
-GitHub Actions automatically deploys to GitHub Pages on every push to `main`:
-
-1. Builds the project with `pnpm run build`
-2. Deploys to `gh-pages` branch
-3. Updates live site at your custom domain
-
-### Manual Deployment
-
-```bash
-pnpm run deploy
-```
-
-This runs the build and pushes to the `gh-pages` branch.
-
-## 🎯 Performance
-
-- ⚡ **Vite**: Fast development and optimized builds
-- 🎨 **Tailwind CSS**: Utility-first CSS with purging
-- 📦 **Code Splitting**: Automatic route-based splitting
-- 🖼️ **Image Optimization**: WebP support and lazy loading
-- ♿ **Accessibility**: WCAG 2.1 AA compliant
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/new-feature`
-3. Commit changes: `git commit -am 'Add new feature'`
-4. Push to branch: `git push origin feature/new-feature`
-5. Submit a pull request
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🙋‍♂️ Questions?
-
-Feel free to reach out:
-
-- **Email**: hello@ahmetcanaksu.com
-- **GitHub**: [@ahmetcanaksu](https://github.com/ahmetcanaksu)
-- **Twitter**: [@ahmetcanaksu](https://twitter.com/ahmetcanaksu)
-- **LinkedIn**: [ahmetcanaksu](https://linkedin.com/in/ahmetcanaksu)
-
----
-
-**Built with ❤️ using React, Tailwind CSS, daisyUI, and pnpm**
+<h2 align="center">Hi there 👋</h2>
+
+Passionate about building programming languages, developer tools, and open-source software. Creator of the Ellie programming language and founder of various tech projects.
+
+- 📫 How to reach me: ...
+  - 🐦 Twitter: [@ahmetcanaksu](https://twitter.com/ahmetcanaksu)
+  - LinkedIn : [Ahmetcan Aksu](https://www.linkedin.com/in/ahmetcanaksu/)
+  - CodersRank: [@ahmetcanaksu](https://profile.codersrank.io/user/ahmetcanaksu)
+  - 📨 Mail : ahmetcanaksu@behemehal.org
+
+### CodersRank
+
+<img height="250px" src="https://cr-ss-service.azurewebsites.net/api/ScreenShot?widget=summary&branding=false&username=ahmetcanaksu&badges=3&show-avatar=false&style=--header-bg-color:%23f78166;--border-radius:10px"/>
+
+### Check out my blog posts;
+
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [Rust ile HTTP üzerinden dosya indirmek](https://www.linkedin.com/pulse/rust-ile-http-%25C3%25BCzerinden-dosya-indirmek-ahmetcan-aksu/)
+
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [Rust ile web servisi yazıyoruz](https://www.linkedin.com/pulse/rust-ile-web-servisi-yaz%C4%B1yoruz-ahmetcan-aksu/)
+
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [Rust ile WebAssembly yazıyoruz](https://www.linkedin.com/pulse/rust-ile-webassembly-yaz%25C4%25B1yoruz-ahmetcan-aksu/?trackingId=HYV97J0LS96u8vtsNryQpw%3D%3D)
+
+### Check out my projects;
+
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [Ellie Language - Type-safe programing language that runs on embedded and sandboxed environments](https://github.com/behemehal/Ellie-Language)
+
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/dartlang.png" width="35"> - [Wole App - Wake-On-Lan Magic Package Generator & Sender Android App](https://github.com/behemehal/WoleApp)
+
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [Wole - Wake-On-Lan Magic Package Generator & Sender & CLI](https://github.com/ahmetcanaksu/Wole)
+
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/dartlang.png" width="35"> - [event_listener - NodeJS like Event Listener library for dart!](https://github.com/behemehal/event_listener)
+
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/dartlang.png" width="35"> - [Bnots - A note app that combines simplicity with Markdown support](https://github.com/behemehal/Bnots)
+
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [Menemen - A streaming http/https request library](https://github.com/behemehal/Menemen)
+
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [SafeEn - Local database solution for situations that requires strict data integrity and absolute portability](https://github.com/behemehal/SafeEn)
+
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [Rust-NMEA - Rust NMEA parser](https://github.com/ahmetcanaksu/Rust-NMEA)
+
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/js.png" width="35"> - [Device-Database - A library that detects collection of development boards.](https://github.com/ahmetcanaksu/Device-Database)
+
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/js.png" width="35"> - [rpifan - Auto fan controller service for RaspberryPi ](https://github.com/ahmetcanaksu/rpifan)
+
+<details>
+  <summary><h3>Coding Activity</h3></summary>
+  <br/>
+  <img width="500px" src="https://wakatime.com/share/@ahmetcanaksu/0c710312-0d3a-460e-98e4-60d4ab2a6db2.png" />
+</details>
+
+<details>
+  <summary><h3>Skills Chart</h3></summary>
+  <br/>
+  <img height="400px" src="https://cr-skills-chart-widget.azurewebsites.net/api/api?username=ahmetcanaksu&width=700"/>
+</details>
+
+### Technologies I Use
+
+<p align="left">
+  <a href="https://www.rust-lang.org" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust_logo.png"
+      alt="rust"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://www.arduino.cc/" target="_blank" rel="noreferrer">
+    <img
+      src="https://cdn.worldvectorlogo.com/logos/arduino-1.svg"
+      alt="arduino"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
+      alt="c"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://www.w3schools.com/cs/" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg"
+      alt="csharp"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg"
+      alt="css3"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://flutter.dev" target="_blank" rel="noreferrer">
+    <img
+      src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg"
+      alt="flutter"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://git-scm.com/" target="_blank" rel="noreferrer">
+    <img
+      src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg"
+      alt="git"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg"
+      alt="html5"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a
+    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <img
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+      alt="javascript"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://www.linux.org/" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg"
+      alt="linux"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://expressjs.com/" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/express_logo.png"
+      alt="expressjs"
+      width="115"
+      height="40"
+    />
+  </a>
+  <a href="https://nodejs.org" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/node_logo.png"
+      alt="nodejs"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://reactjs.org/" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg"
+      alt="react"
+      width="40"
+      height="40"
+    />
+  </a>
+   <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg"
+      alt="mongo"
+      height="40"
+      width="40"
+    />
+  </a>
+  </a>
+   <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer">
+    <img
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg"
+      alt="mongo"
+      height="40"
+      width="40"
+    />
+  </a>
+</p>
+
+<a href="https://www.buymeacoffee.com/ahmetcanaksu" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>

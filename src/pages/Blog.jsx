@@ -1,98 +1,35 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import blogsData from "../data/blogs.json";
 
 const Blog = () => {
-  const [posts] = useState([
-    {
-      id: 1,
-      title:
-        "Building Ellie Language: Lessons from Creating a Memory-Safe Programming Language",
-      excerpt:
-        "A deep dive into the design decisions and challenges faced while building Ellie, a modern programming language focused on memory safety and performance.",
-      date: "2024-01-15",
-      readTime: "8 min read",
-      tags: [
-        "Programming Languages",
-        "Rust",
-        "Compiler Design",
-        "Memory Safety",
-      ],
-      author: "Ahmetcan Aksu",
-      slug: "building-ellie-language",
-      featured: true,
-    },
-    {
-      id: 2,
-      title:
-        "The Future of Developer Tools: Making Programming More Accessible",
-      excerpt:
-        "Exploring how modern developer tools are evolving to make programming more accessible to newcomers while maintaining the power that experts need.",
-      date: "2024-01-10",
-      readTime: "6 min read",
-      tags: ["Developer Tools", "UX", "Programming", "Accessibility"],
-      author: "Ahmetcan Aksu",
-      slug: "future-of-developer-tools",
-      featured: false,
-    },
-    {
-      id: 3,
-      title: "Why I Choose Rust for Systems Programming",
-      excerpt:
-        "An exploration of Rust's unique features that make it an excellent choice for systems programming, based on my experience building Ellie Language.",
-      date: "2024-01-05",
-      readTime: "5 min read",
-      tags: ["Rust", "Systems Programming", "Performance", "Safety"],
-      author: "Ahmetcan Aksu",
-      slug: "why-rust-for-systems",
-      featured: false,
-    },
-    {
-      id: 4,
-      title: "Building UtilStation: A Collection of Developer Utilities",
-      excerpt:
-        "The story behind creating UtilStation, lessons learned about building developer tools, and the importance of good UX in technical products.",
-      date: "2023-12-28",
-      readTime: "7 min read",
-      tags: ["Web Development", "React", "Developer Tools", "Product Design"],
-      author: "Ahmetcan Aksu",
-      slug: "building-utilstation",
-      featured: false,
-    },
-    {
-      id: 5,
-      title: "Understanding Cryptography in Modern Applications",
-      excerpt:
-        "A beginner-friendly guide to cryptography concepts and how they apply to modern software development, including quantum-resistant algorithms.",
-      date: "2023-12-20",
-      readTime: "10 min read",
-      tags: [
-        "Cryptography",
-        "Security",
-        "Quantum Computing",
-        "Software Development",
-      ],
-      author: "Ahmetcan Aksu",
-      slug: "cryptography-in-modern-apps",
-      featured: true,
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    setPosts(blogsData);
+  }, []);
 
   const [selectedTag, setSelectedTag] = useState("all");
+  const [selectedType, setSelectedType] = useState("all"); // all, internal, external
   const [filteredPosts, setFilteredPosts] = useState(posts);
 
   useEffect(() => {
-    if (selectedTag === "all") {
-      setFilteredPosts(posts);
-    } else {
-      setFilteredPosts(
-        posts.filter((post) =>
-          post.tags.some(
-            (tag) => tag.toLowerCase() === selectedTag.toLowerCase()
-          )
-        )
+    let filtered = posts;
+
+    // Filter by type
+    if (selectedType !== "all") {
+      filtered = filtered.filter((post) => post.type === selectedType);
+    }
+
+    // Filter by tag
+    if (selectedTag !== "all") {
+      filtered = filtered.filter((post) =>
+        post.tags.some((tag) => tag.toLowerCase() === selectedTag.toLowerCase())
       );
     }
-  }, [selectedTag, posts]);
+
+    setFilteredPosts(filtered);
+  }, [selectedTag, selectedType, posts]);
 
   const allTags = [...new Set(posts.flatMap((post) => post.tags))];
   const featuredPosts = filteredPosts.filter((post) => post.featured);
@@ -125,27 +62,63 @@ const Blog = () => {
         {/* Filter Tags */}
         <div className="card bg-base-200 shadow-xl mb-12">
           <div className="card-body">
-            <h2 className="card-title mb-4">Filter by Topic</h2>
-            <div className="flex flex-wrap gap-2">
-              <button
-                className={`btn btn-sm ${
-                  selectedTag === "all" ? "btn-primary" : "btn-outline"
-                }`}
-                onClick={() => setSelectedTag("all")}
-              >
-                All Posts
-              </button>
-              {allTags.map((tag) => (
+            <h2 className="card-title mb-4">Filter Posts</h2>
+
+            {/* Type Filter */}
+            <div className="mb-4">
+              <h3 className="font-semibold mb-2">Post Type</h3>
+              <div className="flex flex-wrap gap-2">
                 <button
-                  key={tag}
                   className={`btn btn-sm ${
-                    selectedTag === tag ? "btn-primary" : "btn-outline"
+                    selectedType === "all" ? "btn-primary" : "btn-outline"
                   }`}
-                  onClick={() => setSelectedTag(tag)}
+                  onClick={() => setSelectedType("all")}
                 >
-                  {tag}
+                  All Posts
                 </button>
-              ))}
+                <button
+                  className={`btn btn-sm ${
+                    selectedType === "internal" ? "btn-primary" : "btn-outline"
+                  }`}
+                  onClick={() => setSelectedType("internal")}
+                >
+                  📝 Blog Articles
+                </button>
+                <button
+                  className={`btn btn-sm ${
+                    selectedType === "external" ? "btn-primary" : "btn-outline"
+                  }`}
+                  onClick={() => setSelectedType("external")}
+                >
+                  🔗 External Posts
+                </button>
+              </div>
+            </div>
+
+            {/* Topic Filter */}
+            <div>
+              <h3 className="font-semibold mb-2">Filter by Topic</h3>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  className={`btn btn-sm ${
+                    selectedTag === "all" ? "btn-primary" : "btn-outline"
+                  }`}
+                  onClick={() => setSelectedTag("all")}
+                >
+                  All Topics
+                </button>
+                {allTags.map((tag) => (
+                  <button
+                    key={tag}
+                    className={`btn btn-sm ${
+                      selectedTag === tag ? "btn-primary" : "btn-outline"
+                    }`}
+                    onClick={() => setSelectedTag(tag)}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -268,13 +241,43 @@ const Blog = () => {
                     <div className="card-actions justify-between items-center">
                       <span className="text-sm text-base-content/60">
                         {post.readTime}
+                        {post.type === "external" && (
+                          <span className="ml-2 badge badge-info badge-xs">
+                            {post.platform}
+                          </span>
+                        )}
                       </span>
-                      <Link
-                        to={`/blog/${post.slug}`}
-                        className="btn btn-primary btn-sm"
-                      >
-                        Read More
-                      </Link>
+                      {post.type === "external" ? (
+                        <a
+                          href={post.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-primary btn-sm"
+                        >
+                          <svg
+                            className="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                          Read on {post.platform}
+                        </a>
+                      ) : (
+                        <Link
+                          to={`/blog/${post.slug}`}
+                          className="btn btn-primary btn-sm"
+                        >
+                          Read More
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </article>
@@ -296,15 +299,31 @@ const Blog = () => {
                   <div className="card-body">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
                       <h3 className="card-title text-2xl mb-2 md:mb-0">
-                        <Link
-                          to={`/blog/${post.slug}`}
-                          className="hover:text-primary transition-colors"
-                        >
-                          {post.title}
-                        </Link>
+                        {post.type === "external" ? (
+                          <a
+                            href={post.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-primary transition-colors"
+                          >
+                            {post.title}
+                          </a>
+                        ) : (
+                          <Link
+                            to={`/blog/${post.slug}`}
+                            className="hover:text-primary transition-colors"
+                          >
+                            {post.title}
+                          </Link>
+                        )}
                       </h3>
                       <span className="text-sm text-base-content/60 md:ml-4">
                         {formatDate(post.date)} • {post.readTime}
+                        {post.type === "external" && (
+                          <span className="ml-2 badge badge-info badge-xs">
+                            {post.platform}
+                          </span>
+                        )}
                       </span>
                     </div>
 
@@ -324,12 +343,37 @@ const Blog = () => {
                     </div>
 
                     <div className="card-actions justify-end">
-                      <Link
-                        to={`/blog/${post.slug}`}
-                        className="btn btn-primary"
-                      >
-                        Read Full Article
-                      </Link>
+                      {post.type === "external" ? (
+                        <a
+                          href={post.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-primary"
+                        >
+                          <svg
+                            className="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                          Read on {post.platform}
+                        </a>
+                      ) : (
+                        <Link
+                          to={`/blog/${post.slug}`}
+                          className="btn btn-primary"
+                        >
+                          Read Full Article
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </article>

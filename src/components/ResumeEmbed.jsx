@@ -8,7 +8,7 @@ const ResumeEmbed = () => {
           {/* PDF Embed */}
           <div className="w-full h-96 mb-6 border rounded-lg overflow-hidden">
             <embed
-              src="cv_en.pdf"
+              src="Ahmetcan Aksu CV EN.pdf"
               type="application/pdf"
               width="100%"
               height="100%"
@@ -35,11 +35,24 @@ const ResumeEmbed = () => {
               <h3 className="text-xl font-bold mb-3">Education</h3>
               <div className="space-y-3">
                 <div className="border-l-4 border-primary pl-4">
-                  <h4 className="font-semibold">Computer Engineering</h4>
+                  <h4 className="font-semibold">
+                    Management Information Systems
+                  </h4>
                   <p className="text-sm text-base-content/70">
-                    Istanbul Technical University
+                    Anadolu University
                   </p>
-                  <p className="text-sm text-base-content/70">2020 - 2024</p>
+                  <p className="text-sm text-base-content/70">2023 - Present</p>
+                </div>
+                <div className="border-l-4 border-secondary pl-4">
+                  <h4 className="font-semibold">
+                    Computer Programming (Associate)
+                  </h4>
+                  <p className="text-sm text-base-content/70">
+                    Işık University
+                  </p>
+                  <p className="text-sm text-base-content/70">
+                    2020 - 2022 (GPA: 3.53/4.00)
+                  </p>
                 </div>
               </div>
             </div>
@@ -48,33 +61,45 @@ const ResumeEmbed = () => {
               <h3 className="text-xl font-bold mb-3">Work Experience</h3>
               <div className="space-y-4">
                 <div className="border-l-4 border-secondary pl-4">
-                  <h4 className="font-semibold">Senior Software Engineer</h4>
+                  <h4 className="font-semibold">Backend Developer</h4>
                   <p className="text-sm text-base-content/70">
-                    Behemehal Organization
+                    Fonmap Financial Technologies
                   </p>
-                  <p className="text-sm text-base-content/70">2023 - Present</p>
+                  <p className="text-sm text-base-content/70">
+                    Feb 2024 - Present
+                  </p>
                   <ul className="text-sm text-base-content/70 mt-2 space-y-1">
-                    <li>• Leading development of Ellie programming language</li>
                     <li>
-                      • Architecting compiler infrastructure and LLVM
-                      integration
+                      • Leading backend development on digital investment
+                      platform
                     </li>
-                    <li>• Managing open-source community and contributions</li>
+                    <li>• Migrated core systems to TypeScript</li>
+                    <li>• Engineered TEFAS integration infrastructure</li>
                   </ul>
                 </div>
 
                 <div className="border-l-4 border-accent pl-4">
                   <h4 className="font-semibold">Full Stack Developer</h4>
-                  <p className="text-sm text-base-content/70">Freelance</p>
-                  <p className="text-sm text-base-content/70">2021 - 2023</p>
+                  <p className="text-sm text-base-content/70">Qpien</p>
+                  <p className="text-sm text-base-content/70">
+                    Aug 2022 - Feb 2024
+                  </p>
                   <ul className="text-sm text-base-content/70 mt-2 space-y-1">
-                    <li>
-                      • Developed web applications using React and Node.js
-                    </li>
-                    <li>• Built mobile applications with Flutter and Dart</li>
-                    <li>
-                      • Implemented blockchain solutions and smart contracts
-                    </li>
+                    <li>• Built scalable e-commerce platform</li>
+                    <li>• Implemented real-time messaging with WebSockets</li>
+                    <li>• Developed React frontend and Node.js APIs</li>
+                  </ul>
+                </div>
+
+                <div className="border-l-4 border-info pl-4">
+                  <h4 className="font-semibold">Full Stack Developer</h4>
+                  <p className="text-sm text-base-content/70">Massive Energy</p>
+                  <p className="text-sm text-base-content/70">
+                    Jun 2021 - Jul 2022
+                  </p>
+                  <ul className="text-sm text-base-content/70 mt-2 space-y-1">
+                    <li>• Developed management panels and backend systems</li>
+                    <li>• Managed AWS deployment and infrastructure</li>
                   </ul>
                 </div>
               </div>
@@ -93,7 +118,7 @@ const ResumeEmbed = () => {
                   <span className="badge badge-primary">JavaScript</span>
                   <span className="badge badge-primary">TypeScript</span>
                   <span className="badge badge-primary">Dart</span>
-                  <span className="badge badge-primary">Python</span>
+                  <span className="badge badge-primary">C</span>
                 </div>
               </div>
 
@@ -101,11 +126,13 @@ const ResumeEmbed = () => {
                 <h4 className="font-semibold mb-2">Frameworks & Libraries</h4>
                 <div className="flex flex-wrap gap-2">
                   <span className="badge badge-secondary">React</span>
-                  <span className="badge badge-secondary">Next.js</span>
-                  <span className="badge badge-secondary">Flutter</span>
                   <span className="badge badge-secondary">Node.js</span>
+                  <span className="badge badge-secondary">Express.js</span>
+                  <span className="badge badge-secondary">Flutter</span>
                   <span className="badge badge-secondary">.NET</span>
-                  <span className="badge badge-secondary">LLVM</span>
+                  <span className="badge badge-secondary">
+                    Entity Framework
+                  </span>
                 </div>
               </div>
 
@@ -117,7 +144,7 @@ const ResumeEmbed = () => {
                   <span className="badge badge-accent">PostgreSQL</span>
                   <span className="badge badge-accent">MongoDB</span>
                   <span className="badge badge-accent">AWS</span>
-                  <span className="badge badge-accent">Blockchain</span>
+                  <span className="badge badge-accent">Redis</span>
                 </div>
               </div>
             </div>
@@ -126,7 +153,7 @@ const ResumeEmbed = () => {
           {/* Download Button */}
           <div className="card-actions justify-center mt-6">
             <a
-              href="/cv.pdf"
+              href="cv_en.pdf"
               download="Ahmetcan_Aksu_Resume.pdf"
               className="btn btn-primary btn-lg"
             >

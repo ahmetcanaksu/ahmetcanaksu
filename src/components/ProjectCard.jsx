@@ -13,6 +13,7 @@ const ProjectCard = ({ project }) => {
 
   const statusColors = {
     active: "badge-success",
+    complete: "badge-secondary",
     development: "badge-warning",
     beta: "badge-info",
     experimental: "badge-error",
@@ -24,20 +25,15 @@ const ProjectCard = ({ project }) => {
         featured ? "ring-2 ring-primary" : ""
       }`}
     >
-      {featured && (
-        <div className="absolute top-4 right-4 z-10">
-          <div className="badge badge-primary">Featured</div>
-        </div>
-      )}
-
       <div className="card-body">
         <div className="flex justify-between items-start mb-2">
           <h2 className="card-title text-xl">{name}</h2>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2 justify-end">
             <span className="badge badge-outline">{year}</span>
             <span className={`badge ${statusColors[status]}`}>
               {status.charAt(0).toUpperCase() + status.slice(1)}
             </span>
+            {featured && <span className="badge badge-primary">Featured</span>}
           </div>
         </div>
 

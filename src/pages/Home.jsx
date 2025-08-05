@@ -1,6 +1,26 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import blogsData from "../data/blogs.json";
 
 const Home = () => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    setPosts(blogsData);
+  }, []);
+
+  // Get featured posts
+  const featuredPosts = posts.filter((post) => post.featured);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -211,44 +231,77 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Recent Blog Posts */}
+      {/* Featured Blog Posts */}
       <section className="py-20 bg-base-200">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Latest Blog Posts</h2>
+            <h2 className="text-4xl font-bold mb-4">Featured Blog Posts</h2>
             <p className="text-xl text-base-content/70">
-              Thoughts on programming, technology, and life
+              Thoughts on programming, technology, and development
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="card bg-base-100 shadow-xl">
-              <div className="card-body">
-                <h3 className="card-title text-2xl">
-                  Building Ellie Language: Lessons from Creating a Memory-Safe
-                  Programming Language
-                </h3>
-                <p className="text-base-content/70 mb-4">
-                  A deep dive into the design decisions and challenges faced
-                  while building Ellie, a modern programming language focused on
-                  memory safety and performance.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="badge badge-outline">
-                    Programming Languages
-                  </span>
-                  <span className="badge badge-outline">Rust</span>
-                  <span className="badge badge-outline">Compiler Design</span>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8">
+              {featuredPosts.map((post) => (
+                <div key={post.id} className="card bg-base-100 shadow-xl">
+                  <div className="card-body">
+                    <h3 className="card-title text-xl mb-3">{post.title}</h3>
+                    <p className="text-base-content/70 mb-4">{post.excerpt}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {post.tags.slice(0, 3).map((tag, index) => (
+                        <span
+                          key={index}
+                          className="badge badge-outline badge-sm"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                      {post.type === "external" && (
+                        <span className="badge badge-info badge-sm">
+                          {post.platform}
+                        </span>
+                      )}
+                    </div>
+                    <div className="card-actions justify-between items-center">
+                      <span className="text-sm text-base-content/60">
+                        {formatDate(post.date)} • {post.readTime}
+                      </span>
+                      {post.type === "external" ? (
+                        <a
+                          href={post.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-primary btn-sm"
+                        >
+                          <svg
+                            className="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                          Read on {post.platform}
+                        </a>
+                      ) : (
+                        <Link
+                          to={`/blog/${post.slug}`}
+                          className="btn btn-primary btn-sm"
+                        >
+                          Read More
+                        </Link>
+                      )}
+                    </div>
+                  </div>
                 </div>
-                <div className="card-actions justify-between items-center">
-                  <span className="text-sm text-base-content/60">
-                    January 15, 2024 • 8 min read
-                  </span>
-                  <Link to="/blog" className="btn btn-primary">
-                    Read More
-                  </Link>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 

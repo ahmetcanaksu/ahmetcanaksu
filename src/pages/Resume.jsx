@@ -11,7 +11,7 @@ const Resume = () => {
           </h1>
           <p className="text-xl text-base-content/80 max-w-2xl mx-auto">
             My professional experience, education, and skills in software
-            engineering and programming language design.
+            development and programming language design.
           </p>
         </div>
 
@@ -35,7 +35,7 @@ const Resume = () => {
                     </h4>
                     <p className="text-sm text-base-content/70">
                       Designed and implemented Ellie, a memory-safe programming
-                      language with over 1K+ GitHub stars.
+                      language with focus on embedded systems and WebAssembly.
                     </p>
                   </div>
                 </div>
@@ -54,21 +54,21 @@ const Resume = () => {
                 <div className="flex items-start space-x-3">
                   <div className="badge badge-accent badge-lg">💡</div>
                   <div>
-                    <h4 className="font-semibold">Full-Stack Developer</h4>
+                    <h4 className="font-semibold">Backend Developer</h4>
                     <p className="text-sm text-base-content/70">
-                      Experience building scalable web applications, mobile
-                      apps, and developer tools.
+                      Experience building scalable backend systems, APIs, and
+                      financial technology platforms with modern frameworks.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-3">
-                  <div className="badge badge-info badge-lg">🔒</div>
+                  <div className="badge badge-info badge-lg">�</div>
                   <div>
-                    <h4 className="font-semibold">Security Specialist</h4>
+                    <h4 className="font-semibold">Developer Tools Creator</h4>
                     <p className="text-sm text-base-content/70">
-                      Developed cryptographic libraries and quantum-resistant
-                      security solutions.
+                      Built UtilStation and various developer productivity tools
+                      used by the programming community.
                     </p>
                   </div>
                 </div>
@@ -83,26 +83,26 @@ const Resume = () => {
               <div className="space-y-4">
                 <div className="stat">
                   <div className="stat-title">GitHub Repositories</div>
-                  <div className="stat-value text-primary">50+</div>
+                  <div className="stat-value text-primary">40+</div>
                   <div className="stat-desc">Public repositories</div>
                 </div>
 
                 <div className="stat">
-                  <div className="stat-title">Programming Languages</div>
-                  <div className="stat-value text-secondary">10+</div>
-                  <div className="stat-desc">Professional experience</div>
+                  <div className="stat-title">Work Experience</div>
+                  <div className="stat-value text-secondary">3+</div>
+                  <div className="stat-desc">Years in companies</div>
                 </div>
 
                 <div className="stat">
                   <div className="stat-title">Years Experience</div>
-                  <div className="stat-value text-accent">5+</div>
+                  <div className="stat-value text-accent">6+</div>
                   <div className="stat-desc">Software development</div>
                 </div>
 
                 <div className="stat">
-                  <div className="stat-title">Open Source Stars</div>
-                  <div className="stat-value text-info">2K+</div>
-                  <div className="stat-desc">Across all projects</div>
+                  <div className="stat-title">Technologies</div>
+                  <div className="stat-value text-info">15+</div>
+                  <div className="stat-desc">Languages & frameworks</div>
                 </div>
               </div>
             </div>
@@ -122,7 +122,7 @@ const Resume = () => {
               </p>
               <div className="card-actions justify-center">
                 <a
-                  href="mailto:hello@ahmetcanaksu.com"
+                  href="mailto:ahmetcanaksu@behemehal.org"
                   className="btn btn-primary-content btn-lg"
                 >
                   <svg

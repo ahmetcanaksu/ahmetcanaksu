@@ -29,8 +29,8 @@ const About = () => {
               <p className="text-lg leading-relaxed mb-6">
                 I'm Ahmetcan Aksu, a passionate software developer and
                 open-source contributor based in Beykoz, Istanbul, Turkey. With
-                8+ years of experience in software development, including 3
-                years in full-time roles, 2 years freelancing, and ongoing
+                6+ years of experience in software development, including 3
+                years in full-time roles, 2+ years freelancing, and ongoing
                 personal projects, I specialize in building scalable web
                 applications, programming languages, and developer tools.
               </p>
@@ -38,10 +38,11 @@ const About = () => {
               <p className="text-lg leading-relaxed mb-6">
                 My journey began with a Computer Programming degree from Işık
                 University (GPA 3.53/4) and I'm currently pursuing Management
-                Information Systems at Anadolu University. I've worked with
-                modern web technologies like React, TypeScript, Node.js, and
-                have experience in desktop apps (Electron, Rust), mobile
-                development (Flutter), and embedded systems (Rust on ARM/ESP).
+                Information Systems at Anadolu University. I have extensive
+                experience with modern web technologies like React, TypeScript,
+                Node.js, and have worked with desktop applications (Electron,
+                Rust), mobile development (Flutter), and embedded systems (Rust
+                on ARM/ESP).
               </p>
 
               <p className="text-lg leading-relaxed mb-6">
@@ -98,12 +99,16 @@ const About = () => {
                   <div>
                     <h4 className="font-semibold mb-2">Backend Development</h4>
                     <div className="flex flex-wrap gap-2">
+                      <span className="badge badge-primary">Rust</span>
                       <span className="badge badge-primary">Node.js</span>
+                      <span className="badge badge-primary">Express.js</span>
                       <span className="badge badge-primary">C#</span>
+                      <span className="badge badge-primary">.NET</span>
                       <span className="badge badge-primary">GraphQL</span>
                       <span className="badge badge-primary">
                         Entity Framework Core
                       </span>
+                      <span className="badge badge-primary">REST APIs</span>
                     </div>
                   </div>
 
@@ -135,6 +140,7 @@ const About = () => {
                     <h4 className="font-semibold mb-2">Systems & Embedded</h4>
                     <div className="flex flex-wrap gap-2">
                       <span className="badge badge-info">Rust</span>
+                      <span className="badge badge-info">C</span>
                       <span className="badge badge-info">WebAssembly</span>
                       <span className="badge badge-info">Arduino</span>
                       <span className="badge badge-info">ESP-32/8266</span>
@@ -157,6 +163,8 @@ const About = () => {
                       <span className="badge badge-success">AWS</span>
                       <span className="badge badge-success">Git</span>
                       <span className="badge badge-success">Linux</span>
+                      <span className="badge badge-success">CI/CD</span>
+                      <span className="badge badge-success">RabbitMQ</span>
                     </div>
                   </div>
                 </div>
@@ -365,6 +373,62 @@ const About = () => {
             </div>
           </div>
 
+          {/* Education */}
+          <div className="card bg-base-200 shadow-xl mb-8">
+            <div className="card-body">
+              <h3 className="card-title text-2xl mb-6">Education</h3>
+
+              <div className="space-y-6">
+                <div className="border-l-4 border-primary pl-4">
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <h4 className="font-bold text-lg">
+                        Management Information Systems
+                      </h4>
+                      <p className="text-primary font-semibold">
+                        Anadolu University
+                      </p>
+                    </div>
+                    <span className="text-sm text-base-content/70">
+                      2023 - Present
+                    </span>
+                  </div>
+                  <p className="text-sm text-base-content/70">
+                    Currently pursuing Bachelor's degree in Management
+                    Information Systems with focus on business technology
+                    integration and systems analysis.
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-secondary pl-4">
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <h4 className="font-bold text-lg">
+                        Computer Programming (Associate)
+                      </h4>
+                      <p className="text-secondary font-semibold">
+                        Işık University
+                      </p>
+                    </div>
+                    <span className="text-sm text-base-content/70">
+                      2020 - 2022
+                    </span>
+                  </div>
+                  <p className="text-sm text-base-content/70 mb-2">
+                    GPA: 3.53/4.00 - Focused on software development
+                    fundamentals, algorithms, and programming languages.
+                  </p>
+                  <ul className="text-sm space-y-1 list-disc list-inside text-base-content/70">
+                    <li>Software Development Principles</li>
+                    <li>Data Structures and Algorithms</li>
+                    <li>Database Management Systems</li>
+                    <li>Web Development Technologies</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Personal Projects & Organizations */}
           <div className="card bg-base-200 shadow-xl mb-8">
             <div className="card-body">
@@ -443,7 +507,8 @@ const About = () => {
                   <p className="text-sm">
                     Regular contributor to various open-source projects
                     including Rust libraries, web frameworks, and developer
-                    tools.
+                    tools. Notable projects include Menemen (HTTP library),
+                    SafeEn (database solution), Rust-NMEA (parser), and more.
                   </p>
                   <a
                     href="https://github.com/ahmetcanaksu"
@@ -471,7 +536,7 @@ const About = () => {
                 </p>
                 <div className="card-actions justify-center">
                   <a
-                    href="mailto:hello@ahmetcanaksu.com"
+                    href="mailto:ahmetcanaksu@behemehal.org"
                     className="btn btn-primary-content"
                   >
                     Send me an email

@@ -1,0 +1,73 @@
+[
+    {
+        "id": 1,
+        "title": "Building Ellie Language: Lessons from Creating a Memory-Safe Programming Language",
+        "excerpt": "A deep dive into the design decisions and challenges faced while building Ellie, a modern programming language focused on memory safety and performance.",
+        "date": "2024-01-15",
+        "readTime": "8 min read",
+        "tags": [
+            "Programming Languages",
+            "Rust",
+            "Compiler Design",
+            "Memory Safety"
+        ],
+        "author": "Ahmetcan Aksu",
+        "slug": "building-ellie-language",
+        "featured": true,
+        "type": "internal"
+    },
+    {
+        "id": 2,
+        "title": "Rust ile WebAssembly yazıyoruz",
+        "excerpt": "Rust programlama dili kullanarak WebAssembly modülleri nasıl geliştirileceğini öğrenin. Modern web uygulamalarında yüksek performans için Rust+WASM kombinasyonu.",
+        "date": "2023-12-01",
+        "readTime": "7 min read",
+        "tags": [
+            "Rust",
+            "WebAssembly",
+            "Web Development",
+            "Performance"
+        ],
+        "author": "Ahmetcan Aksu",
+        "url": "https://www.linkedin.com/pulse/rust-ile-webassembly-yaz%C4%B1yoruz-ahmetcan-aksu/?trackingId=HYV97J0LS96u8vtsNryQpw%3D%3D",
+        "featured": true,
+        "type": "external",
+        "platform": "LinkedIn"
+    },
+    {
+        "id": 3,
+        "title": "Rust ile web servisi yazıyoruz",
+        "excerpt": "Rust programlama dili ile yüksek performanslı web servisleri nasıl geliştirilir? Pratik örnekler ve best practice'ler ile Rust web development rehberi.",
+        "date": "2023-11-15",
+        "readTime": "6 min read",
+        "tags": [
+            "Rust",
+            "Web Development",
+            "Backend",
+            "API"
+        ],
+        "author": "Ahmetcan Aksu",
+        "url": "https://www.linkedin.com/pulse/rust-ile-web-servisi-yaz%C4%B1yoruz-ahmetcan-aksu/",
+        "featured": true,
+        "type": "external",
+        "platform": "LinkedIn"
+    },
+    {
+        "id": 4,
+        "title": "Rust ile HTTP üzerinden dosya indirmek",
+        "excerpt": "Rust programlama dili kullanarak HTTP protokolü üzerinden dosya indirme işlemlerini nasıl gerçekleştireceğinizi öğrenin. Asenkron programlama ve error handling dahil.",
+        "date": "2023-11-01",
+        "readTime": "5 min read",
+        "tags": [
+            "Rust",
+            "HTTP",
+            "File Download",
+            "Async Programming"
+        ],
+        "author": "Ahmetcan Aksu",
+        "url": "https://www.linkedin.com/pulse/rust-ile-http-%25C3%25BCzerinden-dosya-indirmek-ahmetcan-aksu/",
+        "featured": false,
+        "type": "external",
+        "platform": "LinkedIn"
+    }
+]

@@ -62,7 +62,7 @@ const Projects = () => {
         </div>
 
         {/* Filters */}
-        <div className="card bg-base-200 shadow-xl mb-12">
+        <div className="card bg-base-200 shadow-xl mb-12 hidden">
           <div className="card-body">
             <h2 className="card-title mb-4">Filter Projects</h2>
 
