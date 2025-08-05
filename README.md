@@ -14,33 +14,33 @@ Passionate about building programming languages, developer tools, and open-sourc
 
 ### Check out my blog posts;
 
-<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [Rust ile HTTP üzerinden dosya indirmek](https://www.linkedin.com/pulse/rust-ile-http-%25C3%25BCzerinden-dosya-indirmek-ahmetcan-aksu/)
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/rust.png" width="35"> - [Rust ile HTTP üzerinden dosya indirmek](https://www.linkedin.com/pulse/rust-ile-http-%25C3%25BCzerinden-dosya-indirmek-ahmetcan-aksu/)
 
-<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [Rust ile web servisi yazıyoruz](https://www.linkedin.com/pulse/rust-ile-web-servisi-yaz%C4%B1yoruz-ahmetcan-aksu/)
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/rust.png" width="35"> - [Rust ile web servisi yazıyoruz](https://www.linkedin.com/pulse/rust-ile-web-servisi-yaz%C4%B1yoruz-ahmetcan-aksu/)
 
-<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [Rust ile WebAssembly yazıyoruz](https://www.linkedin.com/pulse/rust-ile-webassembly-yaz%25C4%25B1yoruz-ahmetcan-aksu/?trackingId=HYV97J0LS96u8vtsNryQpw%3D%3D)
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/rust.png" width="35"> - [Rust ile WebAssembly yazıyoruz](https://www.linkedin.com/pulse/rust-ile-webassembly-yaz%25C4%25B1yoruz-ahmetcan-aksu/?trackingId=HYV97J0LS96u8vtsNryQpw%3D%3D)
 
 ### Check out my projects;
 
-<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [Ellie Language - Type-safe programing language that runs on embedded and sandboxed environments](https://github.com/behemehal/Ellie-Language)
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/rust.png" width="35"> - [Ellie Language - Type-safe programing language that runs on embedded and sandboxed environments](https://github.com/behemehal/Ellie-Language)
 
-<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/dartlang.png" width="35"> - [Wole App - Wake-On-Lan Magic Package Generator & Sender Android App](https://github.com/behemehal/WoleApp)
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/dartlang.png" width="35"> - [Wole App - Wake-On-Lan Magic Package Generator & Sender Android App](https://github.com/behemehal/WoleApp)
 
-<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [Wole - Wake-On-Lan Magic Package Generator & Sender & CLI](https://github.com/ahmetcanaksu/Wole)
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/rust.png" width="35"> - [Wole - Wake-On-Lan Magic Package Generator & Sender & CLI](https://github.com/ahmetcanaksu/Wole)
 
-<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/dartlang.png" width="35"> - [event_listener - NodeJS like Event Listener library for dart!](https://github.com/behemehal/event_listener)
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/dartlang.png" width="35"> - [event_listener - NodeJS like Event Listener library for dart!](https://github.com/behemehal/event_listener)
 
-<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/dartlang.png" width="35"> - [Bnots - A note app that combines simplicity with Markdown support](https://github.com/behemehal/Bnots)
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/dartlang.png" width="35"> - [Bnots - A note app that combines simplicity with Markdown support](https://github.com/behemehal/Bnots)
 
-<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [Menemen - A streaming http/https request library](https://github.com/behemehal/Menemen)
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/rust.png" width="35"> - [Menemen - A streaming http/https request library](https://github.com/behemehal/Menemen)
 
-<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [SafeEn - Local database solution for situations that requires strict data integrity and absolute portability](https://github.com/behemehal/SafeEn)
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/rust.png" width="35"> - [SafeEn - Local database solution for situations that requires strict data integrity and absolute portability](https://github.com/behemehal/SafeEn)
 
-<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust.png" width="35"> - [Rust-NMEA - Rust NMEA parser](https://github.com/ahmetcanaksu/Rust-NMEA)
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/rust.png" width="35"> - [Rust-NMEA - Rust NMEA parser](https://github.com/ahmetcanaksu/Rust-NMEA)
 
-<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/js.png" width="35"> - [Device-Database - A library that detects collection of development boards.](https://github.com/ahmetcanaksu/Device-Database)
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/js.png" width="35"> - [Device-Database - A library that detects collection of development boards.](https://github.com/ahmetcanaksu/Device-Database)
 
-<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/js.png" width="35"> - [rpifan - Auto fan controller service for RaspberryPi ](https://github.com/ahmetcanaksu/rpifan)
+<img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/js.png" width="35"> - [rpifan - Auto fan controller service for RaspberryPi ](https://github.com/ahmetcanaksu/rpifan)
 
 <details>
   <summary><h3>Coding Activity</h3></summary>
@@ -59,7 +59,7 @@ Passionate about building programming languages, developer tools, and open-sourc
 <p align="left">
   <a href="https://www.rust-lang.org" target="_blank" rel="noreferrer">
     <img
-      src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/rust_logo.png"
+      src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/rust_logo.png"
       alt="rust"
       width="40"
       height="40"
@@ -143,7 +143,7 @@ Passionate about building programming languages, developer tools, and open-sourc
   </a>
   <a href="https://expressjs.com/" target="_blank" rel="noreferrer">
     <img
-      src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/express_logo.png"
+      src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/express_logo.png"
       alt="expressjs"
       width="115"
       height="40"
@@ -151,7 +151,7 @@ Passionate about building programming languages, developer tools, and open-sourc
   </a>
   <a href="https://nodejs.org" target="_blank" rel="noreferrer">
     <img
-      src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/node_logo.png"
+      src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/node_logo.png"
       alt="nodejs"
       width="40"
       height="40"
