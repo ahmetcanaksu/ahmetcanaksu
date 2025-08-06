@@ -1,18 +1,7 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
-
   const navItems = [
     { path: "/", label: "Home" },
     { path: "/about", label: "About" },
@@ -27,13 +16,7 @@ const Header = () => {
     <header className="navbar bg-base-100 shadow-lg sticky top-0 z-50">
       <div className="navbar-start">
         <div className="dropdown lg:hidden">
-          <button
-            tabIndex={0}
-            className="btn btn-ghost btn-circle"
-            onClick={toggleMenu}
-            aria-label="Toggle navigation menu"
-            aria-expanded={isMenuOpen}
-          >
+          <label htmlFor="drawer-input" className="btn btn-ghost btn-circle">
             <svg
               className="w-5 h-5"
               fill="none"
@@ -48,25 +31,7 @@ const Header = () => {
                 d="M4 6h16M4 12h16M4 18h16"
               />
             </svg>
-          </button>
-          {isMenuOpen && (
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              {navItems.map((item) => (
-                <li key={item.path}>
-                  <Link
-                    to={item.path}
-                    onClick={closeMenu}
-                    className="hover:bg-base-200"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
+          </label>
         </div>
         <Link to="/" className="btn btn-ghost normal-case text-xl font-bold">
           <span className="gradient-text">Ahmetcan Aksu</span>
