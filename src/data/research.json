@@ -70,5 +70,22 @@
         "category": "Embedded Systems",
         "status": "experimental",
         "year": "2023"
+    },
+    {
+        "id": 5,
+        "name": "Comparison of Pairing Functions: Szudzik, Cantor, and Bit Interleaving",
+        "description": "A visual and mathematical comparison of Szudzik's, Cantor's, and Bit Interleaving pairing functions, including interactive chart and code.",
+        "longDescription": "This experiment explores and visualizes three mathematical pairing functions (Szudzik, Cantor, Bit Interleaving) that uniquely map two integers into a single integer. Includes interactive chart and code for comparison.",
+        "techTags": [
+            "Math",
+            "Visualization",
+            "JavaScript",
+            "Experiment"
+        ],
+        "repoUrl": null,
+        "liveUrl": "#/research/pairing-functions",
+        "category": "Mathematics",
+        "status": "complete",
+        "year": "2025"
     }
 ]

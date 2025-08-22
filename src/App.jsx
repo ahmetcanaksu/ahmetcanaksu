@@ -11,6 +11,7 @@ import Resume from "./pages/Resume";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import { Drawer } from "./components/Drawer";
+import PairingFunctionsExperiment from "./pages/PairingFunctionsResearch";
 
 function App() {
   return (
@@ -25,9 +26,14 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/research" element={<Research />} />
+              <Route
+                path="/research/pairing-functions"
+                element={<PairingFunctionsExperiment />}
+              />
               <Route path="/blog" element={<Blog />} />
               <Route path="/resume" element={<Resume />} />
               <Route path="/contact" element={<Contact />} />
+              
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

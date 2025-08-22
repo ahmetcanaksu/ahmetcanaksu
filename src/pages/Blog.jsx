@@ -217,12 +217,23 @@ const Blog = () => {
                     </div>
 
                     <h3 className="card-title text-xl mb-3 leading-tight">
+                      {
+                        post.type === "external" ? (
+                          <a
+                            href={post.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-primary transition-colors"
+                          >{post.title}</a>
+                        ) : (
                       <Link
-                        to={`/blog/${post.slug}`}
+                        to={`${post.slug}`}
                         className="hover:text-primary transition-colors"
                       >
                         {post.title}
                       </Link>
+                        )
+                      }
                     </h3>
 
                     <p className="text-base-content/80 mb-4">{post.excerpt}</p>
@@ -272,7 +283,7 @@ const Blog = () => {
                         </a>
                       ) : (
                         <Link
-                          to={`/blog/${post.slug}`}
+                          to={`${post.slug}`}
                           className="btn btn-primary btn-sm"
                         >
                           Read More
@@ -310,7 +321,7 @@ const Blog = () => {
                           </a>
                         ) : (
                           <Link
-                            to={`/blog/${post.slug}`}
+                            to={`${post.slug}`}
                             className="hover:text-primary transition-colors"
                           >
                             {post.title}
@@ -368,7 +379,7 @@ const Blog = () => {
                         </a>
                       ) : (
                         <Link
-                          to={`/blog/${post.slug}`}
+                          to={`/${post.slug}`}
                           className="btn btn-primary"
                         >
                           Read Full Article
