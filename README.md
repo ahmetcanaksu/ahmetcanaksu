@@ -168,8 +168,5 @@ fn main() {
 ### 🤝 Let's Connect!
 
 [![Portfolio](https://img.shields.io/badge/🌐_Portfolio-Visit_Website-3B82F6?style=for-the-badge)](https://ahmetcanaksu.com)
-[![Coffee](https://img.shields.io/badge/☕_Buy_Me_Coffee-Support_Work-FFDD00?style=for-the-badge)](https://www.buymeacoffee.com/ahmetcanaksu)
-
-**"Building the future, one commit at a time!"** 🚀
 
 </div>
