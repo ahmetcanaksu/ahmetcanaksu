@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ahmetcan Aksu — Software Developer — CV</title>
+<meta name="author" content="Ahmetcan Aksu">
+<meta name="description" content="CV of Ahmetcan Aksu, software developer specialising in backend and full-stack development with Node.js, TypeScript, C# and Rust.">
+
+<!--
+  ============================================================================
+  HOW TO USE THIS FILE
+  ============================================================================
+  1. Open cv.html in a browser (double-click it). No server, no build step.
+  2. Edit content ONLY inside the CV DATA block below (search: "CV DATA").
+     Every text field holds both languages: { en: "...", tr: "..." }
+  3. Export PDF:  Cmd/Ctrl + P  ->  Destination "Save as PDF"
+                  Paper A4  ·  Margins "Default"  ·  Scale 100%
+                  Background graphics: ON (keeps the accent rules)
+     The page is laid out for A4 and already includes its own print margins.
+  4. Language: the EN / TR button, or open cv.html#tr  (choice is remembered)
+  5. Too many pages? Press A- (or set layout.baseFontPt lower in CV DATA).
+     The type size you pick is remembered and used by the PDF export.
+  6. "Export static HTML" button bakes the current language into a plain HTML
+     file with no JavaScript — use that if an application portal asks for an
+     HTML upload, since some parsers do not run scripts.
+  ============================================================================
+-->
+
+<style>
+  :root{
+    color-scheme: light;
+    /* base type size — the single lever for fitting content onto N pages.
+       Set it in the CV DATA block (layout.baseFontPt) or nudge it with the
+       A- / A+ buttons on screen until the page count looks right. */
+    --fs:       10.4pt;
+    --ink:      #14181f;
+    --ink-soft: #303845;
+    --muted:    #5c6675;
+    --accent:   #2f5fbf;
+    --rule:     #c9d2e0;
+    --rule-soft:#e4e9f1;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ background:#eceef2; }
+
+  body{
+    margin:0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: var(--fs);
+    line-height: 1.42;
+    color: var(--ink-soft);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ---------- screen chrome (never printed) ---------- */
+  .toolbar{
+    position: sticky; top:0; z-index:10;
+    display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+    padding:10px 14px;
+    background:#1b2027; color:#e8ebf0;
+    font-size:12px;
+  }
+  .toolbar strong{ font-weight:600; margin-right:auto; letter-spacing:.02em; }
+  .toolbar button{
+    font:inherit; font-weight:500;
+    padding:6px 12px; border-radius:6px; cursor:pointer;
+    border:1px solid #3c4553; background:#2a313b; color:#e8ebf0;
+  }
+  .toolbar button:hover{ background:#343d49; }
+  .toolbar button[aria-pressed="true"]{ background:#dfe4ec; color:#1b2027; border-color:#dfe4ec; }
+  .toolbar .hint{ color:#98a2b3; font-size:11px; }
+
+  /* ---------- the sheet ---------- */
+  .sheet{
+    width: 210mm;
+    margin: 18px auto 40px;
+    padding: 15mm 16mm;
+    background:#fff;
+    box-shadow: 0 1px 3px rgba(20,24,31,.14), 0 10px 34px rgba(20,24,31,.10);
+  }
+
+  /* ---------- header ---------- */
+  header.masthead{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    gap: 14mm;
+    padding-bottom: 7px;
+    border-bottom: 2px solid var(--accent);
+  }
+  h1{
+    margin:0;
+    font-size: 25pt; line-height:1.03; font-weight:700;
+    letter-spacing:-.015em; color: var(--ink);
+  }
+  .role{
+    margin-top: 4px;
+    font-size: 10.2pt; font-weight:600; color: var(--accent);
+    letter-spacing:.055em; text-transform: uppercase;
+  }
+  .tagline{ margin-top:3px; font-size:9.2pt; color: var(--muted); }
+
+  .contact{
+    flex: 0 0 auto;
+    text-align: right;
+    font-size: 8.9pt; line-height:1.6; color: var(--ink-soft);
+  }
+  .contact a{ color: var(--ink-soft); text-decoration:none; }
+  .contact a:hover{ text-decoration:underline; }
+  .contact .lbl{ color: var(--muted); }
+
+  /* ---------- sections ---------- */
+  section{ margin-top: 11px; }
+  h2{
+    margin:0 0 7px;
+    font-size: 9.3pt; font-weight:700; color: var(--accent);
+    letter-spacing:.10em; text-transform: uppercase;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--rule);
+    break-after: avoid; page-break-after: avoid;
+  }
+
+  .summary{ margin:0; font-size:10.1pt; }
+
+  /* ---------- entries ---------- */
+  .entry{ margin-bottom: 9px; }
+  .entry:last-child{ margin-bottom:0; }
+  .entry-head{ break-after: avoid; page-break-after: avoid; }
+  .entry-line{
+    display:flex; align-items:baseline; justify-content:space-between; gap:8mm;
+  }
+  .entry-title{ font-size:10.6pt; font-weight:700; color: var(--ink); }
+  .entry-org{ font-weight:600; color: var(--accent); }
+  .entry-meta{
+    flex:0 0 auto; font-size:8.9pt; color: var(--muted);
+    font-variant-numeric: tabular-nums; white-space:nowrap;
+  }
+  .entry-sub{ font-size:9.1pt; color: var(--muted); margin-top:1px; }
+
+  ul{ margin: 4px 0 0; padding-left: 15px; }
+  li{ margin-bottom: 2px; break-inside: avoid; page-break-inside: avoid; }
+  li::marker{ color: var(--rule); }
+
+  .stack{
+    margin-top: 3px; font-size: 9.1pt; color: var(--muted);
+  }
+  .stack b{ color: var(--ink-soft); font-weight:600; }
+
+  /* ---------- skills ---------- */
+  .skills{ display:grid; grid-template-columns: 30mm 1fr; gap: 3px 8px; font-size:9.7pt; }
+  .skills dt{ font-weight:600; color: var(--ink); }
+  .skills dd{ margin:0; }
+
+  /* ---------- compact two-up blocks ---------- */
+  .two-up{ display:grid; grid-template-columns: 1fr 1fr; gap: 4px 12mm; }
+  .two-up > *{ break-inside: avoid; page-break-inside: avoid; }
+  .flat{ list-style:none; margin:0; padding:0; font-size:9.7pt; }
+  .flat li{ margin-bottom:2.5px; padding-left:9px; position:relative; }
+  .flat li::before{
+    content:""; position:absolute; left:0; top:.52em;
+    width:3px; height:3px; border-radius:50%; background: var(--rule);
+  }
+  .ref-name{ font-weight:600; color: var(--ink); }
+  .note{ font-size:8.8pt; color: var(--muted); margin: 5px 0 0; }
+
+  .proj, .edu-item{ break-inside: avoid; page-break-inside: avoid; }
+
+  /* two sections sharing one row, to keep the CV on a round page count */
+  .pair{ display:grid; grid-template-columns: 1fr 1fr; gap: 0 12mm; margin-top: 11px; }
+  .pair > section{ margin-top: 0; }
+  a.plain{ color: var(--accent); text-decoration:none; }
+  a.plain:hover{ text-decoration:underline; }
+
+  noscript .fallback{
+    margin: 18px auto; padding:14px 16px; max-width:200mm;
+    background:#fff4d6; border:1px solid #e0c266; font-size:13px;
+  }
+
+  /* ---------- print ---------- */
+  @page{ size: A4; margin: 0; }
+
+  @media print{
+    html, body{ background:#fff; }
+    .toolbar{ display:none !important; }
+    .sheet{
+      width: auto; margin:0;
+      padding: 13mm 14mm 12mm;
+      box-shadow:none;
+    }
+    a{ color: inherit !important; }
+    body{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    p, li{ orphans:3; widows:3; }
+    section{ break-inside: auto; }
+  }
+
+  @media screen and (max-width: 800px){
+    .sheet{ width:auto; margin:10px; padding:20px; }
+    header.masthead{ flex-direction:column; align-items:flex-start; gap:10px; }
+    .contact{ text-align:left; }
+    .skills{ grid-template-columns: 1fr; }
+    .skills dt{ margin-top:5px; }
+    .two-up{ grid-template-columns: 1fr; }
+    .pair{ grid-template-columns: 1fr; gap: 11px; }
+    h1{ font-size:22pt; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar no-print">
+  <strong>Ahmetcan Aksu — CV</strong>
+  <button id="btn-en" aria-pressed="true">EN</button>
+  <button id="btn-tr" aria-pressed="false">TR</button>
+  <button id="btn-smaller" title="Shrink type to fit fewer pages">A&minus;</button>
+  <span class="hint" id="fs-readout"></span>
+  <button id="btn-bigger" title="Grow type">A+</button>
+  <button id="btn-print">Save as PDF</button>
+  <button id="btn-bake">Export static HTML</button>
+  <span class="hint">A4 · margins “Default” · background graphics ON</span>
+</div>
+
+<noscript>
+  <div class="fallback">
+    <b>JavaScript is disabled.</b> This CV renders its content from a single data
+    block so both languages stay in sync. Enable JavaScript, or open the baked
+    static copy exported with the “Export static HTML” button.
+  </div>
+</noscript>
+
+<main class="sheet" id="sheet"></main>
+
+<script>
+/* ==========================================================================
+   CV DATA  —  THIS IS THE ONLY BLOCK YOU NEED TO EDIT
+   --------------------------------------------------------------------------
+   Every visible string is { en: "...", tr: "..." } so the two languages sit
+   side by side and cannot drift apart. Bullet lists are { en: [], tr: [] }.
+   ========================================================================== */
+
+const DATA = {
+
+  /* Base type size in points. Lower it to pull content onto fewer pages,
+     raise it to fill space. Anything from 10.0 to 10.8 keeps the current
+     content on two A4 pages; 11.0 tips it onto a third. */
+  layout: { baseFontPt: 10.4 },
+
+  /* ---------------------------------------------------------------- header */
+  name: "Ahmetcan Aksu",
+  role:    { en: "Software Developer",  tr: "Yazılım Geliştirici" },
+  tagline: { en: "Backend & Full-Stack · Node.js · TypeScript · C# · Rust",
+             tr: "Backend & Full-Stack · Node.js · TypeScript · C# · Rust" },
+
+  contact: {
+    email:    "hello@ahmetcanaksu.com",
+    site:     "ahmetcanaksu.com",
+    github:   "github.com/ahmetcanaksu",
+    org:      "github.com/behemehal",
+    linkedin: "linkedin.com/in/ahmetcanaksu",
+    location: { en: "Istanbul, Türkiye", tr: "İstanbul, Türkiye" },
+
+    /* Phone is off by default. Flip showPhone to true when an application
+       asks for it, export the PDF, then flip it back. */
+    phone: "(+90) 553 363 5308",
+    showPhone: false
+  },
+
+  /* --------------------------------------------------------------- summary */
+  summary: {
+    en: "Software developer with 7+ years of experience, 4+ of them full-time, building backend services and web applications end to end. Currently backend developer on one of Türkiye's leading digital investment platforms, working across Node.js/TypeScript and C#/.NET under capital-markets regulation. Comfortable across the stack: REST and GraphQL APIs, real-time systems handling 100,000+ messages per hour, React frontends, and low-level Rust — including a type-safe programming language and bytecode VM built from scratch. I optimise for performance, scalability and long-term maintainability.",
+    tr: "7+ yıllık yazılım geliştirme deneyimine sahibim; bunun 4+ yılı tam zamanlı olarak backend servisleri ve web uygulamalarını uçtan uca geliştirmekle geçti. Şu anda Türkiye'nin önde gelen dijital yatırım platformlarından birinde backend geliştirici olarak, sermaye piyasası mevzuatına tabi bir üründe Node.js/TypeScript ve C#/.NET ile çalışıyorum. Yığının her katmanında rahatım: REST ve GraphQL API'leri, saatte 100.000+ mesaj işleyen gerçek zamanlı sistemler, React arayüzleri ve düşük seviyeli Rust — sıfırdan geliştirdiğim tip güvenli programlama dili ve bytecode sanal makinesi dahil. Performans, ölçeklenebilirlik ve uzun vadeli sürdürülebilirliğe odaklanırım."
+  },
+
+  /* ------------------------------------------------------------ experience */
+  experience: [
+    {
+      title: { en: "Backend Developer", tr: "Backend Geliştirici" },
+      org:   "Fonmap Financial Technologies",
+      place: { en: "Istanbul, Türkiye", tr: "İstanbul, Türkiye" },
+      from: "2024-02", to: null,           /* to: null  =>  "Present" */
+      bullets: {
+        en: [
+          "Led backend and frontend initiatives across the full project lifecycle, from pre-production to a successful go-live on a leading digital investment platform in Türkiye.",
+          "Migrated core systems to TypeScript, measurably improving maintainability, type safety and runtime performance.",
+          "Engineered the backend infrastructure for TEFAS integration, enabling reliable fund data communication.",
+          "Played a key role in digitising Venture Capital Investment Fund (VCIF) and Real Estate Investment Fund (REIF) processes in line with Turkish capital-markets regulation.",
+          "Contributed to migrating the backend architecture to C# with Entity Framework Core."
+        ],
+        tr: [
+          "Türkiye'nin önde gelen dijital yatırım platformlarından birinde, ön üretimden canlıya geçişe kadar proje yaşam döngüsünün tamamında backend ve frontend geliştirme süreçlerine liderlik ettim.",
+          "Temel sistemleri TypeScript'e taşıyarak kodun sürdürülebilirliğini, tip güvenliğini ve çalışma zamanı performansını belirgin şekilde artırdım.",
+          "TEFAS entegrasyonunun backend altyapısını geliştirerek güvenilir fon verisi iletişimini sağladım.",
+          "Girişim Sermayesi Yatırım Fonu (GSYF) ve Gayrimenkul Yatırım Fonu (GYF) süreçlerinin, sermaye piyasası mevzuatına tam uyumlu olarak dijitalleştirilmesinde kilit rol oynadım.",
+          "Backend mimarisinin C# ve Entity Framework Core ile modernleştirilmesine katkıda bulundum."
+        ]
+      },
+      stack: "Node.js, TypeScript, React, Redux, C# / .NET, Entity Framework Core, MSSQL, Redis, Elasticsearch, MinIO, Puppeteer"
+    },
+    {
+      title: { en: "Full Stack Developer", tr: "Full Stack Geliştirici" },
+      org:   "Qpien",
+      place: { en: "Istanbul, Türkiye", tr: "İstanbul, Türkiye" },
+      from: "2022-08", to: "2024-02",
+      bullets: {
+        en: [
+          "Built frontend and backend for an all-in-one e-commerce platform with real-time messaging and third-party integrations (Instagram, Trendyol, Shopify).",
+          "Engineered scalable, high-throughput systems processing 100,000+ messages per hour using asynchronous and parallel programming.",
+          "Designed real-time communication layers on WebSockets and RabbitMQ, improving system responsiveness and reliability.",
+          "Developed responsive interfaces in React and TypeScript, and backend APIs in Node.js and GraphQL, backed by Redis caching and MongoDB."
+        ],
+        tr: [
+          "Gerçek zamanlı mesajlaşma ve üçüncü taraf entegrasyonları (Instagram, Trendyol, Shopify) içeren kapsamlı bir e-ticaret platformunun frontend ve backend geliştirmelerini yaptım.",
+          "Asenkron ve paralel programlama yaklaşımlarıyla saatte 100.000+ mesaj işleyebilen ölçeklenebilir, yüksek kapasiteli sistemler tasarladım.",
+          "WebSocket ve RabbitMQ üzerinde gerçek zamanlı iletişim katmanları kurarak sistemin yanıt süresini ve güvenilirliğini iyileştirdim.",
+          "React ve TypeScript ile duyarlı arayüzler; Node.js ve GraphQL ile Redis önbellekleme ve MongoDB destekli esnek API'ler geliştirdim."
+        ]
+      },
+      stack: "React, TypeScript, Node.js, GraphQL, WebSockets, RabbitMQ, Redis, MongoDB"
+    },
+    {
+      title: { en: "Full Stack Developer (Intern)", tr: "Full Stack Geliştirici (Staj)" },
+      org:   "Massive Energy",
+      place: { en: "Istanbul, Türkiye", tr: "İstanbul, Türkiye" },
+      from: "2021-06", to: "2022-07",
+      bullets: {
+        en: [
+          "Independently designed and built management panels, backend architecture and databases, and managed Linux-based deployment and releases on AWS."
+        ],
+        tr: [
+          "Yönetim panellerini, backend mimarisini ve veritabanlarını bağımsız olarak tasarladım; AWS üzerinde Linux tabanlı dağıtım ve canlıya alma süreçlerini yönettim."
+        ]
+      },
+      stack: "Node.js, JavaScript, MongoDB, HTML/CSS, AWS"
+    },
+    {
+      title: { en: "Freelance Developer — Mobile, Backend & Full-Stack",
+               tr: "Freelance Geliştirici — Mobil, Backend & Full-Stack" },
+      org:   { en: "Self-employed", tr: "Serbest Çalışma" },
+      place: { en: "Remote", tr: "Uzaktan" },
+      from: "2019-01", to: "2022-08",
+      bullets: {
+        en: [
+          "Delivered scalable mobile and backend applications for a range of clients, owning API design, frontend–backend integration and release across web, mobile and server-side work."
+        ],
+        tr: [
+          "Farklı müşteriler için ölçeklenebilir mobil ve backend uygulamaları geliştirdim; API tasarımını, frontend–backend entegrasyonunu ve web, mobil ve sunucu tarafı yayın süreçlerini üstlendim."
+        ]
+      },
+      stack: "React, Node.js, Flutter, Rust, MongoDB, JavaScript, HTML/CSS"
+    }
+  ],
+
+  /* -------------------------------------------------------------- projects */
+  projects: [
+    {
+      title: { en: "Ellie Language — Creator & Maintainer",
+               tr: "Ellie Language — Yaratıcı & Sürdürücü" },
+      meta:  { en: "2020 – Present · Rust · 48 GitHub stars",
+               tr: "2020 – Devam Ediyor · Rust · 48 GitHub yıldızı" },
+      link:  "github.com/behemehal/Ellie-Language",
+      bullets: {
+        en: [
+          "Designed a type-safe programming language for embedded (ARM) and sandboxed (WebAssembly) environments.",
+          "Built the parser, compiler and bytecode virtual machine from scratch, prioritising performance and type safety.",
+          "Deep hands-on work in memory management, stack/heap allocation, garbage collection and bytecode optimisation."
+        ],
+        tr: [
+          "Gömülü (ARM) ve sandbox (WebAssembly) ortamları için tip güvenli bir programlama dili tasarladım.",
+          "Parser, derleyici ve bytecode sanal makinesini sıfırdan, performans ve tip güvenliği önceliğiyle geliştirdim.",
+          "Bellek yönetimi, yığın/heap tahsisi, çöp toplama (GC) ve bytecode optimizasyonu konularında derinlemesine deneyim kazandım."
+        ]
+      }
+    },
+    {
+      title: { en: "UtilStation — Full-Stack Developer", tr: "UtilStation — Full-Stack Geliştirici" },
+      meta:  { en: "Web platform", tr: "Web platformu" },
+      link:  "utilstation.com",
+      bullets: {
+        en: ["One-stop platform bringing developer and productivity tools — file conversion, data processing, everyday utilities — together in a single app."],
+        tr: ["Dosya dönüştürme, veri işleme ve günlük pratik araçları tek bir uygulamada bir araya getiren geliştirici ve üretkenlik platformu."]
+      }
+    },
+    {
+      title: { en: "Open Source — Behemehal & Personal Projects",
+               tr: "Açık Kaynak — Behemehal & Kişisel Projeler" },
+      meta:  { en: "100+ repositories · Rust · Dart · C#", tr: "100+ depo · Rust · Dart · C#" },
+      link:  "github.com/behemehal · github.com/ahmetcanaksu",
+      bullets: {
+        en: [
+          "Maintain the Ellie toolchain (core library, FFI, native bridge, playground), Menemen — a streaming HTTP client for Rust, event-listener libraries for Rust and Dart, and Bnots, a Markdown note app in Flutter.",
+          "Systems and embedded work: Wole, a Wake-on-LAN CLI with GTK and Flutter front-ends; portable CHIP-8 and 6502 emulators in Rust; an NMEA GPS parser; Rust FFI and WebAssembly experiments."
+        ],
+        tr: [
+          "Ellie araç zincirini (çekirdek kütüphane, FFI, native bridge, playground), Rust için streaming HTTP istemcisi Menemen, Rust ve Dart için event-listener kütüphaneleri ve Flutter tabanlı Markdown not uygulaması Bnots'u sürdürüyorum.",
+          "Sistem ve gömülü çalışmalar: GTK ve Flutter arayüzlü Wake-on-LAN CLI'ı Wole; Rust ile taşınabilir CHIP-8 ve 6502 emülatörleri; NMEA GPS ayrıştırıcısı; Rust FFI ve WebAssembly denemeleri."
+        ]
+      }
+    }
+  ],
+
+  /* ---------------------------------------------------------------- skills */
+  skills: [
+    { label: { en: "Languages",  tr: "Diller" },
+      value: "TypeScript, JavaScript, C#, Rust, Dart, C, C++, Java, SQL" },
+    { label: { en: "Backend",    tr: "Backend" },
+      value: "Node.js, Deno, Express, GraphQL (Apollo), REST, WebSockets, .NET, Entity Framework Core, RabbitMQ" },
+    { label: { en: "Frontend",   tr: "Frontend" },
+      value: "React, Redux, Svelte, Electron, Flutter, HTML/CSS, WebAssembly" },
+    { label: { en: "Databases",  tr: "Veritabanları" },
+      value: "MSSQL, PostgreSQL, MongoDB, Redis, Elasticsearch, MinIO" },
+    { label: { en: "Infra & Tools", tr: "Altyapı & Araçlar" },
+      value: "Docker, Linux, AWS, Git, Puppeteer, CI/CD" },
+    { label: { en: "Systems & Embedded", tr: "Sistem & Gömülü" },
+      value: { en: "Compiler and bytecode VM design, ARM, ESP32/ESP8266, Arduino, Raspberry Pi, TCP/UDP, FFI",
+               tr: "Derleyici ve bytecode VM tasarımı, ARM, ESP32/ESP8266, Arduino, Raspberry Pi, TCP/UDP, FFI" } }
+  ],
+
+  /* ------------------------------------------------------------- education */
+  education: [
+    { degree: { en: "BSc, Management Information Systems", tr: "Lisans, Yönetim Bilişim Sistemleri" },
+      school: { en: "Anadolu University", tr: "Anadolu Üniversitesi" },
+      from: "2024", to: null,
+      note: null },
+    { degree: { en: "Associate Degree, Computer Programming", tr: "Ön Lisans, Bilgisayar Programcılığı" },
+      school: { en: "Işık University", tr: "Işık Üniversitesi" },
+      from: null, to: "2022",
+      note: { en: "GPA 3.53 / 4.00 · C, C++, C#, Java, JavaScript, MSSQL, HTML",
+              tr: "GNO 3.53 / 4.00 · C, C++, C#, Java, JavaScript, MSSQL, HTML" } }
+  ],
+
+  /* ---------------------------------------------------------- certificates */
+  certificates: [
+    { en: "EF SET English Certificate — C2", tr: "EF SET İngilizce Sertifikası — C2" },
+    { en: "Turkish Capital Markets Association", tr: "Türkiye Sermaye Piyasaları Birliği" },
+    { en: "Mobile App Development with Google Flutter", tr: "Google Flutter ile Mobil Uygulama Geliştirme" },
+    { en: "JavaScript Final Assessment — BTK Academy", tr: "JavaScript Bitirme Sınavı — BTK Akademi" },
+    { en: "C# Programming — BTK Academy", tr: "C# Programlama — BTK Akademi" },
+    { en: "Node.js Backend Development — Patika.dev", tr: "Node.js Backend Geliştirme — Patika.dev" },
+    { en: "Advanced Frontend Web Development — Patika.dev", tr: "İleri Seviye Frontend Web Geliştirme — Patika.dev" }
+  ],
+
+  /* ------------------------------------------------------------- languages */
+  languages: [
+    { name: { en: "Turkish", tr: "Türkçe" }, level: { en: "Native", tr: "Ana dil" }, code: "tr" },
+    { name: { en: "English", tr: "İngilizce" }, level: { en: "Professional — C2 (EF SET certified)", tr: "Profesyonel — C2 (EF SET sertifikalı)" }, code: "en" }
+  ],
+
+  /* ------------------------------------------------------------ references
+     Contact details are deliberately NOT rendered, so this file can be sent
+     to recruiters without exposing anyone's inbox. On request:
+       Berkay Durur    — brkydurur@gmail.com
+       Tayfun Top      — tayfun.top1@gmail.com
+       Eray Karaman    — eraykaramann@outlook.com
+       Burak Karatay   — karatayburakk@gmail.com
+  */
+  references: [
+    { name: "Berkay Durur",  org: "LC Waikiki" },
+    { name: "Tayfun Top",    org: "Madame Coco" },
+    { name: "Eray Karaman",  org: "Fonmap Finansal Teknolojiler A.Ş." },
+    { name: "Burak Karatay", org: "Fonmap Finansal Teknolojiler A.Ş." }
+  ],
+
+  /* ------------------------------------------ section headings & UI labels */
+  labels: {
+    summary:      { en: "Summary",                    tr: "Özet" },
+    experience:   { en: "Experience",                 tr: "Deneyim" },
+    projects:     { en: "Projects & Open Source",     tr: "Projeler & Açık Kaynak" },
+    skills:       { en: "Technical Skills",           tr: "Teknik Yetenekler" },
+    education:    { en: "Education",                  tr: "Eğitim" },
+    certificates: { en: "Certificates",               tr: "Sertifikalar" },
+    languages:    { en: "Languages",                  tr: "Diller" },
+    references:   { en: "References",                 tr: "Referanslar" },
+    refsNote:     { en: "Contact details available on request.",
+                    tr: "İletişim bilgileri talep üzerine paylaşılır." },
+    stack:        { en: "Stack",                      tr: "Teknolojiler" },
+    present:      { en: "Present",                    tr: "Devam Ediyor" }
+  }
+};
+
+/* ==========================================================================
+   RENDERING  —  no need to edit below this line
+   ========================================================================== */
+
+const MONTHS = {
+  en: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+  tr: ["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"]
+};
+
+let LANG = "en";
+let FS = 10.2;
+
+/* pick the localised value out of {en,tr}, or pass plain strings through */
+const t = (v) => {
+  if (v == null) return "";
+  if (typeof v === "string") return v;
+  return v[LANG] ?? v.en ?? "";
+};
+
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+
+/* "2024-02" -> "Feb 2024" | "2022" -> "2022" | null -> "Present" */
+function fmtDate(v){
+  if (!v) return t(DATA.labels.present);
+  const [y, m] = String(v).split("-");
+  return m ? `${MONTHS[LANG][Number(m) - 1]} ${y}` : y;
+}
+function fmtRange(from, to){
+  const a = from ? fmtDate(from) : "";
+  const b = fmtDate(to);
+  return a ? `${a} – ${b}` : b;
+}
+const href = (u) => /^https?:/.test(u) ? u : "https://" + u;
+
+function bullets(list){
+  const items = (list && (list[LANG] || list.en)) || [];
+  if (!items.length) return "";
+  return `<ul>${items.map(b => `<li>${esc(b)}</li>`).join("")}</ul>`;
+}
+
+function renderHeader(){
+  const c = DATA.contact;
+  const rows = [
+    `<div><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></div>`,
+    c.showPhone ? `<div>${esc(c.phone)}</div>` : "",
+    `<div><a href="${esc(href(c.site))}">${esc(c.site)}</a></div>`,
+    `<div><a href="${esc(href(c.linkedin))}">${esc(c.linkedin)}</a></div>`,
+    `<div><a href="${esc(href(c.github))}">${esc(c.github)}</a></div>`,
+    `<div><span class="lbl">org</span> <a href="${esc(href(c.org))}">${esc(c.org)}</a></div>`,
+    `<div>${esc(t(c.location))}</div>`
+  ].filter(Boolean).join("");
+
+  return `<header class="masthead">
+    <div>
+      <h1>${esc(DATA.name)}</h1>
+      <div class="role">${esc(t(DATA.role))}</div>
+      <div class="tagline">${esc(t(DATA.tagline))}</div>
+    </div>
+    <div class="contact">${rows}</div>
+  </header>`;
+}
+
+function section(title, inner){
+  return `<section><h2>${esc(title)}</h2>${inner}</section>`;
+}
+
+function renderExperience(){
+  const inner = DATA.experience.map(j => `
+    <article class="entry">
+      <div class="entry-head">
+        <div class="entry-line">
+          <div class="entry-title">${esc(t(j.title))} · <span class="entry-org">${esc(t(j.org))}</span></div>
+          <div class="entry-meta">${esc(fmtRange(j.from, j.to))}${j.place ? " · " + esc(t(j.place)) : ""}</div>
+        </div>
+      </div>
+      ${bullets(j.bullets)}
+      ${j.stack ? `<div class="stack"><b>${esc(t(DATA.labels.stack))}:</b> ${esc(t(j.stack))}</div>` : ""}
+    </article>`).join("");
+  return section(t(DATA.labels.experience), inner);
+}
+
+function renderProjects(){
+  const inner = DATA.projects.map(p => `
+    <article class="entry proj">
+      <div class="entry-head">
+        <div class="entry-line">
+          <div class="entry-title">${esc(t(p.title))}</div>
+          ${p.meta ? `<div class="entry-meta">${esc(t(p.meta))}</div>` : ""}
+        </div>
+        ${p.link ? `<div class="entry-sub">${p.link.split(" · ").map(u =>
+            `<a class="plain" href="${esc(href(u))}">${esc(u)}</a>`).join(" · ")}</div>` : ""}
+      </div>
+      ${bullets(p.bullets)}
+    </article>`).join("");
+  return section(t(DATA.labels.projects), inner);
+}
+
+function renderSkills(){
+  const inner = `<dl class="skills">${DATA.skills.map(s =>
+    `<dt>${esc(t(s.label))}</dt><dd>${esc(t(s.value))}</dd>`).join("")}</dl>`;
+  return section(t(DATA.labels.skills), inner);
+}
+
+function renderEducation(){
+  const inner = DATA.education.map(e => `
+    <div class="entry edu-item">
+      <div class="entry-line">
+        <div class="entry-title">${esc(t(e.degree))}</div>
+        <div class="entry-meta">${esc(fmtRange(e.from, e.to))}</div>
+      </div>
+      <div class="entry-sub">${esc(t(e.school))}${e.note ? " · " + esc(t(e.note)) : ""}</div>
+    </div>`).join("");
+  return section(t(DATA.labels.education), inner);
+}
+
+function renderCertificates(){
+  const inner = `<ul class="flat two-up">${DATA.certificates.map(c =>
+    `<li>${esc(t(c))}</li>`).join("")}</ul>`;
+  return section(t(DATA.labels.certificates), inner);
+}
+
+function renderLanguages(){
+  const inner = `<ul class="flat">${DATA.languages.map(l =>
+    `<li><span class="ref-name">${esc(t(l.name))}</span> — ${esc(t(l.level))}</li>`).join("")}</ul>`;
+  return section(t(DATA.labels.languages), inner);
+}
+
+function renderReferences(){
+  const inner = `<ul class="flat">${DATA.references.map(r =>
+      `<li><span class="ref-name">${esc(r.name)}</span> — ${esc(t(r.org))}</li>`).join("")}</ul>
+    <p class="note">${esc(t(DATA.labels.refsNote))}</p>`;
+  return section(t(DATA.labels.references), inner);
+}
+
+/* structured data, so CV-parsing tools and LLMs get unambiguous fields */
+function renderJsonLd(){
+  const c = DATA.contact;
+  const current = DATA.experience.find(j => j.to === null);
+  const person = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: DATA.name,
+    jobTitle: t(DATA.role),
+    description: t(DATA.summary),
+    email: "mailto:" + c.email,
+    url: href(c.site),
+    address: { "@type": "PostalAddress", addressLocality: "Istanbul", addressCountry: "TR" },
+    sameAs: [href(c.github), href(c.linkedin), href(c.org)],
+    knowsAbout: DATA.skills.flatMap(s => t(s.value).split(", ")),
+    knowsLanguage: DATA.languages.map(l => ({ "@type": "Language", name: t(l.name), alternateName: l.code })),
+    alumniOf: DATA.education.map(e => ({ "@type": "EducationalOrganization", name: t(e.school) })),
+    hasCredential: DATA.certificates.map(x => ({
+      "@type": "EducationalOccupationalCredential", name: t(x)
+    }))
+  };
+  if (c.showPhone) person.telephone = c.phone;
+  if (current) person.worksFor = { "@type": "Organization", name: t(current.org) };
+
+  let el = document.getElementById("ld");
+  if (!el) {
+    el = document.createElement("script");
+    el.type = "application/ld+json";
+    el.id = "ld";
+    document.head.appendChild(el);
+  }
+  el.textContent = JSON.stringify(person, null, 2);
+}
+
+function setFontSize(pt){
+  FS = Math.min(13, Math.max(8, Math.round(pt * 10) / 10));
+  document.documentElement.style.setProperty("--fs", FS + "pt");
+  const out = document.getElementById("fs-readout");
+  if (out) out.textContent = FS.toFixed(1) + "pt";
+  try { localStorage.setItem("cv-fs", String(FS)); } catch (e) {}
+}
+
+function render(){
+  document.documentElement.lang = LANG;
+  document.title = `${DATA.name} — ${t(DATA.role)} — CV`;
+  document.getElementById("sheet").innerHTML =
+    renderHeader() +
+    section(t(DATA.labels.summary), `<p class="summary">${esc(t(DATA.summary))}</p>`) +
+    renderExperience() +
+    renderProjects() +
+    renderSkills() +
+    renderEducation() +
+    renderCertificates() +
+    `<div class="pair">${renderLanguages()}${renderReferences()}</div>`;
+  renderJsonLd();
+
+  document.getElementById("btn-en").setAttribute("aria-pressed", String(LANG === "en"));
+  document.getElementById("btn-tr").setAttribute("aria-pressed", String(LANG === "tr"));
+}
+
+function setLang(lang, updateHash){
+  LANG = (lang === "tr") ? "tr" : "en";
+  try { localStorage.setItem("cv-lang", LANG); } catch (e) {}
+  if (updateHash) history.replaceState(null, "", LANG === "tr" ? "#tr" : "#en");
+  render();
+}
+
+/* bake the rendered DOM into a script-free HTML file */
+function exportStatic(){
+  const clone = document.documentElement.cloneNode(true);
+  clone.querySelectorAll('.toolbar, noscript, script:not([type="application/ld+json"])')
+       .forEach(n => n.remove());
+  const blob = new Blob(["<!doctype html>\n" + clone.outerHTML], { type: "text/html;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `Ahmetcan-Aksu-CV-${LANG.toUpperCase()}.html`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+}
+
+/* initial language: URL hash > ?lang= > saved choice > en */
+(function init(){
+  const hash = location.hash.replace("#", "").toLowerCase();
+  const qs = new URLSearchParams(location.search).get("lang");
+  let saved = null;
+  try { saved = localStorage.getItem("cv-lang"); } catch (e) {}
+  setLang(hash || qs || saved || "en", false);
+
+  document.getElementById("btn-en").onclick = () => setLang("en", true);
+  document.getElementById("btn-tr").onclick = () => setLang("tr", true);
+  let savedFs = null;
+  try { savedFs = parseFloat(localStorage.getItem("cv-fs")); } catch (e) {}
+  setFontSize(Number.isFinite(savedFs) ? savedFs : (DATA.layout && DATA.layout.baseFontPt) || 10.4);
+
+  document.getElementById("btn-smaller").onclick = () => setFontSize(FS - 0.2);
+  document.getElementById("btn-bigger").onclick  = () => setFontSize(FS + 0.2);
+  document.getElementById("btn-print").onclick = () => window.print();
+  document.getElementById("btn-bake").onclick = exportStatic;
+  window.addEventListener("hashchange", () => {
+    const h = location.hash.replace("#", "").toLowerCase();
+    if (h === "en" || h === "tr") setLang(h, false);
+  });
+})();
+</script>
+</body>
+</html>

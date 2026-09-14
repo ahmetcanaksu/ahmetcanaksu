@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ahmetcan Aksu — Cover Letter</title>
+<meta name="author" content="Ahmetcan Aksu">
+<meta name="robots" content="noindex">
+
+<!--
+  ============================================================================
+  COVER LETTER  —  companion to cv.html, same editing model
+  ============================================================================
+  PER APPLICATION, edit only the APPLICATION block below:
+      company   the employer's name        -> "" falls back to a generic letter
+      role      the job title you apply to -> "" omits the role sentence
+      recipient hiring manager's name      -> "" falls back to "To Whom It
+                                              May Concern" / "İlgili Makama"
+      custom    ONE paragraph on why THIS company. Worth writing every time:
+                a letter without it is interchangeable with everyone else's.
+                Leave "" to omit the paragraph entirely.
+  Then: Cmd/Ctrl + P -> Save as PDF -> A4, margins Default, scale 100%.
+  Language: EN / TR button, or open letter.html#tr
+  Fits one A4 page. Measured: 10.4pt holds the letter on one page even with
+  the application block filled in and a five-line custom paragraph. If you
+  write a longer one, press A- (or lower layout.baseFontPt).
+  ============================================================================
+-->
+
+<style>
+  :root{
+    color-scheme: light;
+    --fs:       10.4pt;
+    --ink:      #14181f;
+    --ink-soft: #303845;
+    --muted:    #5c6675;
+    --accent:   #2f5fbf;
+    --rule:     #c9d2e0;
+  }
+  *{ box-sizing:border-box; }
+  html{ background:#eceef2; }
+  body{
+    margin:0;
+    font-family:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: var(--fs);
+    line-height:1.55;
+    color:var(--ink-soft);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .toolbar{
+    position:sticky; top:0; z-index:10;
+    display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+    padding:10px 14px; background:#1b2027; color:#e8ebf0; font-size:12px;
+  }
+  .toolbar strong{ font-weight:600; margin-right:auto; letter-spacing:.02em; }
+  .toolbar button{
+    font:inherit; font-weight:500; padding:6px 12px; border-radius:6px; cursor:pointer;
+    border:1px solid #3c4553; background:#2a313b; color:#e8ebf0;
+  }
+  .toolbar button:hover{ background:#343d49; }
+  .toolbar button[aria-pressed="true"]{ background:#dfe4ec; color:#1b2027; border-color:#dfe4ec; }
+  .toolbar .hint{ color:#98a2b3; font-size:11px; }
+
+  .sheet{
+    width:210mm; margin:18px auto 40px; padding:16mm 18mm;
+    background:#fff;
+    box-shadow:0 1px 3px rgba(20,24,31,.14), 0 10px 34px rgba(20,24,31,.10);
+  }
+
+  header.masthead{
+    display:flex; align-items:flex-end; justify-content:space-between; gap:14mm;
+    padding-bottom:7px; border-bottom:2px solid var(--accent);
+  }
+  h1{ margin:0; font-size:24pt; line-height:1.03; font-weight:700; letter-spacing:-.015em; color:var(--ink); }
+  .role{ margin-top:4px; font-size:10pt; font-weight:600; color:var(--accent); letter-spacing:.055em; text-transform:uppercase; }
+  .contact{ flex:0 0 auto; text-align:right; font-size:9pt; line-height:1.6; }
+  .contact a{ color:var(--ink-soft); text-decoration:none; }
+  .contact a:hover{ text-decoration:underline; }
+  .contact .lbl{ color:var(--muted); }
+
+  .meta-row{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:12mm;
+    margin-top:11mm; font-size:9.6pt;
+  }
+  .addressee{ color:var(--ink); }
+  .addressee .co{ font-weight:600; }
+  .date{ color:var(--muted); white-space:nowrap; }
+
+  .greeting{ margin:8mm 0 0; font-weight:600; color:var(--ink); }
+  p.body-text{ margin:3.6mm 0 0; }
+
+  .techlist{ margin:4mm 0 0; padding:0; list-style:none; }
+  .techlist li{ margin-bottom:1.6mm; padding-left:4mm; position:relative; }
+  .techlist li::before{
+    content:""; position:absolute; left:0; top:.62em;
+    width:3px; height:3px; border-radius:50%; background:var(--accent);
+  }
+  .techlist b{ color:var(--ink); font-weight:600; }
+
+  .links{ margin:5mm 0 0; font-size:9.6pt; }
+  .links div{ margin-bottom:1mm; }
+  .links .lbl{ color:var(--muted); }
+  .links a{ color:var(--accent); text-decoration:none; }
+  .links a:hover{ text-decoration:underline; }
+
+  .signoff{ margin-top:7mm; }
+  .signoff .close{ color:var(--ink); }
+  .signoff .name{ margin-top:5mm; font-size:12.5pt; font-weight:600; color:var(--ink); }
+
+  noscript .fallback{
+    margin:18px auto; padding:14px 16px; max-width:200mm;
+    background:#fff4d6; border:1px solid #e0c266; font-size:13px;
+  }
+
+  @page{ size:A4; margin:0; }
+  @media print{
+    html, body{ background:#fff; }
+    .toolbar{ display:none !important; }
+    .sheet{ width:auto; margin:0; padding:15mm 16mm; box-shadow:none; }
+    a{ color:inherit !important; }
+    body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    p{ orphans:3; widows:3; }
+  }
+  @media screen and (max-width:800px){
+    .sheet{ width:auto; margin:10px; padding:20px; }
+    header.masthead{ flex-direction:column; align-items:flex-start; gap:10px; }
+    .contact{ text-align:left; }
+    .meta-row{ flex-direction:column; gap:4mm; }
+    h1{ font-size:21pt; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar no-print">
+  <strong>Ahmetcan Aksu — Cover Letter</strong>
+  <button id="btn-en" aria-pressed="true">EN</button>
+  <button id="btn-tr" aria-pressed="false">TR</button>
+  <button id="btn-smaller" title="Shrink type">A&minus;</button>
+  <span class="hint" id="fs-readout"></span>
+  <button id="btn-bigger" title="Grow type">A+</button>
+  <button id="btn-print">Save as PDF</button>
+  <button id="btn-bake">Export static HTML</button>
+  <span class="hint">A4 · margins “Default” · background graphics ON</span>
+</div>
+
+<noscript>
+  <div class="fallback">
+    <b>JavaScript is disabled.</b> This letter renders from a single data block
+    so both languages stay in sync. Enable JavaScript, or use the static copy
+    exported with “Export static HTML”.
+  </div>
+</noscript>
+
+<main class="sheet" id="sheet"></main>
+
+<script>
+/* ==========================================================================
+   LETTER DATA
+   ========================================================================== */
+
+const DATA = {
+
+  layout: { baseFontPt: 10.4 },
+
+  /* ================== APPLICATION — EDIT THIS PER APPLICATION ==============
+     Leave a field as "" and the letter falls back to generic wording.
+     ====================================================================== */
+  application: {
+    company:   "",
+    role:      "",
+    recipient: "",
+
+    /* Where you found the role, e.g. "your careers page", "LinkedIn".
+       Only used when company is filled in. */
+    source:    "",
+
+    /* ONE paragraph, in your own words, on why this company specifically.
+       This is the part a hiring manager actually reads. */
+    custom: {
+      en: "",
+      tr: ""
+    },
+
+    /* null = today's date. Or pin it: "2026-09-03" */
+    date: null
+  },
+
+  /* ---------------------------------------------------------------- header */
+  name: "Ahmetcan Aksu",
+  role:    { en: "Software Developer", tr: "Yazılım Geliştirici" },
+
+  contact: {
+    email:    "hello@ahmetcanaksu.com",
+    site:     "ahmetcanaksu.com",
+    github:   "github.com/ahmetcanaksu",
+    org:      "github.com/behemehal",
+    linkedin: "linkedin.com/in/ahmetcanaksu",
+    location: { en: "Istanbul, Türkiye", tr: "İstanbul, Türkiye" },
+    phone: "(+90) 553 363 5308",
+    showPhone: true          /* letters normally carry a phone number */
+  },
+
+  /* ---------------------------------------------------------------- body */
+
+  /* Opening paragraph, in two variants. When the application block supplies a
+     role, the letter opens with "I am writing to apply for..." and uses
+     introAfterRole, which drops the redundant "My name is" — the letterhead
+     already carries it. With no role filled in, plain intro is used. */
+  introAfterRole: {
+    en: "I am a software developer based in Istanbul. I have contributed to a number of open-source projects, applications and libraries, driven by a genuine belief in the open-source philosophy. Learning quickly is one of my real strengths, and I spend my free time exploring new technologies and deepening what I already know.",
+    tr: "İstanbul'da yaşayan bir yazılım geliştiricisiyim. Açık kaynak felsefesine olan inancımla birçok projeye, uygulamaya ve kütüphaneye katkıda bulundum. Hızlı öğrenmek gerçek güçlü yanlarımdan biri; boş zamanlarımı yeni teknolojileri keşfetmeye ve mevcut bilgimi derinleştirmeye ayırıyorum."
+  },
+
+  intro: {
+    en: "My name is Ahmetcan Aksu and I am a software developer based in Istanbul. I have contributed to a number of open-source projects, applications and libraries, driven by a genuine belief in the open-source philosophy. Learning quickly is one of my real strengths, and I spend my free time exploring new technologies and deepening what I already know.",
+    tr: "Ben Ahmetcan Aksu, İstanbul'da yaşayan bir yazılım geliştiricisiyim. Açık kaynak felsefesine olan inancımla birçok projeye, uygulamaya ve kütüphaneye katkıda bulundum. Hızlı öğrenmek gerçek güçlü yanlarımdan biri; boş zamanlarımı yeni teknolojileri keşfetmeye ve mevcut bilgimi derinleştirmeye ayırıyorum."
+  },
+
+  /* second paragraph — experience */
+  experience: {
+    en: "Across freelance and full-time roles I have worked as a full-stack developer, currently in the finance sector, where I build backend systems for a regulated digital investment platform. My experience spans REST and GraphQL APIs, desktop and mobile applications, CLI tools, and embedded systems on Raspberry Pi, Orange Pi, Arduino and ARM. I also designed and built Ellie, my own type-safe programming language and bytecode virtual machine in Rust, targeting embedded and sandboxed environments.",
+    tr: "Freelance ve tam zamanlı rollerde full-stack geliştirici olarak çalıştım; şu anda finans sektöründe, düzenlemeye tabi bir dijital yatırım platformunun backend sistemlerini geliştiriyorum. Deneyimim REST ve GraphQL API'leri, masaüstü ve mobil uygulamalar, komut satırı araçları ile Raspberry Pi, Orange Pi, Arduino ve ARM üzerinde gömülü sistemleri kapsıyor. Ayrıca gömülü ve sandbox ortamları hedefleyen, Rust ile yazdığım tip güvenli programlama dilim ve bytecode sanal makinem Ellie'yi tasarlayıp geliştirdim."
+  },
+
+  techIntro: {
+    en: "The technologies I work with most:",
+    tr: "En çok çalıştığım teknolojiler:"
+  },
+
+  tech: [
+    { label: { en: "Backend",   tr: "Backend" },
+      value: "Node.js, TypeScript, Express.js, GraphQL, Rust, C# (Entity Framework, FluentValidation, AutoMapper)" },
+    { label: { en: "Frontend",  tr: "Frontend" },
+      value: "React, Redux, Electron.js, Flutter" },
+    { label: { en: "Databases", tr: "Veritabanları" },
+      value: "MSSQL, PostgreSQL, MongoDB, Redis" }
+  ],
+
+  /* closing paragraph */
+  closing: {
+    en: "I share my personal work publicly on GitHub — both my own profile and Behemehal, my open-source organisation — and would welcome the chance to bring that experience to your team. Thank you for your time and consideration; I look forward to hearing from you.",
+    tr: "Kişisel çalışmalarımı GitHub üzerinde açık şekilde paylaşıyorum — hem kendi profilimde hem de açık kaynak organizasyonum Behemehal'de. Bu deneyimi ekibinize taşıma fırsatından memnuniyet duyarım. Vakit ayırıp okuduğunuz için teşekkür eder, sizden haber almayı beklerim."
+  },
+
+  /* --------------------------------------------------------------- labels */
+  labels: {
+    genericGreeting: { en: "To Whom It May Concern,", tr: "İlgili Makama," },
+    namedGreeting:   { en: "Dear ",                   tr: "Sayın " },
+    signOff:         { en: "Best regards,",           tr: "Saygılarımla," },
+    githubLabel:     { en: "GitHub",                  tr: "GitHub" },
+    orgLabel:        { en: "Open-source organisation", tr: "Açık kaynak organizasyonu" },
+    cvLabel:         { en: "CV",                      tr: "CV" },
+
+    /* role sentence, appended to the intro when role/company are filled in.
+       {role} and {company} are replaced. */
+    roleSentence: {
+      en: "I am writing to apply for the {role} position at {company}.",
+      tr: "{company} bünyesindeki {role} pozisyonu için başvuruyorum."
+    },
+    roleSentenceNoCompany: {
+      en: "I am writing to apply for the {role} position.",
+      tr: "{role} pozisyonu için başvuruyorum."
+    },
+    sourceClause: {
+      en: " I came across the role on {source}.",
+      tr: " Pozisyonu {source} üzerinden gördüm."
+    }
+  }
+};
+
+/* ==========================================================================
+   RENDERING  —  no need to edit below this line
+   ========================================================================== */
+
+const MONTHS_LONG = {
+  en: ["January","February","March","April","May","June","July","August","September","October","November","December"],
+  tr: ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"]
+};
+
+let LANG = "en";
+let FS = 10.4;
+
+const t = (v) => {
+  if (v == null) return "";
+  if (typeof v === "string") return v;
+  return v[LANG] ?? v.en ?? "";
+};
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const href = (u) => /^https?:/.test(u) ? u : "https://" + u;
+
+function fmtToday(pin){
+  const d = pin ? new Date(pin + "T12:00:00") : new Date();
+  const day = d.getDate(), mon = MONTHS_LONG[LANG][d.getMonth()], yr = d.getFullYear();
+  return LANG === "tr" ? `${day} ${mon} ${yr}` : `${day} ${mon} ${yr}`;
+}
+
+function renderHeader(){
+  const c = DATA.contact;
+  const rows = [
+    c.showPhone ? `<div>${esc(c.phone)}</div>` : "",
+    `<div><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></div>`,
+    `<div><a href="${esc(href(c.site))}">${esc(c.site)}</a></div>`,
+    `<div><a href="${esc(href(c.linkedin))}">${esc(c.linkedin)}</a></div>`,
+    `<div>${esc(t(c.location))}</div>`
+  ].filter(Boolean).join("");
+
+  return `<header class="masthead">
+    <div>
+      <h1>${esc(DATA.name)}</h1>
+      <div class="role">${esc(t(DATA.role))}</div>
+    </div>
+    <div class="contact">${rows}</div>
+  </header>`;
+}
+
+function renderMetaRow(){
+  const a = DATA.application;
+  const lines = [];
+  if (a.recipient) lines.push(esc(a.recipient));
+  if (a.company)   lines.push(`<span class="co">${esc(a.company)}</span>`);
+  return `<div class="meta-row">
+    <div class="addressee">${lines.join("<br>")}</div>
+    <div class="date">${esc(fmtToday(a.date))}</div>
+  </div>`;
+}
+
+function renderGreeting(){
+  const a = DATA.application;
+  const text = a.recipient
+    ? t(DATA.labels.namedGreeting) + a.recipient + ","
+    : t(DATA.labels.genericGreeting);
+  return `<p class="greeting">${esc(text)}</p>`;
+}
+
+/* the role sentence only appears once you fill in the application block */
+function roleSentence(){
+  const a = DATA.application;
+  if (!a.role) return "";
+  const tpl = a.company ? t(DATA.labels.roleSentence) : t(DATA.labels.roleSentenceNoCompany);
+  let s = tpl.replace("{role}", a.role).replace("{company}", a.company);
+  if (a.company && a.source) s += t(DATA.labels.sourceClause).replace("{source}", a.source);
+  return esc(s) + " ";
+}
+
+function renderTech(){
+  return `<p class="body-text">${esc(t(DATA.techIntro))}</p>
+    <ul class="techlist">${DATA.tech.map(r =>
+      `<li><b>${esc(t(r.label))}:</b> ${esc(t(r.value))}</li>`).join("")}</ul>`;
+}
+
+function renderLinks(){
+  const c = DATA.contact, l = DATA.labels;
+  return `<div class="links">
+    <div><span class="lbl">${esc(t(l.githubLabel))}:</span> <a href="${esc(href(c.github))}">${esc(c.github)}</a></div>
+    <div><span class="lbl">${esc(t(l.orgLabel))}:</span> <a href="${esc(href(c.org))}">${esc(c.org)}</a></div>
+  </div>`;
+}
+
+function renderCustom(){
+  const c = t(DATA.application.custom);
+  return c ? `<p class="body-text">${esc(c)}</p>` : "";
+}
+
+function setFontSize(pt){
+  FS = Math.min(13, Math.max(8, Math.round(pt * 10) / 10));
+  document.documentElement.style.setProperty("--fs", FS + "pt");
+  const out = document.getElementById("fs-readout");
+  if (out) out.textContent = FS.toFixed(1) + "pt";
+  try { localStorage.setItem("letter-fs", String(FS)); } catch (e) {}
+}
+
+function render(){
+  document.documentElement.lang = LANG;
+  const co = DATA.application.company;
+  document.title = co
+    ? `${DATA.name} — Cover Letter — ${co}`
+    : `${DATA.name} — Cover Letter`;
+
+  document.getElementById("sheet").innerHTML =
+    renderHeader() +
+    renderMetaRow() +
+    renderGreeting() +
+    `<p class="body-text">${(() => {
+        const lead = roleSentence();
+        return lead + esc(t(lead ? DATA.introAfterRole : DATA.intro));
+      })()}</p>` +
+    `<p class="body-text">${esc(t(DATA.experience))}</p>` +
+    renderTech() +
+    renderCustom() +
+    `<p class="body-text">${esc(t(DATA.closing))}</p>` +
+    renderLinks() +
+    `<div class="signoff">
+       <div class="close">${esc(t(DATA.labels.signOff))}</div>
+       <div class="name">${esc(DATA.name)}</div>
+     </div>`;
+
+  document.getElementById("btn-en").setAttribute("aria-pressed", String(LANG === "en"));
+  document.getElementById("btn-tr").setAttribute("aria-pressed", String(LANG === "tr"));
+}
+
+function setLang(lang, updateHash){
+  LANG = (lang === "tr") ? "tr" : "en";
+  try { localStorage.setItem("letter-lang", LANG); } catch (e) {}
+  if (updateHash) history.replaceState(null, "", LANG === "tr" ? "#tr" : "#en");
+  render();
+}
+
+function exportStatic(){
+  const clone = document.documentElement.cloneNode(true);
+  clone.querySelectorAll('.toolbar, noscript, script:not([type="application/ld+json"])')
+       .forEach(n => n.remove());
+  const co = DATA.application.company
+    ? "-" + DATA.application.company.replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "")
+    : "";
+  const blob = new Blob(["<!doctype html>\n" + clone.outerHTML], { type: "text/html;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `Ahmetcan-Aksu-Cover-Letter-${LANG.toUpperCase()}${co}.html`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+}
+
+(function init(){
+  const hash = location.hash.replace("#", "").toLowerCase();
+  const qs = new URLSearchParams(location.search).get("lang");
+  let saved = null;
+  try { saved = localStorage.getItem("letter-lang"); } catch (e) {}
+  setLang(hash || qs || saved || "en", false);
+
+  let savedFs = null;
+  try { savedFs = parseFloat(localStorage.getItem("letter-fs")); } catch (e) {}
+  setFontSize(Number.isFinite(savedFs) ? savedFs : (DATA.layout && DATA.layout.baseFontPt) || 10.4);
+
+  document.getElementById("btn-en").onclick = () => setLang("en", true);
+  document.getElementById("btn-tr").onclick = () => setLang("tr", true);
+  document.getElementById("btn-smaller").onclick = () => setFontSize(FS - 0.2);
+  document.getElementById("btn-bigger").onclick  = () => setFontSize(FS + 0.2);
+  document.getElementById("btn-print").onclick = () => window.print();
+  document.getElementById("btn-bake").onclick = exportStatic;
+  window.addEventListener("hashchange", () => {
+    const h = location.hash.replace("#", "").toLowerCase();
+    if (h === "en" || h === "tr") setLang(h, false);
+  });
+})();
+</script>
+</body>
+</html>
