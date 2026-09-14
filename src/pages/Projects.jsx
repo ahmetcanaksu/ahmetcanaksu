@@ -1,282 +1,224 @@
-import { useState, useEffect } from "react";
+import { FiArrowUpRight } from "react-icons/fi";
 import ProjectCard from "../components/ProjectCard";
+import PageHeader from "../components/PageHeader";
+import CodeCard from "../components/CodeCard";
+import { ProjIcon, LangDot } from "../components/ProjectMeta";
 import projectsData from "../data/projects.json";
 
-const Projects = () => {
-  const [projects, setProjects] = useState([]);
-  const [filteredProjects, setFilteredProjects] = useState([]);
-  const [selectedFilter, setSelectedFilter] = useState("all");
-  const [selectedStatus, setSelectedStatus] = useState("all");
+/* Real usage snippets / highlights for the flagship projects. */
+const DETAILS = {
+  "Ellie Language": {
+    file: "chunker.ei",
+    code: `// A generic, type-safe array chunker
+class Chunker<T> {
+    co(chunkCount, items);
+    pri v chunkCount : int;
+    pri v items : [T, *];
 
-  useEffect(() => {
-    setProjects(projectsData);
-    setFilteredProjects(projectsData);
-  }, []);
-
-  useEffect(() => {
-    let filtered = projects;
-
-    // Filter by technology
-    if (selectedFilter !== "all") {
-      filtered = filtered.filter((project) =>
-        project.techTags.some((tag) =>
-          tag.toLowerCase().includes(selectedFilter.toLowerCase())
-        )
-      );
+    fn chunks() : [[T, *], *] {
+        v chunks : [[T, *], *];
+        v temp : [T, self.chunkCount];
+        for i : self.items.len {
+            if temp.len == self.chunkCount {
+                chunks.push(temp);
+                temp.clean();
+            } else {
+                temp.push(this.items[i]!);
+            }
+        }
+        ret chunks;
     }
+}`,
+  },
+  Menemen: {
+    file: "main.rs",
+    code: `use menemen::request::{Request, RequestTypes};
 
-    // Filter by status
-    if (selectedStatus !== "all") {
-      filtered = filtered.filter(
-        (project) => project.status === selectedStatus
-      );
-    }
+fn main() {
+    let mut req = Request::new(
+        "http://postman-echo.com/get",
+        RequestTypes::GET,
+    ).unwrap();
 
-    setFilteredProjects(filtered);
-  }, [projects, selectedFilter, selectedStatus]);
+    // Read the response as a stream, not a buffer
+    let mut res = req.send().unwrap();
+    let mut buf = Vec::new();
+    res.stream.read_to_end(&mut buf);
 
-  const allTechnologies = [
-    ...new Set(projects.flatMap((project) => project.techTags)),
-  ];
-  const allStatuses = [...new Set(projects.map((project) => project.status))];
+    println!("{}", String::from_utf8_lossy(&buf));
+}`,
+  },
+  "Rust-NMEA": {
+    file: "gps.rs",
+    code: `use rust_nmea::parser::Parser;
 
-  const featuredProjects = filteredProjects.filter(
-    (project) => project.featured
+// A raw GPS sentence from the receiver
+let line = "$GPGGA,161009.00,1122.20,N,02339.35,E,1,08,1.09,11.5,M,,*62";
+
+let fix = Parser::parse_line(line).unwrap();
+
+// -> GGA { satellites: 8, altitude: 11.5, lat, lon, .. }`,
+  },
+  UtilStation: {
+    highlights: [
+      "JSON / JS / HTML / CSS formatters & minifiers",
+      "Base64 · JWT · URL encoders and inspectors",
+      "UUID · ULID · QR · cron · hash generators",
+      "JSON ↔ TypeScript / YAML, CSV ↔ JSON converters",
+      "Regex tester, cURL converter, and 28+ tools total",
+    ],
+  },
+};
+
+const linkLabel = (url) => {
+  if (/crates\.io/.test(url)) return "crates.io";
+  if (/pub\.dev/.test(url)) return "pub.dev";
+  if (/npmjs/.test(url)) return "npm";
+  if (/docs\./.test(url)) return "Docs";
+  if (/playground/.test(url)) return "Playground";
+  return "Website";
+};
+
+const projectLinks = (p) => {
+  const out = [];
+  if (p.repoUrl) out.push({ label: "Code", url: p.repoUrl });
+  if (p.liveUrl && !p.liveUrl.startsWith("#"))
+    out.push({ label: linkLabel(p.liveUrl), url: p.liveUrl });
+  (p.links || []).forEach((l) =>
+    out.push({ label: l.label.replace(/^\w/, (c) => c.toUpperCase()), url: l.url })
   );
-  const otherProjects = filteredProjects.filter((project) => !project.featured);
+  return out;
+};
+
+const HighlightsPanel = ({ items, url }) => (
+  <div className="rounded-sm border border-rule bg-paper-2/50 p-5">
+    <p className="meta mb-4">{url?.replace(/^https?:\/\//, "")} — inside the box</p>
+    <ul className="space-y-2.5 text-sm text-ink-2">
+      {items.map((h) => (
+        <li key={h} className="flex gap-2.5">
+          <span className="dot mt-2 shrink-0 text-accent" />
+          <span>{h}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+const FeatureBlock = ({ project, reversed }) => {
+  const d = DETAILS[project.name] || {};
+  const links = projectLinks(project);
+  return (
+    <article className="grid items-center gap-8 border-t border-rule py-12 lg:grid-cols-2 lg:gap-14">
+      <div className={reversed ? "lg:order-2" : ""}>
+        <div className="flex items-center gap-3">
+          <ProjIcon name={project.icon} className="h-6 w-6 text-ink" />
+          <h3 className="font-display text-2xl font-semibold text-ink">
+            {project.name}
+          </h3>
+        </div>
+        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+          <LangDot language={project.language} />
+          <span className="meta">{project.year}</span>
+          <span className="meta capitalize">{project.status}</span>
+        </div>
+        <p className="mt-4 max-w-xl leading-relaxed text-ink-2">
+          {project.longDescription || project.description}
+        </p>
+        <div className="tags mt-4">
+          {project.techTags.map((t, i) => (
+            <span key={t}>
+              {i > 0 && <span className="mr-2 text-rule">·</span>}
+              {t}
+            </span>
+          ))}
+        </div>
+        {links.length > 0 && (
+          <div className="mt-6 flex flex-wrap gap-5">
+            {links.map((l) => (
+              <a
+                key={l.url}
+                href={l.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-arrow text-sm"
+              >
+                {l.label}
+                <FiArrowUpRight className="h-3.5 w-3.5" />
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className={reversed ? "lg:order-1" : ""}>
+        {d.code ? (
+          <CodeCard file={d.file} code={d.code} />
+        ) : d.highlights ? (
+          <HighlightsPanel items={d.highlights} url={project.liveUrl} />
+        ) : null}
+      </div>
+    </article>
+  );
+};
+
+const Projects = () => {
+  const featured = projectsData.filter((p) => p.featured);
+  const rest = projectsData.filter((p) => !p.featured);
 
   return (
-    <div className="min-h-screen bg-base-100 py-20">
-      <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold mb-6">
-            <span className="gradient-text">My Projects</span>
-          </h1>
-          <p className="text-xl text-base-content/80 max-w-3xl mx-auto">
-            A collection of projects I've built, ranging from programming
-            languages and developer tools to web applications and mobile apps.
-            Each project represents a learning journey and a contribution to the
-            developer community.
-          </p>
+    <div className="wrap py-16 sm:py-20">
+      <PageHeader kicker="Projects" title="Things I've built.">
+        Programming languages, developer tools, systems libraries, and apps —
+        spanning Rust, C#, TypeScript, and embedded hardware. A few flagships up
+        close, then everything else.
+      </PageHeader>
+
+      {/* Flagship feature blocks */}
+      <section>
+        <div className="mb-2 flex items-center gap-3">
+          <span className="dot text-accent" />
+          <h2 className="kicker">Flagships</h2>
         </div>
+        {featured.map((p, i) => (
+          <FeatureBlock key={p.id} project={p} reversed={i % 2 === 1} />
+        ))}
+        <div className="border-t border-rule" />
+      </section>
 
-        {/* Filters */}
-        <div className="card bg-base-200 shadow-xl mb-12 hidden">
-          <div className="card-body">
-            <h2 className="card-title mb-4">Filter Projects</h2>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="label">
-                  <span className="label-text font-semibold">
-                    Filter by Technology
-                  </span>
-                </label>
-                <select
-                  className="select select-bordered w-full"
-                  value={selectedFilter}
-                  onChange={(e) => setSelectedFilter(e.target.value)}
-                >
-                  <option value="all">All Technologies</option>
-                  {allTechnologies.map((tech) => (
-                    <option key={tech} value={tech}>
-                      {tech}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="label">
-                  <span className="label-text font-semibold">
-                    Filter by Status
-                  </span>
-                </label>
-                <select
-                  className="select select-bordered w-full"
-                  value={selectedStatus}
-                  onChange={(e) => setSelectedStatus(e.target.value)}
-                >
-                  <option value="all">All Statuses</option>
-                  {allStatuses.map((status) => (
-                    <option key={status} value={status}>
-                      {status.charAt(0).toUpperCase() + status.slice(1)}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            {(selectedFilter !== "all" || selectedStatus !== "all") && (
-              <div className="card-actions justify-end mt-4">
-                <button
-                  className="btn btn-ghost btn-sm"
-                  onClick={() => {
-                    setSelectedFilter("all");
-                    setSelectedStatus("all");
-                  }}
-                >
-                  Clear Filters
-                </button>
-              </div>
-            )}
-          </div>
+      {/* Everything else */}
+      <section className="mt-16">
+        <h2 className="kicker mb-2">More projects</h2>
+        <div>
+          {rest.map((p, i) => (
+            <ProjectCard
+              key={p.id}
+              project={p}
+              num={String(i + 1).padStart(2, "0")}
+            />
+          ))}
+          <div className="border-t border-rule" />
         </div>
+      </section>
 
-        {/* Project Stats */}
-        <div className="stats shadow mb-12 w-full">
-          <div className="stat">
-            <div className="stat-figure text-primary">
-              <svg
-                className="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                />
-              </svg>
-            </div>
-            <div className="stat-title">Total Projects</div>
-            <div className="stat-value text-primary">{projects.length}</div>
-            <div className="stat-desc">Across multiple technologies</div>
-          </div>
-
-          <div className="stat">
-            <div className="stat-figure text-secondary">
-              <svg
-                className="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
-            </div>
-            <div className="stat-title">Active Projects</div>
-            <div className="stat-value text-secondary">
-              {projects.filter((p) => p.status === "active").length}
-            </div>
-            <div className="stat-desc">Currently maintained</div>
-          </div>
-
-          <div className="stat">
-            <div className="stat-figure text-accent">
-              <svg
-                className="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                />
-              </svg>
-            </div>
-            <div className="stat-title">Featured</div>
-            <div className="stat-value text-accent">
-              {featuredProjects.length}
-            </div>
-            <div className="stat-desc">Highlighted projects</div>
-          </div>
-        </div>
-
-        {/* Featured Projects */}
-        {featuredProjects.length > 0 && (
-          <div className="mb-16">
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-3xl font-bold">Featured Projects</h2>
-              <div className="badge badge-primary badge-lg">⭐ Featured</div>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Other Projects */}
-        {otherProjects.length > 0 && (
-          <div>
-            <h2 className="text-3xl font-bold mb-8">
-              {featuredProjects.length > 0 ? "Other Projects" : "All Projects"}
-            </h2>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {otherProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* No projects message */}
-        {filteredProjects.length === 0 && (
-          <div className="text-center py-16">
-            <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-2xl font-bold mb-4">No projects found</h3>
-            <p className="text-base-content/70 mb-6">
-              Try adjusting your filters to see more projects.
-            </p>
-            <button
-              className="btn btn-primary"
-              onClick={() => {
-                setSelectedFilter("all");
-                setSelectedStatus("all");
-              }}
-            >
-              Clear All Filters
-            </button>
-          </div>
-        )}
-
-        {/* Call to Action */}
-        <div className="text-center mt-20">
-          <div className="card bg-base-200 shadow-xl">
-            <div className="card-body">
-              <h3 className="card-title text-2xl justify-center mb-4">
-                Interested in Collaborating?
-              </h3>
-              <p className="text-base-content/70 mb-6">
-                I'm always open to discussing new projects, innovative ideas, or
-                opportunities to contribute to interesting work.
-              </p>
-              <div className="card-actions justify-center">
-                <a
-                  href="mailto:hello@ahmetcanaksu.com"
-                  className="btn btn-primary"
-                >
-                  Get In Touch
-                </a>
-                <a
-                  href="https://github.com/ahmetcanaksu"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-outline"
-                >
-                  View GitHub
-                </a>
-              </div>
-            </div>
-          </div>
+      {/* CTA */}
+      <div className="mt-16 max-w-2xl">
+        <h2 className="text-2xl font-semibold">Interested in working together?</h2>
+        <p className="mt-3 text-ink-2">
+          I&apos;m open to interesting projects, open-source collaboration, and
+          consulting around language design and systems.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
+          <a href="mailto:hello@ahmetcanaksu.com" className="btn-solid">
+            Get in touch
+          </a>
+          <a
+            href="https://github.com/ahmetcanaksu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-line"
+          >
+            GitHub
+          </a>
         </div>
       </div>
     </div>

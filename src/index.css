@@ -2,42 +2,203 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom styles */
+/* ============================================================
+   Ahmetcan Aksu — editorial / warm paper
+   Restrained: high contrast, big type, one accent, no gimmicks.
+   ============================================================ */
+
 @layer base {
+  :root {
+    --paper: 247 244 238; /* #f7f4ee warm off-white */
+    --paper-2: 240 236 228; /* subtle raised */
+    --ink: 24 22 18; /* #181612 near-black */
+    --ink-2: 71 66 58; /* secondary text */
+    --ink-3: 115 108 96; /* muted / meta */
+    --rule: 219 213 201; /* hairlines */
+    --accent: 180 66 29; /* #b4421d rust */
+    color-scheme: light;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      Roboto, sans-serif;
+    @apply bg-paper text-ink antialiased;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Space Grotesk", Inter, ui-sans-serif, system-ui, sans-serif;
+    @apply font-semibold tracking-tight text-ink;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: rgb(var(--accent) / 0.18);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--ink-3) / 0.5) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: rgb(var(--ink-3) / 0.4);
+    border-radius: 999px;
   }
 }
 
 @layer components {
-  .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  .wrap {
+    @apply mx-auto w-full max-w-5xl px-6 sm:px-8;
+  }
+  .wrap-text {
+    @apply mx-auto w-full max-w-3xl px-6 sm:px-8;
   }
 
-  .hero-pattern {
-    background-image: radial-gradient(
-        circle at 25px 25px,
-        rgba(255, 255, 255, 0.1) 2px,
-        transparent 0
-      ),
-      radial-gradient(
-        circle at 75px 75px,
-        rgba(255, 255, 255, 0.1) 2px,
-        transparent 0
-      );
-    background-size: 100px 100px;
+  /* ---------- Eyebrow / metadata ---------- */
+  .kicker {
+    @apply font-mono text-xs uppercase tracking-[0.22em] text-ink-3;
+  }
+  .meta {
+    @apply font-mono text-xs tracking-wide text-ink-3;
   }
 
-  .prose-custom {
-    @apply prose prose-lg max-w-none;
+  /* ---------- Hairline ---------- */
+  .rule {
+    @apply border-0 border-t border-rule;
   }
 
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  /* ---------- Links ---------- */
+  .link {
+    @apply text-ink underline decoration-rule underline-offset-[3px]
+      transition-colors hover:text-accent hover:decoration-accent;
+  }
+  .link-arrow {
+    @apply inline-flex items-center gap-1 font-medium text-ink transition-colors hover:text-accent;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 whitespace-nowrap
+      rounded-sm px-5 py-2.5 text-sm font-medium transition-colors
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40;
+  }
+  .btn-solid {
+    @apply btn bg-ink text-paper hover:bg-accent;
+  }
+  .btn-line {
+    @apply btn border border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-paper;
+  }
+  .btn-ghost {
+    @apply btn px-3 text-ink-2 hover:text-accent;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+
+  /* ---------- Index list rows (projects / research / posts) ---------- */
+  .row {
+    @apply relative flex flex-col gap-1 border-t border-rule py-6
+      transition-colors sm:flex-row sm:items-baseline sm:gap-6;
+  }
+  .row-num {
+    @apply meta shrink-0 pt-1 tabular-nums sm:w-10;
+  }
+  .row-title {
+    @apply font-display text-xl font-semibold text-ink transition-colors sm:text-2xl;
+  }
+  .row:hover .row-title {
+    @apply text-accent;
+  }
+
+  /* ---------- Tags as inline middot list ---------- */
+  .tags {
+    @apply flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-ink-3;
+  }
+
+  /* ---------- Soft panel (used sparingly) ---------- */
+  .panel {
+    @apply border border-rule bg-paper-2/60;
+  }
+
+  /* ---------- Journey deck ---------- */
+  .chapter {
+    @apply relative flex min-h-[88vh] flex-col justify-center overflow-hidden
+      border-t border-rule py-20;
+    scroll-margin-top: 4.5rem;
+  }
+  .chapter-year {
+    @apply font-display font-bold leading-none tabular-nums text-ink/10 select-none;
+    font-size: clamp(4rem, 12vw, 11rem);
+  }
+
+  /* ---------- Prose ---------- */
+  .prose-paper {
+    @apply max-w-none leading-relaxed text-ink-2;
+  }
+  .prose-paper p {
+    @apply mb-4;
+  }
+  .prose-paper h2,
+  .prose-paper h3 {
+    @apply mb-3 mt-10 text-ink;
+  }
+  .prose-paper a {
+    @apply link;
+  }
+  .prose-paper strong,
+  .prose-paper b {
+    @apply font-semibold text-ink;
+  }
+  .prose-paper code {
+    @apply rounded-sm bg-paper-2 px-1.5 py-0.5 font-mono text-[0.85em] text-accent;
+  }
+  .prose-paper pre {
+    @apply overflow-x-auto rounded-sm border border-rule bg-paper-2 p-4 font-mono text-sm;
   }
 }
+
+@layer utilities {
+  .dot {
+    @apply inline-block h-1.5 w-1.5 rounded-full bg-current align-middle;
+  }
+  .fade-up {
+    animation: fade-up 0.6s ease-out both;
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+

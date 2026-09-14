@@ -2,42 +2,118 @@
     {
         "id": 1,
         "name": "Ellie Language",
-        "description": "A type-safe programming language designed for embedded and sandboxed environments (WebAssembly, ARM) with focus on performance and safety.",
-        "longDescription": "Ellie is a compiled programming language that I built from scratch, featuring a complete parser, compiler, and virtual machine. It's designed for embedded systems and WebAssembly targets with advanced memory management, stack/heap allocation, garbage collection, and bytecode optimization.",
+        "description": "A type-safe programming language that runs on embedded and sandboxed environments — with a portable engine that shrinks to as little as 49KB.",
+        "longDescription": "Ellie is a compiled, type-safe language I designed and built from scratch — parser, compiler, bytecode virtual machine, and CLI tooling. It targets resource-constrained and sandboxed environments (embedded, IoT, cloud functions) with compile-time safety, a low memory footprint, and per-device error recovery. The ecosystem includes an online playground, a package manager (Lia), and full documentation.",
         "techTags": [
             "Rust",
             "Compiler Design",
             "Virtual Machine",
-            "WebAssembly",
-            "ARM"
+            "Embedded",
+            "Type System"
         ],
-        "repoUrl": "https://github.com/behemehal/ellie-language",
+        "repoUrl": "https://github.com/behemehal/Ellie-Language",
         "liveUrl": "https://ellie-lang.org",
+        "links": [
+            {
+                "label": "docs",
+                "url": "https://docs.ellie-lang.org"
+            },
+            {
+                "label": "playground",
+                "url": "https://playground.ellie-lang.org/"
+            }
+        ],
+        "stars": 48,
         "featured": true,
         "status": "active",
-        "year": "2023-2024"
+        "year": "2020",
+        "language": "Rust",
+        "icon": "terminal"
     },
     {
         "id": 2,
         "name": "UtilStation",
-        "description": "Your one-stop shop for all development tools - a comprehensive collection of utilities for various programming situations.",
-        "longDescription": "UtilStation provides developers with a unified platform containing all the tools they need in one single app. From JSON formatters to regex testers, color pickers to code converters - everything a developer needs in their daily workflow.",
+        "description": "An all-in-one collection of 28+ fast, well-designed developer utilities — formatters, converters, generators, and inspectors, with no installs or sign-up.",
+        "longDescription": "UtilStation brings the tools developers reach for daily into one place: JSON/JS/HTML/CSS formatters, Base64 / JWT / URL inspectors, UUID / ULID / QR / cron / hash generators, JSON↔TypeScript/YAML and CSV↔JSON converters, a regex tester, a cURL converter, and more — fast, reliable, and beautifully designed.",
         "techTags": [
             "React",
             "TypeScript",
-            "Node.js",
-            "Web Development"
+            "Web App",
+            "Developer Tools"
         ],
+        "repoUrl": null,
         "liveUrl": "https://utilstation.com",
         "featured": true,
         "status": "active",
-        "year": "2023-2024"
+        "year": "2023",
+        "language": "TypeScript",
+        "icon": "tool"
+    },
+    {
+        "id": 9,
+        "name": "Rust-NMEA",
+        "description": "A Rust parser for the NMEA 0183 protocol used in GPS and marine navigation, with u-blox support.",
+        "longDescription": "A robust Rust library for parsing NMEA 0183 sentences — the protocol behind GPS receivers and marine navigation hardware. Built for real-time use with careful error handling and support for common sentence types and u-blox devices.",
+        "techTags": [
+            "Rust",
+            "GPS",
+            "NMEA",
+            "Parser",
+            "crates.io"
+        ],
+        "repoUrl": "https://github.com/ahmetcanaksu/Rust-NMEA",
+        "liveUrl": "https://crates.io/crates/rust-nmea",
+        "stars": 1,
+        "featured": true,
+        "status": "active",
+        "year": "2020",
+        "language": "Rust",
+        "icon": "navigation"
+    },
+    {
+        "id": 7,
+        "name": "Menemen",
+        "description": "A streaming HTTP/HTTPS request library for Rust, built for low-overhead network I/O.",
+        "longDescription": "A Rust library for efficient streaming HTTP/HTTPS requests, focused on performance and a small memory footprint. Designed for applications that stream large responses without buffering everything in memory — and used as the networking layer in several of my other projects.",
+        "techTags": [
+            "Rust",
+            "HTTP",
+            "Streaming",
+            "crates.io"
+        ],
+        "repoUrl": "https://github.com/behemehal/Menemen",
+        "liveUrl": "https://crates.io/crates/menemen",
+        "featured": true,
+        "status": "development",
+        "year": "2022",
+        "language": "Rust",
+        "icon": "activity"
+    },
+    {
+        "id": 4,
+        "name": "Wole (CLI)",
+        "description": "A Wake-on-LAN magic-packet generator, sender, and listener CLI written in Rust.",
+        "longDescription": "A fast command-line tool written in Rust for Wake-on-LAN. Generates and sends magic packets to remotely wake devices on your network, and can also listen for incoming magic packets — a small, dependency-light systems utility.",
+        "techTags": [
+            "Rust",
+            "CLI",
+            "Networking",
+            "Wake-on-LAN"
+        ],
+        "repoUrl": "https://github.com/ahmetcanaksu/Wole",
+        "liveUrl": null,
+        "stars": 4,
+        "featured": false,
+        "status": "complete",
+        "year": "2020",
+        "language": "Rust",
+        "icon": "power"
     },
     {
         "id": 3,
-        "name": "Wole App",
-        "description": "Wake-On-Lan Magic Package Generator & Sender Android App for remote device management.",
-        "longDescription": "Android application built with Flutter that allows users to send Wake-On-LAN magic packets to remotely wake up devices on their network. Features a clean interface for managing multiple devices and network configurations.",
+        "name": "WoleApp",
+        "description": "A Wake-on-LAN magic-packet generator & sender for Android, built with Flutter.",
+        "longDescription": "An Android app built with Flutter that sends Wake-on-LAN magic packets to remotely wake devices on your network. Clean interface for managing multiple saved devices and network configurations.",
         "techTags": [
             "Dart",
             "Flutter",
@@ -48,47 +124,54 @@
         "liveUrl": null,
         "featured": false,
         "status": "complete",
-        "year": "2022"
-    },
-    {
-        "id": 4,
-        "name": "Wole CLI",
-        "description": "Wake-On-Lan Magic Package Generator & Sender command-line interface tool.",
-        "longDescription": "Command-line tool written in Rust for sending Wake-On-LAN magic packets. Provides a fast and efficient way to remotely wake up devices on your network from the terminal.",
-        "techTags": [
-            "Rust",
-            "CLI",
-            "Networking",
-            "Systems Programming"
-        ],
-        "repoUrl": "https://github.com/ahmetcanaksu/Wole",
-        "liveUrl": null,
-        "featured": false,
-        "status": "complete",
-        "year": "2022"
+        "year": "2022",
+        "language": "Dart",
+        "icon": "smartphone"
     },
     {
         "id": 5,
         "name": "event_listener",
-        "description": "NodeJS-like Event Listener library for Dart programming language.",
-        "longDescription": "A Dart library that brings familiar Node.js-style event handling to Dart applications. Provides an easy-to-use API for implementing event-driven programming patterns in Dart projects.",
+        "description": "A Node.js-style event listener library for Dart (also ported to Rust as rust_event_listener).",
+        "longDescription": "A Dart library that brings familiar Node.js-style event handling to Dart and Flutter apps, with a simple API for event-driven patterns. Published on pub.dev, and later ported to Rust as rust_event_listener.",
         "techTags": [
             "Dart",
             "Library",
-            "Event Handling",
-            "Package Development"
+            "Events",
+            "pub.dev"
         ],
         "repoUrl": "https://github.com/behemehal/event_listener",
         "liveUrl": "https://pub.dev/packages/event_listener",
+        "stars": 2,
         "featured": false,
         "status": "complete",
-        "year": "2023"
+        "year": "2020",
+        "language": "Dart",
+        "icon": "radio"
+    },
+    {
+        "id": 8,
+        "name": "SafeEn",
+        "description": "A local database with clean, strict data integrity and easy portability, written in Rust.",
+        "longDescription": "A Rust-based local database focused on data integrity and portability. Designed for applications that need reliable local storage with strong consistency guarantees and simple deployment across environments. Published on crates.io as safe_en.",
+        "techTags": [
+            "Rust",
+            "Database",
+            "Data Integrity",
+            "crates.io"
+        ],
+        "repoUrl": "https://github.com/behemehal/SafeEn",
+        "liveUrl": "https://crates.io/crates/safe_en",
+        "featured": false,
+        "status": "development",
+        "year": "2022",
+        "language": "Rust",
+        "icon": "database"
     },
     {
         "id": 6,
         "name": "Bnots",
-        "description": "A note-taking app that combines simplicity with Markdown support for enhanced writing experience.",
-        "longDescription": "Note-taking application built with Flutter that features Markdown support, clean interface, and cross-platform compatibility. Designed for users who want a simple yet powerful tool for organizing their thoughts and documents.",
+        "description": "A note-taking app that combines simplicity with Markdown support, built with Flutter.",
+        "longDescription": "A cross-platform note-taking app built with Flutter, featuring Markdown support and a clean, distraction-free interface. Made for people who want a simple yet capable tool for organizing their thoughts.",
         "techTags": [
             "Dart",
             "Flutter",
@@ -98,93 +181,48 @@
         "repoUrl": "https://github.com/behemehal/Bnots",
         "liveUrl": null,
         "featured": false,
-        "status": "active",
-        "year": "2022"
-    },
-    {
-        "id": 7,
-        "name": "Menemen",
-        "description": "A streaming HTTP/HTTPS request library for high-performance network operations.",
-        "longDescription": "Rust library designed for efficient streaming HTTP/HTTPS requests with focus on performance and memory efficiency. Built for applications that need to handle large-scale network operations with minimal overhead.",
-        "techTags": [
-            "Rust",
-            "HTTP",
-            "Streaming",
-            "Network Programming"
-        ],
-        "repoUrl": "https://github.com/behemehal/Menemen",
-        "liveUrl": null,
-        "featured": true,
-        "status": "development",
-        "year": "2023"
-    },
-    {
-        "id": 8,
-        "name": "SafeEn",
-        "description": "Local database solution for situations that require strict data integrity and absolute portability.",
-        "longDescription": "A Rust-based database solution focused on data integrity, security, and portability. Designed for applications that need reliable local storage with strong consistency guarantees and easy deployment across different environments.",
-        "techTags": [
-            "Rust",
-            "Database",
-            "Data Integrity",
-            "Embedded Database"
-        ],
-        "repoUrl": "https://github.com/behemehal/SafeEn",
-        "liveUrl": null,
-        "featured": false,
-        "status": "development",
-        "year": "2023"
-    },
-    {
-        "id": 9,
-        "name": "Rust-NMEA",
-        "description": "Rust NMEA parser for maritime and GPS applications with high performance and accuracy.",
-        "longDescription": "A robust Rust library for parsing NMEA 0183 protocol messages commonly used in maritime and GPS applications. Features comprehensive sentence support, error handling, and efficient parsing for real-time applications.",
-        "techTags": [
-            "Rust",
-            "GPS",
-            "Maritime",
-            "Protocol Parser"
-        ],
-        "repoUrl": "https://github.com/ahmetcanaksu/Rust-NMEA",
-        "liveUrl": "https://crates.io/crates/rust-nmea",
-        "featured": false,
-        "status": "active",
-        "year": "2020"
+        "status": "complete",
+        "year": "2022",
+        "language": "Dart",
+        "icon": "edit"
     },
     {
         "id": 10,
         "name": "Device-Database",
-        "description": "A JavaScript library that detects and identifies various development boards and IoT devices.",
-        "longDescription": "JavaScript library designed to detect and identify different types of development boards, microcontrollers, and IoT devices. Useful for development tools and applications that need to interact with various hardware platforms.",
+        "description": "A JavaScript library that detects and identifies development boards and IoT devices (Raspberry Pi, Orange Pi, and more).",
+        "longDescription": "A JavaScript library that detects and identifies development boards, single-board computers, and IoT hardware. Useful for tools and applications that need to adapt to whatever board they're running on. Published on npm as device-database.",
         "techTags": [
             "JavaScript",
             "IoT",
             "Hardware Detection",
-            "Development Tools"
+            "npm"
         ],
         "repoUrl": "https://github.com/ahmetcanaksu/Device-Database",
         "liveUrl": "https://www.npmjs.com/package/device-database",
         "featured": false,
         "status": "complete",
-        "year": "2020"
+        "year": "2019",
+        "language": "JavaScript",
+        "icon": "cpu"
     },
     {
         "id": 11,
         "name": "rpifan",
-        "description": "Automatic fan controller service for Raspberry Pi to manage temperature and cooling.",
-        "longDescription": "A Node.js service that automatically controls cooling fans on Raspberry Pi based on CPU temperature. Features configurable temperature thresholds, smooth fan speed control, and system integration for optimal thermal management.",
+        "description": "An automatic CPU-temperature fan controller service for Raspberry Pi.",
+        "longDescription": "A Node.js service that automatically controls a cooling fan on a Raspberry Pi based on CPU temperature, with configurable thresholds and smooth speed control for quiet, efficient thermal management. One of my earliest open-source projects.",
         "techTags": [
             "JavaScript",
             "Node.js",
             "Raspberry Pi",
-            "IoT",
-            "System Control"
+            "IoT"
         ],
         "repoUrl": "https://github.com/ahmetcanaksu/rpifan",
         "liveUrl": null,
+        "stars": 2,
         "featured": false,
         "status": "complete",
-        "year": "2020"
+        "year": "2018",
+        "language": "JavaScript",
+        "icon": "wind"
     }
 ]

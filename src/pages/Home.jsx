@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { FiArrowUpRight, FiArrowRight } from "react-icons/fi";
 import blogsData from "../data/blogs.json";
 import projectsData from "../data/projects.json";
+import ProjectCard from "../components/ProjectCard";
+
+const facts = [
+  { k: "Role", v: "Backend Dev · Fonmap" },
+  { k: "Focus", v: "Languages · Systems · Embedded" },
+  { k: "Based", v: "Istanbul, Turkey" },
+  { k: "Since", v: "Writing code since 2017" },
+];
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -12,288 +21,125 @@ const Home = () => {
     setProjects(projectsData);
   }, []);
 
-  // Get featured posts
-  const featuredPosts = posts.filter((post) => post.featured);
+  const featuredProjects = projects.filter((p) => p.featured);
+  const featuredPosts = posts.filter((p) => p.featured);
 
-  // Get featured projects
-  const featuredProjects = projects.filter((project) => project.featured);
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
+  const formatDate = (d) =>
+    new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "short" });
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="hero min-h-screen bg-base-200 hero-pattern">
-        <div className="hero-content text-center">
-          <div className="max-w-4xl">
-            <div className="avatar placeholder mb-8">
-              <div className="bg-neutral text-neutral-content rounded-full w-32 h-32">
-                <img src="photo.jpg" alt="" />
-              </div>
-            </div>
+    <div className="fade-up">
+      {/* ===================== HERO ===================== */}
+      <section className="wrap grid gap-12 pb-16 pt-16 sm:pt-24 lg:grid-cols-3">
+        <div className="lg:col-span-2">
+          <p className="kicker mb-6">Software Developer · Istanbul</p>
+          <h1 className="text-5xl font-semibold leading-[1.02] sm:text-7xl">
+            Ahmetcan Aksu
+          </h1>
+          <p className="mt-7 max-w-2xl text-xl leading-relaxed text-ink-2">
+            I build programming languages, developer tools, and embedded
+            systems. Creator of the{" "}
+            <Link to="/projects" className="link">
+              Ellie language
+            </Link>
+            , backend developer at Fonmap, and founder of the open-source
+            collective Behemehal.
+          </p>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="gradient-text">Ahmetcan Aksu</span>
-            </h1>
-
-            <p className="text-xl md:text-2xl mb-8 text-base-content/80">
-              Software Developer •{" "}
-              <span className="text-primary font-semibold">Rust</span> •
-              <span className="text-primary font-semibold">C#</span> •
-              <span className="text-accent font-semibold">
-                {" "}
-                JavaScript | TypeScript
-              </span>
-            </p>
-
-            <p className="text-lg mb-8 max-w-2xl mx-auto text-base-content/70">
-              Passionate about building programming languages, developer tools,
-              and open-source software. Creator of the Ellie programming
-              language and founder of various tech projects.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <Link to="/projects" className="btn btn-primary btn-lg">
-                <svg
-                  className="w-5 h-5 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                  />
-                </svg>
-                View Projects
-              </Link>
-
-              <Link to="/contact" className="btn btn-outline btn-lg">
-                <svg
-                  className="w-5 h-5 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-                Get In Touch
-              </Link>
-
-              <a
-                href="cv_en.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-ghost btn-lg"
-              >
-                <svg
-                  className="w-5 h-5 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-                Resume
-              </a>
-            </div>
-
-            <div className="flex justify-center space-x-6">
-              <a
-                href="https://github.com/ahmetcanaksu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl hover:text-primary transition-colors"
-                aria-label="GitHub Profile"
-              >
-                <svg
-                  className="w-8 h-8"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                </svg>
-              </a>
-
-              <a
-                href="https://linkedin.com/in/ahmetcanaksu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl hover:text-primary transition-colors"
-                aria-label="LinkedIn Profile"
-              >
-                <svg
-                  className="w-8 h-8"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                </svg>
-              </a>
-
-              <a
-                href="https://twitter.com/ahmetcanaksu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl hover:text-primary transition-colors"
-                aria-label="Twitter Profile"
-              >
-                <svg
-                  className="w-8 h-8"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-                </svg>
-              </a>
-            </div>
+          <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
+            <Link to="/projects" className="btn-solid">
+              View projects
+              <FiArrowRight className="h-4 w-4" />
+            </Link>
+            <Link to="/about" className="link-arrow">
+              About me
+              <FiArrowRight className="h-4 w-4" />
+            </Link>
+            <a
+              href="/Ahmetcan Aksu CV EN.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-arrow text-ink-2"
+            >
+              Résumé
+              <FiArrowUpRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
-      </section>
 
-      {/* Featured Projects Section */}
-      <section className="py-20 bg-base-100">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
-            <p className="text-xl text-base-content/70">
-              Some of the projects I'm most proud of
-            </p>
+        {/* Masthead info column */}
+        <aside className="lg:pt-2">
+          <div className="mb-6 h-40 w-40 overflow-hidden rounded-sm border border-rule grayscale">
+            <img
+              src="/photo.jpg"
+              alt="Ahmetcan Aksu"
+              className="h-full w-full object-cover"
+            />
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto justify-items-center">
-            {featuredProjects.map((project) => (
-              <div
-                key={project.id}
-                className="card bg-base-200 shadow-xl card-hover w-full max-w-sm"
-              >
-                <div className="card-body">
-                  <h3 className="card-title">{project.name}</h3>
-                  <p>{project.description}</p>
-                  <div className="card-actions justify-end">
-                    {project.techTags.slice(0, 2).map((tag, index) => (
-                      <span key={index} className="badge badge-primary">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+          <dl className="space-y-3">
+            {facts.map((f) => (
+              <div key={f.k} className="border-t border-rule pt-2">
+                <dt className="kicker">{f.k}</dt>
+                <dd className="mt-1 text-sm text-ink">{f.v}</dd>
               </div>
             ))}
-          </div>
+          </dl>
+        </aside>
+      </section>
 
-          <div className="text-center mt-12">
-            <Link to="/projects" className="btn btn-primary btn-lg">
-              View All Projects
-            </Link>
-          </div>
+      {/* ===================== SELECTED WORK ===================== */}
+      <section className="wrap py-10">
+        <div className="mb-2 flex items-baseline justify-between">
+          <h2 className="kicker">Selected work</h2>
+          <Link to="/projects" className="link-arrow text-sm text-ink-2">
+            All projects
+            <FiArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
+        <div>
+          {featuredProjects.map((p, i) => (
+            <ProjectCard
+              key={p.id}
+              project={p}
+              num={String(i + 1).padStart(2, "0")}
+            />
+          ))}
         </div>
       </section>
 
-      {/* Featured Blog Posts */}
-      <section className="py-20 bg-base-200">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Featured Blog Posts</h2>
-            <p className="text-xl text-base-content/70">
-              Thoughts on programming, technology, and development
-            </p>
-          </div>
+      {/* ===================== WRITING ===================== */}
+      <section className="wrap py-10">
+        <div className="mb-2 flex items-baseline justify-between">
+          <h2 className="kicker">Writing</h2>
+          <Link to="/blog" className="link-arrow text-sm text-ink-2">
+            All posts
+            <FiArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
 
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-8">
-              {featuredPosts.map((post) => (
-                <div key={post.id} className="card bg-base-100 shadow-xl">
-                  <div className="card-body">
-                    <h3 className="card-title text-xl mb-3">{post.title}</h3>
-                    <p className="text-base-content/70 mb-4">{post.excerpt}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {post.tags.slice(0, 3).map((tag, index) => (
-                        <span
-                          key={index}
-                          className="badge badge-outline badge-sm"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                      {post.type === "external" && (
-                        <span className="badge badge-info badge-sm">
-                          {post.platform}
-                        </span>
-                      )}
-                    </div>
-                    <div className="card-actions justify-between items-center">
-                      <span className="text-sm text-base-content/60">
-                        {formatDate(post.date)} • {post.readTime}
-                      </span>
-                      {post.type === "external" ? (
-                        <a
-                          href={post.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn btn-primary btn-sm"
-                        >
-                          <svg
-                            className="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                            />
-                          </svg>
-                          Read on {post.platform}
-                        </a>
-                      ) : (
-                        <Link
-                          to={`/blog/${post.slug}`}
-                          className="btn btn-primary btn-sm"
-                        >
-                          Read More
-                        </Link>
-                      )}
-                    </div>
-                  </div>
+        <div>
+          {featuredPosts.map((post) => (
+            <a
+              key={post.id}
+              href={post.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="row"
+            >
+              <span className="row-num">{formatDate(post.date)}</span>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="row-title">{post.title}</h3>
+                  <span className="meta hidden shrink-0 items-center gap-1 sm:inline-flex">
+                    {post.platform}
+                    <FiArrowUpRight className="h-3.5 w-3.5" />
+                  </span>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="text-center mt-8">
-            <Link to="/blog" className="btn btn-outline btn-lg">
-              View All Posts
-            </Link>
-          </div>
+                <p className="mt-1.5 max-w-2xl text-ink-2">{post.excerpt}</p>
+              </div>
+            </a>
+          ))}
         </div>
       </section>
     </div>
