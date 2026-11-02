@@ -1,172 +1,62 @@
-<div align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=20&pause=1000&color=3B82F6&center=true&vCenter=true&width=300&lines=Hi+there%2C+I'm+Ahmetcan+👋" alt="Typing SVG" />
-</div>
+# Ahmetcan Aksu
 
-<div align="center">
-  
+**Software Developer — Backend, Fintech & AI** · Istanbul, Türkiye
+
 [![Portfolio](https://img.shields.io/badge/Portfolio-ahmetcanaksu.com-3B82F6?style=for-the-badge&logo=google-chrome&logoColor=white)](https://ahmetcanaksu.com)
+[![CV](https://img.shields.io/badge/CV-PDF-B4421D?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://ahmetcanaksu.com/Ahmetcan%20Aksu%20CV%20EN.pdf)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-ahmetcanaksu-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ahmetcanaksu/)
-[![Twitter](https://img.shields.io/badge/Twitter-@ahmetcanaksu-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/ahmetcanaksu)
 [![Email](https://img.shields.io/badge/Email-hello@ahmetcanaksu.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:hello@ahmetcanaksu.com)
 
-</div>
+I build the systems that move money, and software that works with LLMs.
 
-## 🚀 About Me
+At **Fonmap**, an SPK-licensed fund investment platform with 100,000+ downloads, I've owned the
+**TEFAS order integration** end to end, along with the custodian-bank integration, KYC/AML checks
+and regulated fund flows, in C#/.NET and Node.js/TypeScript. On my own time I build tool-calling
+**LLM agents**, and I designed **Ellie**, a type-safe programming language and bytecode VM in Rust.
 
-I'm a passionate **Software Developer** and **Open Source Enthusiast** from Istanbul, Turkey, dedicated to building innovative programming languages, developer tools, and scalable software solutions. Currently working as a Backend Developer at **Fonmap Financial Technologies** and creator of the **Ellie programming language**.
+## What I work on
 
-```rust
-fn main() {
-    let developer = Developer {
-        name: "Ahmetcan Aksu",
-        location: "Istanbul, Turkey",
-        languages: vec!["Rust", "JavaScript", "TypeScript", "C#", "Dart"],
-        passion: "Building tools that make developers' lives easier",
-        current_focus: "Financial technology and programming language design"
-    };
-    
-    println!("Building the future, one commit at a time! 🔥");
-}
-```
+|  |  |
+|---|---|
+| 💸 **Fintech** | TEFAS order pipeline · custodian-bank integrations (account opening, e-signing, transfers) · KYC/AML · chain transactions · GSYF/GYF fund issuance |
+| 🤖 **AI** | Tool-calling LLM agents on Claude, OpenAI-compatible APIs and local models (LM Studio, Qwen3-VL, Gemma) · token-efficient tool design · vision input |
+| 🦀 **Systems** | Compilers and bytecode VMs · embedded Rust (`no_std`, ARM, ESP32) · protocol parsers · algorithms |
 
-## 🛠️ Tech Stack & Tools
+## Featured
 
-<div align="center">
+| Project | What it is | |
+|---|---|---|
+| **[Ellie Language](https://github.com/behemehal/Ellie-Language)** | Type-safe language, compiler and bytecode VM for embedded and sandboxed targets; the engine fits in 49KB | [intro](https://ahmetcanaksu.com/#/projects/ellie-language) · [site](https://ellie-lang.org) |
+| **AI Sprite Studio** | Pixel-art editor where an LLM agent draws and animates through the same 16 undoable tools as you, tuned for local 8B models | [intro](https://ahmetcanaksu.com/#/projects/ai-sprite-studio) · private, demo on request |
+| **AIStudio** | An LLM agent with 20+ tools writes animated video frames; rendered deterministically to MP4 with narration | [intro](https://ahmetcanaksu.com/#/projects/ai-studio) · private, demo on request |
+| **[Menemen](https://github.com/behemehal/Menemen)** | Streaming HTTP/HTTPS client for Rust, blocking or Tokio async | [crates.io](https://crates.io/crates/menemen) |
+| **[Rust-NMEA](https://github.com/ahmetcanaksu/Rust-NMEA)** | NMEA 0183 GPS parser with an allocation-free `no_std` reader | [crates.io](https://crates.io/crates/rust_nmea) |
+| **[SafeEn](https://github.com/behemehal/SafeEn)** | Zero-dependency embedded database with CRC-32 integrity checks | [crates.io](https://crates.io/crates/safe_en) |
+| **[UtilStation](https://utilstation.com)** | 85+ developer tools that run in the browser | [intro](https://ahmetcanaksu.com/#/projects/utilstation) |
 
-### Languages
-![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
-![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
-![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
+Every project has an introduction page at **[ahmetcanaksu.com/projects](https://ahmetcanaksu.com/#/projects)**.
 
-### Frontend
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+## Stack
 
-### Backend & Database
-![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
-![.NET](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![C#](https://img.shields.io/badge/C%23_/.NET-512BD4?style=flat-square&logo=dotnet&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![MSSQL](https://img.shields.io/badge/MSSQL-CC2927?style=flat-square&logo=microsoftsqlserver&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
+![Elasticsearch](https://img.shields.io/badge/Elasticsearch-005571?style=flat-square&logo=elasticsearch&logoColor=white)
+![RabbitMQ](https://img.shields.io/badge/RabbitMQ-FF6600?style=flat-square&logo=rabbitmq&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white)
 
-### DevOps & Tools
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+## Writing
 
-</div>
-
-## 📊 GitHub Analytics
+- [Rust ile WebAssembly yazıyoruz](https://www.linkedin.com/pulse/rust-ile-webassembly-yaz%25C4%25B1yoruz-ahmetcan-aksu/) — WebAssembly modules in Rust
+- [Rust ile web servisi yazıyoruz](https://www.linkedin.com/pulse/rust-ile-web-servisi-yaz%C4%B1yoruz-ahmetcan-aksu/) — high-performance web services in Rust
+- [Rust ile HTTP üzerinden dosya indirmek](https://www.linkedin.com/pulse/rust-ile-http-%25C3%25BCzerinden-dosya-indirmek-ahmetcan-aksu/) — streaming downloads with async Rust
 
 <div align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=ahmetcanaksu&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=ahmetcanaksu&layout=compact&langs_count=8&theme=tokyonight"/>
-</div>
-
-<div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=ahmetcanaksu&theme=tokyonight" alt="ahmetcanaksu" />
-</div>
-
-### CodersRank Profile
-
-<div align="center">
-  <img height="250px" src="https://cr-ss-service.azurewebsites.net/api/ScreenShot?widget=summary&branding=false&username=ahmetcanaksu&badges=3&show-avatar=false&style=--header-bg-color:%23f78166;--border-radius:10px"/>
-</div>
-
-## 📝 Latest Blog Posts
-
-<div align="center">
-
-[![Blog](https://img.shields.io/badge/Read%20More-LinkedIn%20Articles-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ahmetcanaksu/recent-activity/posts/)
-
-</div>
-
-| 🦀 | Article | Description |
-|---|---------|-------------|
-| <img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/rust.png" width="25"> | [Rust ile WebAssembly yazıyoruz](https://www.linkedin.com/pulse/rust-ile-webassembly-yaz%25C4%25B1yoruz-ahmetcan-aksu/?trackingId=HYV97J0LS96u8vtsNryQpw%3D%3D) | Building WebAssembly modules with Rust for high-performance web applications |
-| <img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/rust.png" width="25"> | [Rust ile web servisi yazıyoruz](https://www.linkedin.com/pulse/rust-ile-web-servisi-yaz%C4%B1yoruz-ahmetcan-aksu/) | Creating high-performance web services with Rust |
-| <img src="https://raw.githubusercontent.com/ahmetcanaksu/ahmetcanaksu/main/icons/rust.png" width="25"> | [Rust ile HTTP üzerinden dosya indirmek](https://www.linkedin.com/pulse/rust-ile-http-%25C3%25BCzerinden-dosya-indirmek-ahmetcan-aksu/) | Downloading files over HTTP with Rust and async programming |
-
-## 🚀 Featured Projects
-
-<div align="center">
-  
-[![Ellie Language](https://img.shields.io/badge/⭐_Featured-Ellie_Language-FF6B6B?style=for-the-badge)](https://github.com/behemehal/Ellie-Language)
-[![UtilStation](https://img.shields.io/badge/🛠️_Tools-UtilStation-4ECDC4?style=for-the-badge)](https://utilstation.com)
-
-</div>
-
-<table>
-<tr>
-<td width="50%">
-
-### 🦀 Rust Projects
-- **[Ellie Language](https://github.com/behemehal/Ellie-Language)** - Type-safe programming language for embedded environments
-- **[Wole CLI](https://github.com/ahmetcanaksu/Wole)** - Wake-On-LAN magic packet sender
-- **[Menemen](https://github.com/behemehal/Menemen)** - Streaming HTTP/HTTPS request library
-- **[SafeEn](https://github.com/behemehal/SafeEn)** - Local database with strict data integrity
-- **[Rust-NMEA](https://github.com/ahmetcanaksu/Rust-NMEA)** - NMEA protocol parser
-
-</td>
-<td width="50%">
-
-### 🎯 Dart & Flutter Projects
-- **[Wole App](https://github.com/behemehal/WoleApp)** - Android Wake-On-LAN app
-- **[event_listener](https://github.com/behemehal/event_listener)** - NodeJS-like event handling for Dart
-- **[Bnots](https://github.com/behemehal/Bnots)** - Markdown-powered note-taking app
-
-### 🌐 JavaScript Projects
-- **[Device-Database](https://github.com/ahmetcanaksu/Device-Database)** - Development board detection library
-- **[rpifan](https://github.com/ahmetcanaksu/rpifan)** - Auto fan controller for Raspberry Pi
-
-</td>
-</tr>
-</table>
-
-<div align="center">
-  
-[![View All Projects](https://img.shields.io/badge/View_All_Projects-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ahmetcanaksu?tab=repositories)
-
-</div>
-
-<details>
-  <summary><h3>📈 Coding Activity</h3></summary>
-  <br/>
-  <div align="center">
-    <img width="500px" src="https://wakatime.com/share/@ahmetcanaksu/0c710312-0d3a-460e-98e4-60d4ab2a6db2.png" />
-  </div>
-</details>
-
-<details>
-  <summary><h3>🎯 Skills Chart</h3></summary>
-  <br/>
-  <div align="center">
-    <img height="400px" src="https://cr-skills-chart-widget.azurewebsites.net/api/api?username=ahmetcanaksu&width=700"/>
-  </div>
-</details>
-
-## 💫 Fun Facts
-
-- 🔥 Creator of the **Ellie programming language** - a memory-safe language for embedded systems
-- 🌍 Based in beautiful **Istanbul, Turkey**
-- 💼 Currently building financial technology solutions at **Fonmap**
-- 🦀 **Rust enthusiast** - love building high-performance systems
-- 🚀 **Open source advocate** - contributing to the developer community
-- 📱 **Full-stack developer** - from embedded systems to web applications
-- ☕ **Coffee-powered programmer** - fuel for late-night coding sessions
-
----
-
-<div align="center">
-
-### 🤝 Let's Connect!
-
-[![Portfolio](https://img.shields.io/badge/🌐_Portfolio-Visit_Website-3B82F6?style=for-the-badge)](https://ahmetcanaksu.com)
-
+  <img src="https://streak-stats.demolab.com/?user=ahmetcanaksu&hide_border=true" alt="GitHub streak" />
 </div>
