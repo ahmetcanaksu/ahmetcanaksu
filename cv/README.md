@@ -35,8 +35,9 @@ The page carries its own print margins, so browser headers/footers should be off
 ## Page count
 
 `layout.baseFontPt` in the data block is the single lever for fitting content.
-With the current content, **10.0–10.8pt renders on two A4 pages**; 11.0pt tips
-onto a third. The on-screen `A−` / `A+` buttons nudge it live, and the value you
+With the current content, **10.2pt is the largest size that keeps both EN and TR
+on two A4 pages**; 10.4pt tips onto a third. The portfolio build warns when a
+generated PDF goes past two pages. The on-screen `A−` / `A+` buttons nudge it live, and the value you
 land on is remembered and used by the PDF export.
 
 ## Machine readability
@@ -46,6 +47,20 @@ Built for CV-parsing software and LLM screeners:
 - Single-column semantic HTML — `<section>`, `<h2>`, `<article>`, `<ul>` — in
   natural reading order. Multi-column CVs are a common cause of scrambled ATS
   parses; this one has no column tricks in the DOM.
+- Single column on the page too, not just in the DOM. An ATS reads the PDF, and
+  PDF text extraction works by position: a contact block floated beside the
+  name, a right-aligned date on a short line, and two lists side by side all
+  came out detached or interleaved when tested with pdfminer and pypdf. So the
+  contact details are one line under the name, education dates follow the
+  school inline, and every list is one column.
+- No `position: relative/absolute` on text. Chrome paints positioned elements in
+  a later pass, which writes their text at the end of the PDF content stream,
+  where stream-order parsers read it after everything else on the page.
+- Set in Arial with ligatures off. System UI fonts are variable fonts, which
+  Chrome embeds in a PDF as Type 3, and some parsers extract Type 3 text as
+  garbage. Arial embeds as TrueType on every OS. With ligatures on, "profile"
+  extracts as "proﬁle" and stops matching the keyword.
+- Print margins are on `@page`, so every page gets them, not only the first.
 - All text is real selectable text. No images, no icon fonts, no glyph
   substitutions for words.
 - Dates are unambiguous (`Feb 2024 – Present`) and generated from ISO values.
@@ -99,5 +114,6 @@ normally carry one.
 
 - Phone number is off by default: set `contact.showPhone` to `true` when an
   application asks for it, export, then set it back.
-- Reference contact details are deliberately not rendered. They are kept in a
-  comment next to the `references` array, to be shared on request.
+- References are off (`showReferences: false`). Referees' contact details are
+  not kept in this file at all — it is served publicly at
+  ahmetcanaksu.com/cv/cv.html, and an HTML comment is still in the page source.

@@ -48,7 +48,16 @@
 
   body{
     margin:0;
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    /* Arial on purpose: résumé parsers (ATS) read the PDF, not the page.
+       System UI fonts (San Francisco, Segoe UI Variable, Inter variable) are
+       variable fonts, which Chrome embeds in a PDF as Type 3 — and several ATS
+       parsers extract Type 3 text as garbage or nothing. Arial embeds as plain
+       TrueType on every OS. Liberation Sans is its metric twin on Linux. */
+    font-family: Arial, "Liberation Sans", "Helvetica Neue", Helvetica, sans-serif;
+    /* No ligatures: an "fi" ligature is extracted as the single glyph "ﬁ",
+       and "proﬁle" doesn't match the keyword "profile". */
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "clig" 0;
     font-size: var(--fs);
     line-height: 1.42;
     color: var(--ink-soft);
@@ -84,9 +93,10 @@
   }
 
   /* ---------- header ---------- */
+  /* One column on purpose. A contact block floated to the right of the name is
+     read by ATS parsers as a separate column, and in testing came out after the
+     Summary heading — detached from the name it belongs to. */
   header.masthead{
-    display:flex; align-items:flex-end; justify-content:space-between;
-    gap: 14mm;
     padding-bottom: 7px;
     border-bottom: 2px solid var(--accent);
   }
@@ -103,13 +113,13 @@
   .tagline{ margin-top:3px; font-size:9.2pt; color: var(--muted); }
 
   .contact{
-    flex: 0 0 auto;
-    text-align: right;
-    font-size: 8.9pt; line-height:1.6; color: var(--ink-soft);
+    margin: 6px 0 0;
+    font-size: 8.9pt; line-height:1.55; color: var(--ink-soft);
   }
   .contact a{ color: var(--ink-soft); text-decoration:none; }
   .contact a:hover{ text-decoration:underline; }
-  .contact .lbl{ color: var(--muted); }
+  .contact .sep{ color: var(--rule); margin: 0 .1em; }
+  .contact .ci{ white-space: nowrap; }
 
   /* ---------- sections ---------- */
   section{ margin-top: 11px; }
@@ -149,27 +159,30 @@
   .stack b{ color: var(--ink-soft); font-weight:600; }
 
   /* ---------- skills ---------- */
-  .skills{ display:grid; grid-template-columns: 30mm 1fr; gap: 3px 8px; font-size:9.7pt; }
+  .skills{ display:grid; grid-template-columns: 34mm 1fr; gap: 3px 8px; font-size:9.7pt; }
   .skills dt{ font-weight:600; color: var(--ink); }
   .skills dd{ margin:0; }
 
-  /* ---------- compact two-up blocks ---------- */
-  .two-up{ display:grid; grid-template-columns: 1fr 1fr; gap: 4px 12mm; }
-  .two-up > *{ break-inside: avoid; page-break-inside: avoid; }
   .flat{ list-style:none; margin:0; padding:0; font-size:9.7pt; }
-  .flat li{ margin-bottom:2.5px; padding-left:9px; position:relative; }
+  /* A small dot marker drawn in normal flow. No position:relative here:
+     Chrome paints positioned elements in a later pass, which writes their text
+     at the end of the PDF content stream — and stream-order parsers then read
+     these items after everything else on the page. */
+  .flat li{ margin-bottom:2.5px; padding-left:9px; text-indent:-9px; }
   .flat li::before{
-    content:""; position:absolute; left:0; top:.52em;
+    content:""; display:inline-block; vertical-align:middle;
     width:3px; height:3px; border-radius:50%; background: var(--rule);
+    margin-right:6px;
   }
   .ref-name{ font-weight:600; color: var(--ink); }
+  .langs{ margin:0; font-size:9.7pt; }
   .note{ font-size:8.8pt; color: var(--muted); margin: 5px 0 0; }
 
-  .proj, .edu-item{ break-inside: avoid; page-break-inside: avoid; }
+  /* Projects may split between bullets (each bullet and the entry heading
+     still stay whole). Keeping a whole project together pushed it to page 2
+     and left a 4cm hole at the bottom of page 1. */
+  .edu-item{ break-inside: avoid; page-break-inside: avoid; }
 
-  /* two sections sharing one row, to keep the CV on a round page count */
-  .pair{ display:grid; grid-template-columns: 1fr 1fr; gap: 0 12mm; margin-top: 11px; }
-  .pair > section{ margin-top: 0; }
   a.plain{ color: var(--accent); text-decoration:none; }
   a.plain:hover{ text-decoration:underline; }
 
@@ -179,14 +192,17 @@
   }
 
   /* ---------- print ---------- */
-  @page{ size: A4; margin: 0; }
+  /* The margins belong to the page, not the sheet: padding on .sheet is
+     applied once to the whole document, so page 2 used to start 3mm from the
+     top edge of the paper. */
+  @page{ size: A4; margin: 11mm 14mm 10mm; }
 
   @media print{
     html, body{ background:#fff; }
     .toolbar{ display:none !important; }
     .sheet{
       width: auto; margin:0;
-      padding: 13mm 14mm 12mm;
+      padding: 0;
       box-shadow:none;
     }
     a{ color: inherit !important; }
@@ -197,12 +213,8 @@
 
   @media screen and (max-width: 800px){
     .sheet{ width:auto; margin:10px; padding:20px; }
-    header.masthead{ flex-direction:column; align-items:flex-start; gap:10px; }
-    .contact{ text-align:left; }
     .skills{ grid-template-columns: 1fr; }
     .skills dt{ margin-top:5px; }
-    .two-up{ grid-template-columns: 1fr; }
-    .pair{ grid-template-columns: 1fr; gap: 11px; }
     h1{ font-size:22pt; }
   }
 </style>
@@ -242,15 +254,18 @@
 const DATA = {
 
   /* Base type size in points. Lower it to pull content onto fewer pages,
-     raise it to fill space. Anything from 10.0 to 10.8 keeps the current
-     content on two A4 pages; 11.0 tips it onto a third. */
-  layout: { baseFontPt: 10.4 },
+     raise it to fill space. With the current content, 10.2 is the largest
+     size that keeps both EN and TR on two A4 pages; 10.4 tips onto a third. */
+  layout: { baseFontPt: 10.2 },
 
   /* ---------------------------------------------------------------- header */
   name: "Ahmetcan Aksu",
-  role:    { en: "Software Developer",  tr: "Yazılım Geliştirici" },
-  tagline: { en: "Backend & Full-Stack · Node.js · TypeScript · C# · Rust",
-             tr: "Backend & Full-Stack · Node.js · TypeScript · C# · Rust" },
+  /* The headline is what an ATS and a recruiter match first: name the three
+     things this CV proves — backend, fintech, AI. */
+  role:    { en: "Software Developer — Backend, Fintech & AI",
+             tr: "Yazılım Geliştirici — Backend, Fintek & Yapay Zeka" },
+  tagline: { en: "Node.js · TypeScript · C# / .NET · Rust · LLM agents & tool calling",
+             tr: "Node.js · TypeScript · C# / .NET · Rust · LLM ajanları & tool calling" },
 
   contact: {
     email:    "hello@ahmetcanaksu.com",
@@ -268,8 +283,8 @@ const DATA = {
 
   /* --------------------------------------------------------------- summary */
   summary: {
-    en: "Software developer with 7+ years of experience, 4+ of them full-time, building backend services and web applications end to end. Currently backend developer on one of Türkiye's leading digital investment platforms, working across Node.js/TypeScript and C#/.NET under capital-markets regulation. Comfortable across the stack: REST and GraphQL APIs, real-time systems handling 100,000+ messages per hour, React frontends, and low-level Rust — including a type-safe programming language and bytecode VM built from scratch. I optimise for performance, scalability and long-term maintainability.",
-    tr: "7+ yıllık yazılım geliştirme deneyimine sahibim; bunun 4+ yılı tam zamanlı olarak backend servisleri ve web uygulamalarını uçtan uca geliştirmekle geçti. Şu anda Türkiye'nin önde gelen dijital yatırım platformlarından birinde backend geliştirici olarak, sermaye piyasası mevzuatına tabi bir üründe Node.js/TypeScript ve C#/.NET ile çalışıyorum. Yığının her katmanında rahatım: REST ve GraphQL API'leri, saatte 100.000+ mesaj işleyen gerçek zamanlı sistemler, React arayüzleri ve düşük seviyeli Rust — sıfırdan geliştirdiğim tip güvenli programlama dili ve bytecode sanal makinesi dahil. Performans, ölçeklenebilirlik ve uzun vadeli sürdürülebilirliğe odaklanırım."
+    en: "Software developer with 4+ years of professional experience building backend systems end to end. Fintech: at Fonmap, an SPK-licensed fund investment platform (100,000+ Google Play downloads), I single-handedly built and integrated the TEFAS order infrastructure, and I work daily with banking and capital-markets systems in C#/.NET and Node.js/TypeScript. AI: I build LLM agents with tool calling on Claude, OpenAI-compatible APIs and local open-weight models, and shipped AI-driven portfolio features to production. Underneath both: algorithms and systems work in Rust, including a type-safe programming language and bytecode VM for embedded targets, built from scratch.",
+    tr: "4+ yıllık profesyonel deneyimle backend sistemlerini uçtan uca geliştiriyorum. Fintek: SPK lisanslı fon yatırım platformu Fonmap'te (Google Play'de 100.000+ indirme) TEFAS emir altyapısını tek başıma geliştirip entegre ettim; C#/.NET ve Node.js/TypeScript ile her gün bankacılık ve sermaye piyasası sistemleriyle çalışıyorum. Yapay zeka: Claude, OpenAI uyumlu API'ler ve yerel açık ağırlıklı modellerle tool calling kullanan LLM ajanları geliştiriyorum; yapay zeka destekli portföy özelliklerini canlıya aldım. İkisinin temelinde algoritma ve sistem programlama var: gömülü hedefler için sıfırdan geliştirdiğim tip güvenli bir programlama dili ve bytecode sanal makinesi dahil, Rust ile."
   },
 
   /* ------------------------------------------------------------ experience */
@@ -281,21 +296,23 @@ const DATA = {
       from: "2024-02", to: null,           /* to: null  =>  "Present" */
       bullets: {
         en: [
-          "Led backend and frontend initiatives across the full project lifecycle, from pre-production to a successful go-live on a leading digital investment platform in Türkiye.",
-          "Migrated core systems to TypeScript, measurably improving maintainability, type safety and runtime performance.",
-          "Engineered the backend infrastructure for TEFAS integration, enabling reliable fund data communication.",
-          "Played a key role in digitising Venture Capital Investment Fund (VCIF) and Real Estate Investment Fund (REIF) processes in line with Turkish capital-markets regulation.",
-          "Contributed to migrating the backend architecture to C# with Entity Framework Core."
+          "Led backend and frontend work from pre-production to go-live of Fonmap, a fund investment app from a Capital Markets Board (SPK)-licensed portfolio manager, live on iOS and Android with 100,000+ Google Play downloads.",
+          "Single-handedly built and integrated the TEFAS order pipeline in .NET: order submission, status tracking, cancellation and blockage release as fault-tolerant background jobs with distributed locking and Redis caching; authored 40+ of the platform's scheduled jobs.",
+          "Designed chain transactions: multi-step fund swaps (sell, settle, buy) that let investors rebalance a portfolio in a single request, including partial-failure and cancellation handling.",
+          "Integrated AI-driven portfolio recommendations, fund outlooks and risk evaluations into the investment flow.",
+          "Digitised regulated flows under Turkish capital-markets rules: venture capital and real estate fund (GSYF/GYF) issuance, qualified-investor applications and checks, KYC/AML controls, time-stamped transaction documents and account statements.",
+          "Migrated core systems to TypeScript, then helped move the backend to C#/.NET (EF Core); moved asset delivery to a Cloudflare R2 CDN and built structured Elasticsearch logging."
         ],
         tr: [
-          "Türkiye'nin önde gelen dijital yatırım platformlarından birinde, ön üretimden canlıya geçişe kadar proje yaşam döngüsünün tamamında backend ve frontend geliştirme süreçlerine liderlik ettim.",
-          "Temel sistemleri TypeScript'e taşıyarak kodun sürdürülebilirliğini, tip güvenliğini ve çalışma zamanı performansını belirgin şekilde artırdım.",
-          "TEFAS entegrasyonunun backend altyapısını geliştirerek güvenilir fon verisi iletişimini sağladım.",
-          "Girişim Sermayesi Yatırım Fonu (GSYF) ve Gayrimenkul Yatırım Fonu (GYF) süreçlerinin, sermaye piyasası mevzuatına tam uyumlu olarak dijitalleştirilmesinde kilit rol oynadım.",
-          "Backend mimarisinin C# ve Entity Framework Core ile modernleştirilmesine katkıda bulundum."
+          "SPK izniyle faaliyet gösteren bir portföy yönetim şirketinin, iOS ve Android'de yayında olan ve Google Play'de 100.000+ indirmeye ulaşan fon yatırım uygulaması Fonmap'in ön üretimden canlıya geçişine kadar backend ve frontend geliştirmelerine liderlik ettim.",
+          "TEFAS emir altyapısını .NET ile tek başıma geliştirip entegre ettim: emir iletimi, durum takibi, iptal ve blokaj çözme süreçlerini dağıtık kilitleme ve Redis önbellekleme kullanan, hataya dayanıklı arka plan işleri olarak geliştirdim; platformdaki zamanlanmış işlerin 40'tan fazlasını yazdım.",
+          "Yatırımcıların portföylerini tek bir talepte yeniden dengelemesini sağlayan zincir işlemleri (satış, takas, alım adımlarından oluşan çok adımlı fon değişimleri), kısmi hata ve iptal senaryolarıyla birlikte tasarladım.",
+          "Yapay zeka destekli portföy önerilerini, fon görünümlerini ve risk değerlendirmelerini yatırım akışına entegre ettim.",
+          "Sermaye piyasası mevzuatına tabi süreçleri dijitalleştirdim: GSYF/GYF ihraçları, nitelikli yatırımcı başvuruları ve kontrolleri, KYC/AML kontrolleri, zaman damgalı işlem belgeleri ve hesap ekstreleri.",
+          "Temel sistemleri TypeScript'e taşıdım, ardından backend'in C#/.NET'e (EF Core) geçişinde yer aldım; varlık dağıtımını Cloudflare R2 CDN'e taşıdım ve yapılandırılmış Elasticsearch loglamasını kurdum."
         ]
       },
-      stack: "Node.js, TypeScript, React, Redux, C# / .NET, Entity Framework Core, MSSQL, Redis, Elasticsearch, MinIO, Puppeteer"
+      stack: "C# / .NET, Entity Framework Core, MSSQL, Hangfire, Redis, Elasticsearch, Cloudflare R2, Node.js, TypeScript, React"
     },
     {
       title: { en: "Full Stack Developer", tr: "Full Stack Geliştirici" },
@@ -353,6 +370,36 @@ const DATA = {
 
   /* -------------------------------------------------------------- projects */
   projects: [
+    /* AI work first: it is what most roles screen for now. Both repos are
+       private, so no link line — the website shows them, demo on request. */
+    {
+      title: { en: "AI Sprite Studio — Creator", tr: "AI Sprite Studio — Geliştirici" },
+      meta:  { en: "2026 · TypeScript · LLM agents", tr: "2026 · TypeScript · LLM ajanları" },
+      bullets: {
+        en: [
+          "Built a tool-calling LLM agent that draws and animates pixel art through 16 undoable editor tools.",
+          "Designed palette-indexed grids, symmetry and frame deltas for token economy on local 8B models (LM Studio)."
+        ],
+        tr: [
+          "16 geri alınabilir editör aracıyla piksel sanat çizen ve canlandıran, tool calling yapan bir LLM ajanı geliştirdim.",
+          "Yerel 8B modellerde (LM Studio) token tasarrufu için palet indeksli ızgaralar, simetri ve kare farkları tasarladım."
+        ]
+      }
+    },
+    {
+      title: { en: "AIStudio — AI Video Studio", tr: "AIStudio — Yapay Zeka Video Stüdyosu" },
+      meta:  { en: "2026 · TypeScript · Claude, Groq, LM Studio", tr: "2026 · TypeScript · Claude, Groq, LM Studio" },
+      bullets: {
+        en: [
+          "LLM agent with 20+ tools writes and edits animated HTML video frames; runs on Claude, Groq or local models.",
+          "Deterministic export: headless Chrome under a virtual clock piped to ffmpeg, with ElevenLabs narration and subtitles."
+        ],
+        tr: [
+          "20+ araçlı LLM ajanı animasyonlu HTML video kareleri yazıp düzenliyor; Claude, Groq veya yerel modellerle çalışıyor.",
+          "Deterministik dışa aktarım: sanal saatli headless Chrome'dan ffmpeg'e, ElevenLabs seslendirme ve altyazıyla."
+        ]
+      }
+    },
     {
       title: { en: "Ellie Language — Creator & Maintainer",
                tr: "Ellie Language — Yaratıcı & Sürdürücü" },
@@ -362,13 +409,11 @@ const DATA = {
       bullets: {
         en: [
           "Designed a type-safe programming language for embedded (ARM) and sandboxed (WebAssembly) environments.",
-          "Built the parser, compiler and bytecode virtual machine from scratch, prioritising performance and type safety.",
-          "Deep hands-on work in memory management, stack/heap allocation, garbage collection and bytecode optimisation."
+          "Built the parser, compiler and bytecode VM from scratch: memory management, stack/heap allocation, garbage collection and bytecode optimisation."
         ],
         tr: [
           "Gömülü (ARM) ve sandbox (WebAssembly) ortamları için tip güvenli bir programlama dili tasarladım.",
-          "Parser, derleyici ve bytecode sanal makinesini sıfırdan, performans ve tip güvenliği önceliğiyle geliştirdim.",
-          "Bellek yönetimi, yığın/heap tahsisi, çöp toplama (GC) ve bytecode optimizasyonu konularında derinlemesine deneyim kazandım."
+          "Parser, derleyici ve bytecode sanal makinesini sıfırdan geliştirdim: bellek yönetimi, yığın/heap tahsisi, çöp toplama (GC) ve bytecode optimizasyonu."
         ]
       }
     },
@@ -388,12 +433,10 @@ const DATA = {
       link:  "github.com/behemehal · github.com/ahmetcanaksu",
       bullets: {
         en: [
-          "Maintain the Ellie toolchain (core library, FFI, native bridge, playground), Menemen — a streaming HTTP client for Rust, event-listener libraries for Rust and Dart, and Bnots, a Markdown note app in Flutter.",
-          "Systems and embedded work: Wole, a Wake-on-LAN CLI with GTK and Flutter front-ends; portable CHIP-8 and 6502 emulators in Rust; an NMEA GPS parser; Rust FFI and WebAssembly experiments."
+          "Rust crates on crates.io — Menemen (streaming HTTP), Rust-NMEA (GPS parser), SafeEn (embedded database), Wole (Wake-on-LAN); CHIP-8 and 6502 emulators; Flutter apps; Dart and npm libraries."
         ],
         tr: [
-          "Ellie araç zincirini (çekirdek kütüphane, FFI, native bridge, playground), Rust için streaming HTTP istemcisi Menemen, Rust ve Dart için event-listener kütüphaneleri ve Flutter tabanlı Markdown not uygulaması Bnots'u sürdürüyorum.",
-          "Sistem ve gömülü çalışmalar: GTK ve Flutter arayüzlü Wake-on-LAN CLI'ı Wole; Rust ile taşınabilir CHIP-8 ve 6502 emülatörleri; NMEA GPS ayrıştırıcısı; Rust FFI ve WebAssembly denemeleri."
+          "crates.io'da Rust paketleri — Menemen (streaming HTTP), Rust-NMEA (GPS ayrıştırıcı), SafeEn (gömülü veritabanı), Wole (Wake-on-LAN); CHIP-8 ve 6502 emülatörleri; Flutter uygulamaları; Dart ve npm kütüphaneleri."
         ]
       }
     }
@@ -401,19 +444,22 @@ const DATA = {
 
   /* ---------------------------------------------------------------- skills */
   skills: [
-    { label: { en: "Languages",  tr: "Diller" },
+    { label: { en: "Programming", tr: "Programlama" },
       value: "TypeScript, JavaScript, C#, Rust, Dart, C, C++, Java, SQL" },
+    { label: { en: "AI & LLMs",  tr: "Yapay Zeka & LLM" },
+      value: { en: "LLM agents & tool calling, Claude API, OpenAI-compatible APIs (Groq, LM Studio), local LLMs (Qwen3-VL, Gemma), vision models, token optimisation, ElevenLabs TTS",
+               tr: "LLM ajanları & tool calling, Claude API, OpenAI uyumlu API'ler (Groq, LM Studio), yerel LLM'ler (Qwen3-VL, Gemma), görüntü modelleri, token optimizasyonu, ElevenLabs TTS" } },
     { label: { en: "Backend",    tr: "Backend" },
-      value: "Node.js, Deno, Express, GraphQL (Apollo), REST, WebSockets, .NET, Entity Framework Core, RabbitMQ" },
+      value: "Node.js, Deno, Express, GraphQL (Apollo), REST, WebSockets, .NET, Entity Framework Core, Hangfire, RabbitMQ" },
     { label: { en: "Frontend",   tr: "Frontend" },
       value: "React, Redux, Svelte, Electron, Flutter, HTML/CSS, WebAssembly" },
     { label: { en: "Databases",  tr: "Veritabanları" },
       value: "MSSQL, PostgreSQL, MongoDB, Redis, Elasticsearch, MinIO" },
     { label: { en: "Infra & Tools", tr: "Altyapı & Araçlar" },
-      value: "Docker, Linux, AWS, Git, Puppeteer, CI/CD" },
+      value: "Docker, Linux, AWS, Cloudflare R2, Git, Puppeteer, CI/CD" },
     { label: { en: "Systems & Embedded", tr: "Sistem & Gömülü" },
-      value: { en: "Compiler and bytecode VM design, ARM, ESP32/ESP8266, Arduino, Raspberry Pi, TCP/UDP, FFI",
-               tr: "Derleyici ve bytecode VM tasarımı, ARM, ESP32/ESP8266, Arduino, Raspberry Pi, TCP/UDP, FFI" } }
+      value: { en: "Algorithm design, compiler and bytecode VM design, ARM, ESP32/ESP8266, Arduino, Raspberry Pi, TCP/UDP, FFI",
+               tr: "Algoritma tasarımı, derleyici ve bytecode VM tasarımı, ARM, ESP32/ESP8266, Arduino, Raspberry Pi, TCP/UDP, FFI" } }
   ],
 
   /* ------------------------------------------------------------- education */
@@ -447,19 +493,14 @@ const DATA = {
   ],
 
   /* ------------------------------------------------------------ references
-     Contact details are deliberately NOT rendered, so this file can be sent
-     to recruiters without exposing anyone's inbox. On request:
-       Berkay Durur    — brkydurur@gmail.com
-       Tayfun Top      — tayfun.top1@gmail.com
-       Eray Karaman    — eraykaramann@outlook.com
-       Burak Karatay   — karatayburakk@gmail.com
-  */
-  references: [
-    { name: "Berkay Durur",  org: "LC Waikiki" },
-    { name: "Tayfun Top",    org: "Madame Coco" },
-    { name: "Eray Karaman",  org: "Fonmap Finansal Teknolojiler A.Ş." },
-    { name: "Burak Karatay", org: "Fonmap Finansal Teknolojiler A.Ş." }
-  ],
+     Hidden for now (showReferences: false). Referees' contact details are not
+     kept in this file at all: it is served publicly at
+     ahmetcanaksu.com/cv/cv.html, and even an HTML comment is in the page
+     source. Keep them somewhere private and share them on request. */
+  showReferences: false,
+  /* Empty while hidden: this file is public, so referees' names stay out of
+     its source too. Fill in { name, org } entries and set showReferences. */
+  references: [],
 
   /* ------------------------------------------ section headings & UI labels */
   labels: {
@@ -470,6 +511,7 @@ const DATA = {
     education:    { en: "Education",                  tr: "Eğitim" },
     certificates: { en: "Certificates",               tr: "Sertifikalar" },
     languages:    { en: "Languages",                  tr: "Diller" },
+    spoken:       { en: "Spoken",                     tr: "Yabancı dil" },
     references:   { en: "References",                 tr: "Referanslar" },
     refsNote:     { en: "Contact details available on request.",
                     tr: "İletişim bilgileri talep üzerine paylaşılır." },
@@ -520,23 +562,29 @@ function bullets(list){
 
 function renderHeader(){
   const c = DATA.contact;
-  const rows = [
-    `<div><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></div>`,
-    c.showPhone ? `<div>${esc(c.phone)}</div>` : "",
-    `<div><a href="${esc(href(c.site))}">${esc(c.site)}</a></div>`,
-    `<div><a href="${esc(href(c.linkedin))}">${esc(c.linkedin)}</a></div>`,
-    `<div><a href="${esc(href(c.github))}">${esc(c.github)}</a></div>`,
-    `<div><span class="lbl">org</span> <a href="${esc(href(c.org))}">${esc(c.org)}</a></div>`,
-    `<div>${esc(t(c.location))}</div>`
-  ].filter(Boolean).join("");
+  /* One line of plain text in reading order, right under the name: location,
+     email, phone, then links. Every link's visible text is the URL itself, so
+     a parser that drops hyperlinks still gets the address. */
+  const items = [
+    esc(t(c.location)),
+    `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>`,
+    c.showPhone ? esc(c.phone) : "",
+    `<a href="${esc(href(c.linkedin))}">${esc(c.linkedin)}</a>`,
+    `<a href="${esc(href(c.github))}">${esc(c.github)}</a>`,
+    /* c.org (github.com/behemehal) is not repeated here: it is linked under
+       Projects and listed in the JSON-LD, and it would wrap this line. */
+    `<a href="${esc(href(c.site))}">${esc(c.site)}</a>`
+  ].filter(Boolean)
+   /* Each item is unbreakable and the separators carry real spaces, so the
+      line wraps between items — never inside "Istanbul, Türkiye" or a URL. */
+   .map(item => `<span class="ci">${item}</span>`)
+   .join(' <span class="sep">|</span> ');
 
   return `<header class="masthead">
-    <div>
-      <h1>${esc(DATA.name)}</h1>
-      <div class="role">${esc(t(DATA.role))}</div>
-      <div class="tagline">${esc(t(DATA.tagline))}</div>
-    </div>
-    <div class="contact">${rows}</div>
+    <h1>${esc(DATA.name)}</h1>
+    <div class="role">${esc(t(DATA.role))}</div>
+    <div class="tagline">${esc(t(DATA.tagline))}</div>
+    <p class="contact">${items}</p>
   </header>`;
 }
 
@@ -576,39 +624,40 @@ function renderProjects(){
 }
 
 function renderSkills(){
-  const inner = `<dl class="skills">${DATA.skills.map(s =>
-    `<dt>${esc(t(s.label))}</dt><dd>${esc(t(s.value))}</dd>`).join("")}</dl>`;
+  /* Spoken languages are the last row here rather than a section of their own:
+     a heading for one line cost the space that kept this CV on two pages. */
+  const spoken = DATA.languages.map(l => `${t(l.name)} — ${t(l.level)}`).join("; ");
+  const rows = [...DATA.skills.map(s => [t(s.label), t(s.value)]), [t(DATA.labels.spoken), spoken]];
+  const inner = `<dl class="skills">${rows.map(([k, v]) =>
+    `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>`;
   return section(t(DATA.labels.skills), inner);
 }
 
 function renderEducation(){
   const inner = DATA.education.map(e => `
     <div class="entry edu-item">
-      <div class="entry-line">
-        <div class="entry-title">${esc(t(e.degree))}</div>
-        <div class="entry-meta">${esc(fmtRange(e.from, e.to))}</div>
-      </div>
-      <div class="entry-sub">${esc(t(e.school))}${e.note ? " · " + esc(t(e.note)) : ""}</div>
+      <div class="entry-title">${esc(t(e.degree))}</div>
+      <div class="entry-sub">${esc(t(e.school))} · ${esc(fmtRange(e.from, e.to))}${e.note ? " · " + esc(t(e.note)) : ""}</div>
     </div>`).join("");
+  /* The dates sit inline after the school rather than right-aligned: a
+     right-aligned date on a short line was read by a parser as a separate
+     block and attached to the next section. */
   return section(t(DATA.labels.education), inner);
 }
 
 function renderCertificates(){
-  const inner = `<ul class="flat two-up">${DATA.certificates.map(c =>
-    `<li>${esc(t(c))}</li>`).join("")}</ul>`;
+  /* One flowing paragraph, semicolon-separated: still a single text run in
+     reading order for a parser, at a third of the height of a list. */
+  const inner = `<p class="langs">${DATA.certificates.map(c => esc(t(c))).join("; ")}.</p>`;
   return section(t(DATA.labels.certificates), inner);
 }
 
-function renderLanguages(){
-  const inner = `<ul class="flat">${DATA.languages.map(l =>
-    `<li><span class="ref-name">${esc(t(l.name))}</span> — ${esc(t(l.level))}</li>`).join("")}</ul>`;
-  return section(t(DATA.labels.languages), inner);
-}
-
 function renderReferences(){
-  const inner = `<ul class="flat">${DATA.references.map(r =>
-      `<li><span class="ref-name">${esc(r.name)}</span> — ${esc(t(r.org))}</li>`).join("")}</ul>
-    <p class="note">${esc(t(DATA.labels.refsNote))}</p>`;
+  /* One paragraph, like Languages: résumé parsers don't extract references,
+     so four one-line entries were spending space the two-page limit needs. */
+  const inner = `<p class="langs">${DATA.references.map(r =>
+      `<span class="ref-name">${esc(r.name)}</span> — ${esc(t(r.org))}`).join("; ")}.
+    <span class="note">${esc(t(DATA.labels.refsNote))}</span></p>`;
   return section(t(DATA.labels.references), inner);
 }
 
@@ -665,7 +714,9 @@ function render(){
     renderSkills() +
     renderEducation() +
     renderCertificates() +
-    `<div class="pair">${renderLanguages()}${renderReferences()}</div>`;
+    /* Single column throughout: parsers read a PDF by lines, and two lists side
+       by side come out interleaved (one line of each list run together). */
+    (DATA.showReferences ? renderReferences() : "");
   renderJsonLd();
 
   document.getElementById("btn-en").setAttribute("aria-pressed", String(LANG === "en"));

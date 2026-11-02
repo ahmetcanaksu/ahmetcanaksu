@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://ahmetcanaksu.com/</loc>
-    <lastmod>2025-08-05</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ahmetcanaksu.com/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://ahmetcanaksu.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ahmetcanaksu.com/" />
+  </url>
+  <url>
+    <loc>https://ahmetcanaksu.com/tr/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ahmetcanaksu.com/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://ahmetcanaksu.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ahmetcanaksu.com/" />
+  </url>
+  <url>
+    <loc>https://ahmetcanaksu.com/Ahmetcan%20Aksu%20CV%20EN.pdf</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ahmetcanaksu.com/Ahmetcan%20Aksu%20CV%20TR.pdf</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ahmetcanaksu.com/#/about</loc>
