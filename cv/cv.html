@@ -134,6 +134,21 @@
 
   .summary{ margin:0; font-size:10.1pt; }
 
+  /* ---------- highlights: the 6-second version, in a light band ---------- */
+  .highlights{
+    background:#f2f5fb;
+    border-left:3px solid var(--accent);
+    padding:7px 12px 8px;
+    margin-top:12px;
+  }
+  .highlights h2{ border-bottom:0; padding-bottom:0; margin-bottom:4px; }
+  .highlights ul{ margin:0; padding-left:15px; }
+  .highlights li{ margin-bottom:2.5px; color:var(--ink-soft); }
+  .highlights li::marker{ color: var(--accent); }
+
+  /* bold lead phrases: the eye can skim just these */
+  li b, .summary b{ color: var(--ink); font-weight:700; }
+
   /* ---------- entries ---------- */
   .entry{ margin-bottom: 9px; }
   .entry:last-child{ margin-bottom:0; }
@@ -254,9 +269,9 @@
 const DATA = {
 
   /* Base type size in points. Lower it to pull content onto fewer pages,
-     raise it to fill space. With the current content, 10.2 is the largest
-     size that keeps both EN and TR on two A4 pages; 10.4 tips onto a third. */
-  layout: { baseFontPt: 10.2 },
+     raise it to fill space. With the current content, 10.4 is the largest
+     size that keeps both EN and TR on two A4 pages (10.6 tips onto a third). */
+  layout: { baseFontPt: 10.4 },
 
   /* ---------------------------------------------------------------- header */
   name: "Ahmetcan Aksu",
@@ -281,38 +296,63 @@ const DATA = {
     showPhone: false
   },
 
-  /* --------------------------------------------------------------- summary */
+  /* --------------------------------------------------------------- summary
+     Three sentences. A recruiter gives a CV 6–8 seconds and reads the top
+     third; the summary and the highlights below have to carry it alone.
+     **double asterisks** render as bold, in every text field below. */
   summary: {
-    en: "Software developer with 4+ years of professional experience building backend systems end to end. Fintech: at Fonmap, an SPK-licensed fund investment platform (100,000+ Google Play downloads), I single-handedly built and integrated the TEFAS order infrastructure, and I work daily with banking and capital-markets systems in C#/.NET and Node.js/TypeScript. AI: I build LLM agents with tool calling on Claude, OpenAI-compatible APIs and local open-weight models, and shipped AI-driven portfolio features to production. Underneath both: algorithms and systems work in Rust, including a type-safe programming language and bytecode VM for embedded targets, built from scratch.",
-    tr: "4+ yıllık profesyonel deneyimle backend sistemlerini uçtan uca geliştiriyorum. Fintek: SPK lisanslı fon yatırım platformu Fonmap'te (Google Play'de 100.000+ indirme) TEFAS emir altyapısını tek başıma geliştirip entegre ettim; C#/.NET ve Node.js/TypeScript ile her gün bankacılık ve sermaye piyasası sistemleriyle çalışıyorum. Yapay zeka: Claude, OpenAI uyumlu API'ler ve yerel açık ağırlıklı modellerle tool calling kullanan LLM ajanları geliştiriyorum; yapay zeka destekli portföy özelliklerini canlıya aldım. İkisinin temelinde algoritma ve sistem programlama var: gömülü hedefler için sıfırdan geliştirdiğim tip güvenli bir programlama dili ve bytecode sanal makinesi dahil, Rust ile."
+    en: "Backend developer with 4+ years of professional experience, most recently in regulated fintech. I build the systems that move money — fund orders, bank integrations, KYC and compliance flows — in C#/.NET and Node.js/TypeScript, and I build with LLMs: tool-calling agents on Claude, OpenAI-compatible APIs and local models. My systems depth comes from designing my own programming language and VM in Rust.",
+    tr: "Son dönemi regüle fintek alanında geçen, 4+ yıllık profesyonel deneyime sahip bir backend geliştiriciyim. Para hareket ettiren sistemleri — fon emirleri, banka entegrasyonları, KYC ve mevzuat süreçleri — C#/.NET ve Node.js/TypeScript ile geliştiriyorum; LLM'lerle de üretiyorum: Claude, OpenAI uyumlu API'ler ve yerel modeller üzerinde tool calling yapan ajanlar. Sistem derinliğim, Rust ile kendi programlama dilimi ve sanal makinemi tasarlamaktan geliyor."
   },
 
-  /* ------------------------------------------------------------ experience */
+  /* ------------------------------------------------------------ highlights
+     The 6-second version of this CV: one line each, the claim in bold first. */
+  highlights: {
+    en: [
+      "**TEFAS & custodian-bank integrations** — owned end to end at Fonmap, an SPK-licensed fund platform with 100,000+ Google Play downloads.",
+      "**100,000+ messages per hour** — real-time messaging pipeline at Qpien on WebSockets and RabbitMQ.",
+      "**LLM agents** — AI Sprite Studio: a 16-tool agent that draws and animates pixel art, tuned for local 8B models.",
+      "**Ellie** — a type-safe language, compiler and bytecode VM in Rust; the engine fits in 49KB; 49 GitHub stars."
+    ],
+    tr: [
+      "**TEFAS & saklamacı banka entegrasyonları** — SPK lisanslı, Google Play'de 100.000+ indirmeli fon platformu Fonmap'te uçtan uca geliştirip canlıya aldım.",
+      "**Saatte 100.000+ mesaj** — Qpien'de WebSocket ve RabbitMQ üzerinde gerçek zamanlı mesajlaşma altyapısı.",
+      "**LLM ajanları** — AI Sprite Studio: piksel sanat çizip canlandıran, yerel 8B modeller için optimize edilmiş 16 araçlı bir ajan.",
+      "**Ellie** — Rust ile tip güvenli bir dil, derleyici ve bytecode VM; motor 49KB'a sığıyor; 49 GitHub yıldızı."
+    ]
+  },
+
+  /* ------------------------------------------------------------ experience
+     Each bullet opens with its point in bold, so the bold alone reads as a
+     summary of the role. Older roles are one line; their stack is inline. */
   experience: [
     {
-      title: { en: "Backend Developer", tr: "Backend Geliştirici" },
+      /* The official title, as on LinkedIn: the bullets say what it meant. */
+      title: { en: "Software Developer", tr: "Yazılım Geliştirici" },
       org:   "Fonmap Financial Technologies",
       place: { en: "Istanbul, Türkiye", tr: "İstanbul, Türkiye" },
       from: "2024-02", to: null,           /* to: null  =>  "Present" */
       bullets: {
         en: [
-          "Led backend and frontend work from pre-production to go-live of Fonmap, a fund investment app from a Capital Markets Board (SPK)-licensed portfolio manager, live on iOS and Android with 100,000+ Google Play downloads.",
-          "Single-handedly built and integrated the TEFAS order pipeline in .NET: order submission, status tracking, cancellation and blockage release as fault-tolerant background jobs with distributed locking and Redis caching; authored 40+ of the platform's scheduled jobs.",
-          "Designed chain transactions: multi-step fund swaps (sell, settle, buy) that let investors rebalance a portfolio in a single request, including partial-failure and cancellation handling.",
-          "Integrated AI-driven portfolio recommendations, fund outlooks and risk evaluations into the investment flow.",
-          "Digitised regulated flows under Turkish capital-markets rules: venture capital and real estate fund (GSYF/GYF) issuance, qualified-investor applications and checks, KYC/AML controls, time-stamped transaction documents and account statements.",
-          "Migrated core systems to TypeScript, then helped move the backend to C#/.NET (EF Core); moved asset delivery to a Cloudflare R2 CDN and built structured Elasticsearch logging."
+          "**TEFAS integration:** owned the order pipeline end to end in .NET — submission, status tracking, cancellation and blockage release as fault-tolerant background jobs with distributed locking, plus the daily fund price reader; wrote 40+ of the platform's scheduled jobs.",
+          "**Custodian-bank integration:** account opening, electronic document signing, blockage requests, money transfers and portfolio asset transfers, with request-level logging for reconciliation.",
+          "**KYC & onboarding:** identity-document and proof-of-address upload, AML checks and sanctions screening, phone and device verification, secure session and refresh-token handling.",
+          "**Chain transactions:** multi-step fund swaps (sell, settle, buy) that rebalance a portfolio in one request, with partial-failure and cancellation handling.",
+          "**Regulated flows:** GSYF/GYF fund issuance and pricing, qualified-investor applications and approvals, time-stamped transaction documents, account statements and exchange reports.",
+          "**AI in the product:** AI portfolio recommendations, portfolio outlooks and AI fund risk evaluations with plain-language explanations and disclaimers.",
+          "**Platform & back office:** took the backend and back-office API from pre-production to go-live; notification and e-mail reporting jobs; Redis caching and bulk queries; migrated to TypeScript, then to C#/.NET (EF Core); Cloudflare R2 CDN; Elasticsearch logging."
         ],
         tr: [
-          "SPK izniyle faaliyet gösteren bir portföy yönetim şirketinin, iOS ve Android'de yayında olan ve Google Play'de 100.000+ indirmeye ulaşan fon yatırım uygulaması Fonmap'in ön üretimden canlıya geçişine kadar backend ve frontend geliştirmelerine liderlik ettim.",
-          "TEFAS emir altyapısını .NET ile tek başıma geliştirip entegre ettim: emir iletimi, durum takibi, iptal ve blokaj çözme süreçlerini dağıtık kilitleme ve Redis önbellekleme kullanan, hataya dayanıklı arka plan işleri olarak geliştirdim; platformdaki zamanlanmış işlerin 40'tan fazlasını yazdım.",
-          "Yatırımcıların portföylerini tek bir talepte yeniden dengelemesini sağlayan zincir işlemleri (satış, takas, alım adımlarından oluşan çok adımlı fon değişimleri), kısmi hata ve iptal senaryolarıyla birlikte tasarladım.",
-          "Yapay zeka destekli portföy önerilerini, fon görünümlerini ve risk değerlendirmelerini yatırım akışına entegre ettim.",
-          "Sermaye piyasası mevzuatına tabi süreçleri dijitalleştirdim: GSYF/GYF ihraçları, nitelikli yatırımcı başvuruları ve kontrolleri, KYC/AML kontrolleri, zaman damgalı işlem belgeleri ve hesap ekstreleri.",
-          "Temel sistemleri TypeScript'e taşıdım, ardından backend'in C#/.NET'e (EF Core) geçişinde yer aldım; varlık dağıtımını Cloudflare R2 CDN'e taşıdım ve yapılandırılmış Elasticsearch loglamasını kurdum."
+          "**TEFAS entegrasyonu:** emir altyapısını .NET ile uçtan uca geliştirdim; emir iletimi, durum takibi, iptal ve blokaj çözme süreçlerini dağıtık kilitlemeli, hataya dayanıklı arka plan işleri olarak kurdum, günlük fon fiyatı okuyucusunu yazdım; platformun zamanlanmış işlerinin 40'tan fazlası bana ait.",
+          "**Saklamacı banka entegrasyonu:** hesap açılışı, elektronik belge imzalama, blokaj talepleri, para transferleri ve portföy varlık transferleri; mutabakat için istek bazında loglama.",
+          "**KYC & müşteri kabulü:** kimlik belgesi ve adres belgesi yükleme, AML kontrolleri ve yaptırım listesi taraması, telefon ve cihaz doğrulama, güvenli oturum ve refresh token yönetimi.",
+          "**Zincir işlemler:** portföyü tek talepte yeniden dengeleyen çok adımlı fon değişimleri (satış, takas, alım); kısmi hata ve iptal senaryolarıyla birlikte.",
+          "**Mevzuat süreçleri:** GSYF/GYF ihraçları ve fiyatlaması, nitelikli yatırımcı başvuruları ve onayları, zaman damgalı işlem belgeleri, hesap ekstreleri ve borsa raporları.",
+          "**Üründe yapay zeka:** yapay zeka destekli portföy önerileri, portföy görünümleri ve sade dilli açıklamalar ile yasal uyarılar içeren yapay zeka fon risk değerlendirmeleri.",
+          "**Platform & back office:** backend'i ve back-office API'sini ön üretimden canlıya taşıdım; bildirim ve e-posta raporlama işleri; Redis önbellekleme ve toplu sorgular; önce TypeScript'e, ardından C#/.NET'e (EF Core) geçiş; Cloudflare R2 CDN; Elasticsearch loglaması."
         ]
       },
-      stack: "C# / .NET, Entity Framework Core, MSSQL, Hangfire, Redis, Elasticsearch, Cloudflare R2, Node.js, TypeScript, React"
+      stack: "C# / .NET, Entity Framework Core, MSSQL, Hangfire, Redis, Elasticsearch, Node.js, TypeScript, React"
     },
     {
       title: { en: "Full Stack Developer", tr: "Full Stack Geliştirici" },
@@ -321,16 +361,12 @@ const DATA = {
       from: "2022-08", to: "2024-02",
       bullets: {
         en: [
-          "Built frontend and backend for an all-in-one e-commerce platform with real-time messaging and third-party integrations (Instagram, Trendyol, Shopify).",
-          "Engineered scalable, high-throughput systems processing 100,000+ messages per hour using asynchronous and parallel programming.",
-          "Designed real-time communication layers on WebSockets and RabbitMQ, improving system responsiveness and reliability.",
-          "Developed responsive interfaces in React and TypeScript, and backend APIs in Node.js and GraphQL, backed by Redis caching and MongoDB."
+          "**Real-time messaging:** WebSockets and RabbitMQ with asynchronous, parallel processing at 100,000+ messages per hour.",
+          "**Integrations:** Instagram, Trendyol and Shopify in an all-in-one e-commerce platform; React/TypeScript front end, Node.js/GraphQL APIs on Redis and MongoDB."
         ],
         tr: [
-          "Gerçek zamanlı mesajlaşma ve üçüncü taraf entegrasyonları (Instagram, Trendyol, Shopify) içeren kapsamlı bir e-ticaret platformunun frontend ve backend geliştirmelerini yaptım.",
-          "Asenkron ve paralel programlama yaklaşımlarıyla saatte 100.000+ mesaj işleyebilen ölçeklenebilir, yüksek kapasiteli sistemler tasarladım.",
-          "WebSocket ve RabbitMQ üzerinde gerçek zamanlı iletişim katmanları kurarak sistemin yanıt süresini ve güvenilirliğini iyileştirdim.",
-          "React ve TypeScript ile duyarlı arayüzler; Node.js ve GraphQL ile Redis önbellekleme ve MongoDB destekli esnek API'ler geliştirdim."
+          "**Gerçek zamanlı mesajlaşma:** WebSocket ve RabbitMQ üzerinde, asenkron ve paralel işlemeyle saatte 100.000+ mesaj.",
+          "**Entegrasyonlar:** her şeyi bir arada sunan bir e-ticaret platformunda Instagram, Trendyol ve Shopify; React/TypeScript arayüz, Redis ve MongoDB üzerinde Node.js/GraphQL API'leri."
         ]
       },
       stack: "React, TypeScript, Node.js, GraphQL, WebSockets, RabbitMQ, Redis, MongoDB"
@@ -341,103 +377,69 @@ const DATA = {
       place: { en: "Istanbul, Türkiye", tr: "İstanbul, Türkiye" },
       from: "2021-06", to: "2022-07",
       bullets: {
-        en: [
-          "Independently designed and built management panels, backend architecture and databases, and managed Linux-based deployment and releases on AWS."
-        ],
-        tr: [
-          "Yönetim panellerini, backend mimarisini ve veritabanlarını bağımsız olarak tasarladım; AWS üzerinde Linux tabanlı dağıtım ve canlıya alma süreçlerini yönettim."
-        ]
-      },
-      stack: "Node.js, JavaScript, MongoDB, HTML/CSS, AWS"
+        en: ["Designed and built management panels, backend architecture and databases independently; Linux deployments on AWS (Node.js, MongoDB)."],
+        tr: ["Yönetim panellerini, backend mimarisini ve veritabanlarını bağımsız olarak tasarlayıp geliştirdim; AWS üzerinde Linux dağıtımları (Node.js, MongoDB)."]
+      }
     },
     {
-      title: { en: "Freelance Developer — Mobile, Backend & Full-Stack",
-               tr: "Freelance Geliştirici — Mobil, Backend & Full-Stack" },
+      title: { en: "Freelance Developer", tr: "Freelance Geliştirici" },
       org:   { en: "Self-employed", tr: "Serbest Çalışma" },
       place: { en: "Remote", tr: "Uzaktan" },
       from: "2019-01", to: "2022-08",
       bullets: {
-        en: [
-          "Delivered scalable mobile and backend applications for a range of clients, owning API design, frontend–backend integration and release across web, mobile and server-side work."
-        ],
-        tr: [
-          "Farklı müşteriler için ölçeklenebilir mobil ve backend uygulamaları geliştirdim; API tasarımını, frontend–backend entegrasyonunu ve web, mobil ve sunucu tarafı yayın süreçlerini üstlendim."
-        ]
-      },
-      stack: "React, Node.js, Flutter, Rust, MongoDB, JavaScript, HTML/CSS"
+        en: ["Mobile and backend applications for clients: API design, integration and releases (React, Node.js, Flutter, Rust)."],
+        tr: ["Müşteriler için mobil ve backend uygulamaları: API tasarımı, entegrasyon ve yayın süreçleri (React, Node.js, Flutter, Rust)."]
+      }
     }
   ],
 
-  /* -------------------------------------------------------------- projects */
+  /* -------------------------------------------------------------- projects
+     AI work first: it is what most roles screen for now. Both AI repos are
+     private, so no link line — the website shows them, demo on request. */
   projects: [
-    /* AI work first: it is what most roles screen for now. Both repos are
-       private, so no link line — the website shows them, demo on request. */
     {
       title: { en: "AI Sprite Studio — Creator", tr: "AI Sprite Studio — Geliştirici" },
       meta:  { en: "2026 · TypeScript · LLM agents", tr: "2026 · TypeScript · LLM ajanları" },
       bullets: {
-        en: [
-          "Built a tool-calling LLM agent that draws and animates pixel art through 16 undoable editor tools.",
-          "Designed palette-indexed grids, symmetry and frame deltas for token economy on local 8B models (LM Studio)."
-        ],
-        tr: [
-          "16 geri alınabilir editör aracıyla piksel sanat çizen ve canlandıran, tool calling yapan bir LLM ajanı geliştirdim.",
-          "Yerel 8B modellerde (LM Studio) token tasarrufu için palet indeksli ızgaralar, simetri ve kare farkları tasarladım."
-        ]
+        en: ["**Tool-calling agent** that edits through the same 16 undoable tools as the user; palette-indexed grids, symmetry and frame deltas keep it within the token budget of local 8B models (LM Studio)."],
+        tr: ["Kullanıcıyla aynı 16 geri alınabilir araçla düzenleme yapan **tool calling ajanı**; palet indeksli ızgaralar, simetri ve kare farkları yerel 8B modellerin (LM Studio) token bütçesinde kalmasını sağlıyor."]
       }
     },
     {
       title: { en: "AIStudio — AI Video Studio", tr: "AIStudio — Yapay Zeka Video Stüdyosu" },
       meta:  { en: "2026 · TypeScript · Claude, Groq, LM Studio", tr: "2026 · TypeScript · Claude, Groq, LM Studio" },
       bullets: {
-        en: [
-          "LLM agent with 20+ tools writes and edits animated HTML video frames; runs on Claude, Groq or local models.",
-          "Deterministic export: headless Chrome under a virtual clock piped to ffmpeg, with ElevenLabs narration and subtitles."
-        ],
-        tr: [
-          "20+ araçlı LLM ajanı animasyonlu HTML video kareleri yazıp düzenliyor; Claude, Groq veya yerel modellerle çalışıyor.",
-          "Deterministik dışa aktarım: sanal saatli headless Chrome'dan ffmpeg'e, ElevenLabs seslendirme ve altyazıyla."
-        ]
+        en: ["**An agent with 20+ tools** writes animated HTML video frames; deterministic export from headless Chrome under a virtual clock to ffmpeg, with ElevenLabs narration."],
+        tr: ["**20+ araçlı bir ajan** animasyonlu HTML video kareleri yazıyor; sanal saatli headless Chrome'dan ffmpeg'e deterministik dışa aktarım, ElevenLabs seslendirmesiyle."]
+      }
+    },
+    {
+      title: { en: "ProtoBoard — Creator", tr: "ProtoBoard — Geliştirici" },
+      meta:  { en: "2026 · TypeScript · vision models, three.js", tr: "2026 · TypeScript · görüntü modelleri, three.js" },
+      bullets: {
+        en: ["**AI-assisted electronics prototyping:** a vision model turns a photo of a module into a to-scale part with its pads; net-aware wiring checks (shorts, over-voltage, TX/RX and I²C swaps) and a perfboard layout verified against the wiring, in 2D and 3D."],
+        tr: ["**Yapay zeka destekli elektronik prototipleme:** görüntü modeli bir modülün fotoğrafını pinleriyle ölçekli bir parçaya dönüştürüyor; ağ bazında kablolama kontrolleri (kısa devre, aşırı gerilim, TX/RX ve I²C karışıklıkları) ve kablolamaya göre doğrulanan 2D/3D pertinaks yerleşimi."]
       }
     },
     {
       title: { en: "Ellie Language — Creator & Maintainer",
                tr: "Ellie Language — Yaratıcı & Sürdürücü" },
-      meta:  { en: "2020 – Present · Rust · 48 GitHub stars",
-               tr: "2020 – Devam Ediyor · Rust · 48 GitHub yıldızı" },
+      meta:  { en: "2020 – Present · Rust · 49 GitHub stars",
+               tr: "2020 – Devam Ediyor · Rust · 49 GitHub yıldızı" },
       link:  "github.com/behemehal/Ellie-Language",
       bullets: {
-        en: [
-          "Designed a type-safe programming language for embedded (ARM) and sandboxed (WebAssembly) environments.",
-          "Built the parser, compiler and bytecode VM from scratch: memory management, stack/heap allocation, garbage collection and bytecode optimisation."
-        ],
-        tr: [
-          "Gömülü (ARM) ve sandbox (WebAssembly) ortamları için tip güvenli bir programlama dili tasarladım.",
-          "Parser, derleyici ve bytecode sanal makinesini sıfırdan geliştirdim: bellek yönetimi, yığın/heap tahsisi, çöp toplama (GC) ve bytecode optimizasyonu."
-        ]
+        en: ["**Type-safe language** for embedded (ARM) and sandboxed (WebAssembly) targets: parser, compiler and bytecode VM built from scratch, including memory management and garbage collection."],
+        tr:["Gömülü (ARM) ve sandbox (WebAssembly) hedefler için **tip güvenli dil**: parser, derleyici ve bytecode VM'i bellek yönetimi ve çöp toplama dahil sıfırdan geliştirdim."]
       }
     },
     {
-      title: { en: "UtilStation — Full-Stack Developer", tr: "UtilStation — Full-Stack Geliştirici" },
-      meta:  { en: "Web platform", tr: "Web platformu" },
-      link:  "utilstation.com",
-      bullets: {
-        en: ["One-stop platform bringing developer and productivity tools — file conversion, data processing, everyday utilities — together in a single app."],
-        tr: ["Dosya dönüştürme, veri işleme ve günlük pratik araçları tek bir uygulamada bir araya getiren geliştirici ve üretkenlik platformu."]
-      }
-    },
-    {
-      title: { en: "Open Source — Behemehal & Personal Projects",
-               tr: "Açık Kaynak — Behemehal & Kişisel Projeler" },
-      meta:  { en: "100+ repositories · Rust · Dart · C#", tr: "100+ depo · Rust · Dart · C#" },
+      title: { en: "Open Source & Products — Behemehal",
+               tr: "Açık Kaynak & Ürünler — Behemehal" },
+      meta:  { en: "100+ repositories · Rust · TypeScript · Dart", tr: "100+ depo · Rust · TypeScript · Dart" },
       link:  "github.com/behemehal · github.com/ahmetcanaksu",
       bullets: {
-        en: [
-          "Rust crates on crates.io — Menemen (streaming HTTP), Rust-NMEA (GPS parser), SafeEn (embedded database), Wole (Wake-on-LAN); CHIP-8 and 6502 emulators; Flutter apps; Dart and npm libraries."
-        ],
-        tr: [
-          "crates.io'da Rust paketleri — Menemen (streaming HTTP), Rust-NMEA (GPS ayrıştırıcı), SafeEn (gömülü veritabanı), Wole (Wake-on-LAN); CHIP-8 ve 6502 emülatörleri; Flutter uygulamaları; Dart ve npm kütüphaneleri."
-        ]
+        en: ["**UtilStation** (utilstation.com, 85+ developer tools); Rust crates Menemen, Rust-NMEA, SafeEn and Wole on crates.io; CHIP-8 and 6502 emulators; Flutter apps."],
+        tr: ["**UtilStation** (utilstation.com, 85+ geliştirici aracı); crates.io'da Rust paketleri Menemen, Rust-NMEA, SafeEn ve Wole; CHIP-8 ve 6502 emülatörleri; Flutter uygulamaları."]
       }
     }
   ],
@@ -447,8 +449,8 @@ const DATA = {
     { label: { en: "Programming", tr: "Programlama" },
       value: "TypeScript, JavaScript, C#, Rust, Dart, C, C++, Java, SQL" },
     { label: { en: "AI & LLMs",  tr: "Yapay Zeka & LLM" },
-      value: { en: "LLM agents & tool calling, Claude API, OpenAI-compatible APIs (Groq, LM Studio), local LLMs (Qwen3-VL, Gemma), vision models, token optimisation, ElevenLabs TTS",
-               tr: "LLM ajanları & tool calling, Claude API, OpenAI uyumlu API'ler (Groq, LM Studio), yerel LLM'ler (Qwen3-VL, Gemma), görüntü modelleri, token optimizasyonu, ElevenLabs TTS" } },
+      value: { en: "LLM agents & tool calling, Claude API, OpenAI-compatible APIs (Groq, LM Studio), local LLMs (Qwen3-VL, Gemma), vision models",
+               tr: "LLM ajanları & tool calling, Claude API, OpenAI uyumlu API'ler (Groq, LM Studio), yerel LLM'ler (Qwen3-VL, Gemma), görüntü modelleri" } },
     { label: { en: "Backend",    tr: "Backend" },
       value: "Node.js, Deno, Express, GraphQL (Apollo), REST, WebSockets, .NET, Entity Framework Core, Hangfire, RabbitMQ" },
     { label: { en: "Frontend",   tr: "Frontend" },
@@ -476,14 +478,12 @@ const DATA = {
   ],
 
   /* ---------------------------------------------------------- certificates */
+  /* The three that carry weight next to 4 years in fintech. Course
+     certificates (BTK Academy, Patika.dev) read as entry-level here. */
   certificates: [
     { en: "EF SET English Certificate — C2", tr: "EF SET İngilizce Sertifikası — C2" },
     { en: "Turkish Capital Markets Association", tr: "Türkiye Sermaye Piyasaları Birliği" },
-    { en: "Mobile App Development with Google Flutter", tr: "Google Flutter ile Mobil Uygulama Geliştirme" },
-    { en: "JavaScript Final Assessment — BTK Academy", tr: "JavaScript Bitirme Sınavı — BTK Akademi" },
-    { en: "C# Programming — BTK Academy", tr: "C# Programlama — BTK Akademi" },
-    { en: "Node.js Backend Development — Patika.dev", tr: "Node.js Backend Geliştirme — Patika.dev" },
-    { en: "Advanced Frontend Web Development — Patika.dev", tr: "İleri Seviye Frontend Web Geliştirme — Patika.dev" }
+    { en: "Mobile App Development with Google Flutter", tr: "Google Flutter ile Mobil Uygulama Geliştirme" }
   ],
 
   /* ------------------------------------------------------------- languages */
@@ -505,6 +505,7 @@ const DATA = {
   /* ------------------------------------------ section headings & UI labels */
   labels: {
     summary:      { en: "Summary",                    tr: "Özet" },
+    highlights:   { en: "Highlights",                 tr: "Öne Çıkanlar" },
     experience:   { en: "Experience",                 tr: "Deneyim" },
     projects:     { en: "Projects & Open Source",     tr: "Projeler & Açık Kaynak" },
     skills:       { en: "Technical Skills",           tr: "Teknik Yetenekler" },
@@ -554,10 +555,20 @@ function fmtRange(from, to){
 }
 const href = (u) => /^https?:/.test(u) ? u : "https://" + u;
 
-function bullets(list){
+/* Escape, then turn **this** into <b>this</b>. Bold is plain text weight in
+   the PDF, so parsers read it like any other word. */
+const rich = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+const plain = (s) => String(s).replace(/\*\*(.+?)\*\*/g, "$1");
+
+function bullets(list, cls){
   const items = (list && (list[LANG] || list.en)) || [];
   if (!items.length) return "";
-  return `<ul>${items.map(b => `<li>${esc(b)}</li>`).join("")}</ul>`;
+  return `<ul${cls ? ` class="${cls}"` : ""}>${items.map(b => `<li>${rich(b)}</li>`).join("")}</ul>`;
+}
+
+function renderHighlights(){
+  if (!DATA.highlights) return "";
+  return `<section class="highlights"><h2>${esc(t(DATA.labels.highlights))}</h2>${bullets(DATA.highlights)}</section>`;
 }
 
 function renderHeader(){
@@ -670,7 +681,7 @@ function renderJsonLd(){
     "@type": "Person",
     name: DATA.name,
     jobTitle: t(DATA.role),
-    description: t(DATA.summary),
+    description: plain(t(DATA.summary)),
     email: "mailto:" + c.email,
     url: href(c.site),
     address: { "@type": "PostalAddress", addressLocality: "Istanbul", addressCountry: "TR" },
@@ -708,7 +719,8 @@ function render(){
   document.title = `${DATA.name} — ${t(DATA.role)} — CV`;
   document.getElementById("sheet").innerHTML =
     renderHeader() +
-    section(t(DATA.labels.summary), `<p class="summary">${esc(t(DATA.summary))}</p>`) +
+    section(t(DATA.labels.summary), `<p class="summary">${rich(t(DATA.summary))}</p>`) +
+    renderHighlights() +
     renderExperience() +
     renderProjects() +
     renderSkills() +

@@ -25,6 +25,11 @@ Nothing below the `RENDERING` divider needs to be touched.
 
 ## Exporting a PDF
 
+On ahmetcanaksu.com this is automatic: the portfolio build renders
+`Ahmetcan Aksu CV {EN,TR}.pdf` and `Ahmetcan Aksu Cover Letter {EN,TR}.pdf` from
+these two files with headless Chrome on every deploy (the letter with the
+application block as committed, so keep it generic there). By hand:
+
 1. Open `cv.html` in a browser.
 2. Pick the language (EN / TR button, or open `cv.html#tr`).
 3. `Cmd/Ctrl + P` → Save as PDF → **A4**, margins **Default**, scale **100%**,
@@ -35,8 +40,9 @@ The page carries its own print margins, so browser headers/footers should be off
 ## Page count
 
 `layout.baseFontPt` in the data block is the single lever for fitting content.
-With the current content, **10.2pt is the largest size that keeps both EN and TR
-on two A4 pages**; 10.4pt tips onto a third. The portfolio build warns when a
+With the current content, **10.4pt is the largest size that keeps both EN and TR
+on two A4 pages**; 10.6pt tips onto a third. The portfolio build warns when a
+generated PDF goes past its page limit. The portfolio build warns when a
 generated PDF goes past two pages. The on-screen `A−` / `A+` buttons nudge it live, and the value you
 land on is remembered and used by the PDF export.
 

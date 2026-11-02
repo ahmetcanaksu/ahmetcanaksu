@@ -41,7 +41,12 @@
   html{ background:#eceef2; }
   body{
     margin:0;
-    font-family:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    /* Arial with ligatures off, for the same reasons as cv.html: system UI
+       fonts embed in a Chrome PDF as Type 3, which some parsers can't read,
+       and an "fi" ligature extracts as the single glyph "ﬁ". */
+    font-family: Arial, "Liberation Sans", "Helvetica Neue", Helvetica, sans-serif;
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "clig" 0;
     font-size: var(--fs);
     line-height:1.55;
     color:var(--ink-soft);
@@ -68,64 +73,66 @@
     box-shadow:0 1px 3px rgba(20,24,31,.14), 0 10px 34px rgba(20,24,31,.10);
   }
 
-  header.masthead{
-    display:flex; align-items:flex-end; justify-content:space-between; gap:14mm;
-    padding-bottom:7px; border-bottom:2px solid var(--accent);
-  }
+  header.masthead{ padding-bottom:7px; border-bottom:2px solid var(--accent); }
   h1{ margin:0; font-size:24pt; line-height:1.03; font-weight:700; letter-spacing:-.015em; color:var(--ink); }
   .role{ margin-top:4px; font-size:10pt; font-weight:600; color:var(--accent); letter-spacing:.055em; text-transform:uppercase; }
-  .contact{ flex:0 0 auto; text-align:right; font-size:9pt; line-height:1.6; }
+  .contact{ margin:6px 0 0; font-size:9pt; line-height:1.55; }
   .contact a{ color:var(--ink-soft); text-decoration:none; }
   .contact a:hover{ text-decoration:underline; }
-  .contact .lbl{ color:var(--muted); }
+  .contact .sep{ color:var(--rule); margin:0 .1em; }
+  .contact .ci{ white-space:nowrap; }
 
   .meta-row{
     display:flex; justify-content:space-between; align-items:flex-start; gap:12mm;
-    margin-top:11mm; font-size:9.6pt;
+    margin-top:8mm; font-size:9.6pt;
   }
   .addressee{ color:var(--ink); }
   .addressee .co{ font-weight:600; }
   .date{ color:var(--muted); white-space:nowrap; }
 
-  .greeting{ margin:8mm 0 0; font-weight:600; color:var(--ink); }
+  .greeting{ margin:6mm 0 0; font-weight:600; color:var(--ink); }
   p.body-text{ margin:3.6mm 0 0; }
 
   .techlist{ margin:4mm 0 0; padding:0; list-style:none; }
-  .techlist li{ margin-bottom:1.6mm; padding-left:4mm; position:relative; }
+  /* In-flow marker, no position:relative — positioned text is written last
+     in a Chrome PDF, so stream-order parsers would read these items late. */
+  .techlist li{ margin-bottom:1.6mm; padding-left:4mm; text-indent:-4mm; }
   .techlist li::before{
-    content:""; position:absolute; left:0; top:.62em;
+    content:""; display:inline-block; vertical-align:middle;
     width:3px; height:3px; border-radius:50%; background:var(--accent);
+    margin-right:calc(4mm - 3px);
   }
   .techlist b{ color:var(--ink); font-weight:600; }
 
   .links{ margin:5mm 0 0; font-size:9.6pt; }
-  .links div{ margin-bottom:1mm; }
+  /* Both links on one line, separated like the contact line. */
+  .links span.item{ white-space:nowrap; }
+  .links .sep{ color:var(--rule); margin:0 .5em; }
   .links .lbl{ color:var(--muted); }
   .links a{ color:var(--accent); text-decoration:none; }
   .links a:hover{ text-decoration:underline; }
 
-  .signoff{ margin-top:7mm; }
+  .signoff{ margin-top:6mm; }
   .signoff .close{ color:var(--ink); }
-  .signoff .name{ margin-top:5mm; font-size:12.5pt; font-weight:600; color:var(--ink); }
+  .signoff .name{ margin-top:3mm; font-size:12.5pt; font-weight:600; color:var(--ink); }
 
   noscript .fallback{
     margin:18px auto; padding:14px 16px; max-width:200mm;
     background:#fff4d6; border:1px solid #e0c266; font-size:13px;
   }
 
-  @page{ size:A4; margin:0; }
+  /* Margins on the page, not the sheet, so they hold on every page. */
+  @page{ size:A4; margin:14mm 16mm 13mm; }
   @media print{
     html, body{ background:#fff; }
     .toolbar{ display:none !important; }
-    .sheet{ width:auto; margin:0; padding:15mm 16mm; box-shadow:none; }
+    .sheet{ width:auto; margin:0; padding:0; box-shadow:none; }
     a{ color:inherit !important; }
     body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
     p{ orphans:3; widows:3; }
   }
   @media screen and (max-width:800px){
     .sheet{ width:auto; margin:10px; padding:20px; }
-    header.masthead{ flex-direction:column; align-items:flex-start; gap:10px; }
-    .contact{ text-align:left; }
     .meta-row{ flex-direction:column; gap:4mm; }
     h1{ font-size:21pt; }
   }
@@ -189,7 +196,8 @@ const DATA = {
 
   /* ---------------------------------------------------------------- header */
   name: "Ahmetcan Aksu",
-  role:    { en: "Software Developer", tr: "Yazılım Geliştirici" },
+  role:    { en: "Software Developer — Backend, Fintech & AI",
+             tr: "Yazılım Geliştirici — Backend, Fintek & Yapay Zeka" },
 
   contact: {
     email:    "hello@ahmetcanaksu.com",
@@ -202,46 +210,53 @@ const DATA = {
     showPhone: true          /* letters normally carry a phone number */
   },
 
-  /* ---------------------------------------------------------------- body */
+  /* ---------------------------------------------------------------- body
+     Kept in step with cv.html: every claim here is one the CV makes. The
+     letter's job is the story the CV can't tell — fintech, AI, and the
+     systems work underneath — in four short paragraphs. */
 
   /* Opening paragraph, in two variants. When the application block supplies a
      role, the letter opens with "I am writing to apply for..." and uses
      introAfterRole, which drops the redundant "My name is" — the letterhead
      already carries it. With no role filled in, plain intro is used. */
   introAfterRole: {
-    en: "I am a software developer based in Istanbul. I have contributed to a number of open-source projects, applications and libraries, driven by a genuine belief in the open-source philosophy. Learning quickly is one of my real strengths, and I spend my free time exploring new technologies and deepening what I already know.",
-    tr: "İstanbul'da yaşayan bir yazılım geliştiricisiyim. Açık kaynak felsefesine olan inancımla birçok projeye, uygulamaya ve kütüphaneye katkıda bulundum. Hızlı öğrenmek gerçek güçlü yanlarımdan biri; boş zamanlarımı yeni teknolojileri keşfetmeye ve mevcut bilgimi derinleştirmeye ayırıyorum."
+    en: "I am a software developer in Istanbul with 4+ years of professional experience building backend systems end to end, and my work sits where three things meet: fintech, AI, and the algorithms and systems underneath them.",
+    tr: "İstanbul'da, backend sistemlerini uçtan uca geliştirmede 4+ yıllık profesyonel deneyime sahip bir yazılım geliştiriciyim; çalışmalarım üç alanın kesişiminde: fintek, yapay zeka ve bunların altındaki algoritmalar ve sistemler."
   },
 
   intro: {
-    en: "My name is Ahmetcan Aksu and I am a software developer based in Istanbul. I have contributed to a number of open-source projects, applications and libraries, driven by a genuine belief in the open-source philosophy. Learning quickly is one of my real strengths, and I spend my free time exploring new technologies and deepening what I already know.",
-    tr: "Ben Ahmetcan Aksu, İstanbul'da yaşayan bir yazılım geliştiricisiyim. Açık kaynak felsefesine olan inancımla birçok projeye, uygulamaya ve kütüphaneye katkıda bulundum. Hızlı öğrenmek gerçek güçlü yanlarımdan biri; boş zamanlarımı yeni teknolojileri keşfetmeye ve mevcut bilgimi derinleştirmeye ayırıyorum."
+    en: "My name is Ahmetcan Aksu, a software developer in Istanbul with 4+ years of professional experience building backend systems end to end. My work sits where three things meet: fintech, AI, and the algorithms and systems underneath them.",
+    tr: "Ben Ahmetcan Aksu; İstanbul'da, backend sistemlerini uçtan uca geliştirmede 4+ yıllık profesyonel deneyime sahip bir yazılım geliştiriciyim. Çalışmalarım üç alanın kesişiminde: fintek, yapay zeka ve bunların altındaki algoritmalar ve sistemler."
   },
 
-  /* second paragraph — experience */
+  /* second paragraph — fintech */
   experience: {
-    en: "Across freelance and full-time roles I have worked as a full-stack developer, currently in the finance sector, where I build backend systems for a regulated digital investment platform. My experience spans REST and GraphQL APIs, desktop and mobile applications, CLI tools, and embedded systems on Raspberry Pi, Orange Pi, Arduino and ARM. I also designed and built Ellie, my own type-safe programming language and bytecode virtual machine in Rust, targeting embedded and sandboxed environments.",
-    tr: "Freelance ve tam zamanlı rollerde full-stack geliştirici olarak çalıştım; şu anda finans sektöründe, düzenlemeye tabi bir dijital yatırım platformunun backend sistemlerini geliştiriyorum. Deneyimim REST ve GraphQL API'leri, masaüstü ve mobil uygulamalar, komut satırı araçları ile Raspberry Pi, Orange Pi, Arduino ve ARM üzerinde gömülü sistemleri kapsıyor. Ayrıca gömülü ve sandbox ortamları hedefleyen, Rust ile yazdığım tip güvenli programlama dilim ve bytecode sanal makinem Ellie'yi tasarlayıp geliştirdim."
+    en: "At Fonmap, an SPK-licensed fund investment platform with 100,000+ Google Play downloads, I took the backend from pre-production to go-live and owned its TEFAS order infrastructure end to end in .NET: order submission, status tracking, cancellation and blockage release as fault-tolerant background jobs. I also built the custodian-bank integration (account opening, document signing, transfers), the KYC and AML checks, and chain transactions that rebalance a portfolio in a single request.",
+    tr: "SPK lisanslı, Google Play'de 100.000+ indirmeye ulaşan fon yatırım platformu Fonmap'te backend'i ön üretimden canlıya taşıdım ve TEFAS emir altyapısını .NET ile uçtan uca geliştirdim: emir iletimi, durum takibi, iptal ve blokaj çözme süreçlerini hataya dayanıklı arka plan işleri olarak kurdum. Ayrıca saklamacı banka entegrasyonunu (hesap açılışı, belge imzalama, transferler), KYC ve AML kontrollerini ve bir portföyü tek talepte yeniden dengeleyen zincir işlemleri geliştirdim."
   },
 
-  techIntro: {
-    en: "The technologies I work with most:",
-    tr: "En çok çalıştığım teknolojiler:"
+  /* third paragraph — AI, and the systems work underneath */
+  ai: {
+    en: "On the AI side, I integrated AI-driven portfolio recommendations and fund risk evaluations into Fonmap's investment flow, and I build LLM agents of my own: AI Sprite Studio, where a model draws and animates pixel art through 16 undoable tools, tuned for token economy on local 8B models; and AIStudio, an agent that writes animated video frames and renders them to MP4 with narration. Underneath both is a systems background: I designed Ellie, a type-safe programming language and bytecode VM in Rust for embedded targets.",
+    tr: "Yapay zeka tarafında, yapay zeka destekli portföy önerilerini ve fon risk değerlendirmelerini Fonmap'in yatırım akışına entegre ettim; kendi LLM ajanlarımı da geliştiriyorum: bir modelin 16 geri alınabilir araçla piksel sanat çizip canlandırdığı, yerel 8B modellerde token tasarrufu için optimize ettiğim AI Sprite Studio ve animasyonlu video kareleri yazıp bunları seslendirmeyle MP4'e dönüştüren AIStudio. İkisinin temelinde sistem programlama var: gömülü hedefler için Rust ile tip güvenli bir programlama dili ve bytecode sanal makinesi olan Ellie'yi tasarladım."
   },
 
   tech: [
-    { label: { en: "Backend",   tr: "Backend" },
-      value: "Node.js, TypeScript, Express.js, GraphQL, Rust, C# (Entity Framework, FluentValidation, AutoMapper)" },
-    { label: { en: "Frontend",  tr: "Frontend" },
-      value: "React, Redux, Electron.js, Flutter" },
-    { label: { en: "Databases", tr: "Veritabanları" },
-      value: "MSSQL, PostgreSQL, MongoDB, Redis" }
+    { label: { en: "Fintech & backend", tr: "Fintek & backend" },
+      value: { en: "C# / .NET, EF Core, Hangfire, Node.js, TypeScript, MSSQL, Redis, Elasticsearch; TEFAS, banking and capital-markets integrations",
+               tr: "C# / .NET, EF Core, Hangfire, Node.js, TypeScript, MSSQL, Redis, Elasticsearch; TEFAS, bankacılık ve sermaye piyasası entegrasyonları" } },
+    { label: { en: "AI & LLMs", tr: "Yapay zeka & LLM" },
+      value: { en: "LLM agents & tool calling, Claude API, OpenAI-compatible APIs (Groq, LM Studio), local models (Qwen3-VL, Gemma), vision models",
+               tr: "LLM ajanları & tool calling, Claude API, OpenAI uyumlu API'ler (Groq, LM Studio), yerel modeller (Qwen3-VL, Gemma), görüntü modelleri" } },
+    { label: { en: "Systems", tr: "Sistem" },
+      value: { en: "Rust, algorithm design, compiler and bytecode VM design, embedded (ARM, ESP32)",
+               tr: "Rust, algoritma tasarımı, derleyici ve bytecode VM tasarımı, gömülü sistemler (ARM, ESP32)" } }
   ],
 
   /* closing paragraph */
   closing: {
-    en: "I share my personal work publicly on GitHub — both my own profile and Behemehal, my open-source organisation — and would welcome the chance to bring that experience to your team. Thank you for your time and consideration; I look forward to hearing from you.",
-    tr: "Kişisel çalışmalarımı GitHub üzerinde açık şekilde paylaşıyorum — hem kendi profilimde hem de açık kaynak organizasyonum Behemehal'de. Bu deneyimi ekibinize taşıma fırsatından memnuniyet duyarım. Vakit ayırıp okuduğunuz için teşekkür eder, sizden haber almayı beklerim."
+    en: "Each of my projects has an introduction page at ahmetcanaksu.com, and I am happy to demo the AI work live. Thank you for your time; I look forward to hearing from you.",
+    tr: "Her projemin ahmetcanaksu.com'da bir tanıtım sayfası var; yapay zeka çalışmalarımı canlı olarak göstermekten memnuniyet duyarım. Vakit ayırdığınız için teşekkür eder, sizden haber almayı umarım."
   },
 
   /* --------------------------------------------------------------- labels */
@@ -250,7 +265,7 @@ const DATA = {
     namedGreeting:   { en: "Dear ",                   tr: "Sayın " },
     signOff:         { en: "Best regards,",           tr: "Saygılarımla," },
     githubLabel:     { en: "GitHub",                  tr: "GitHub" },
-    orgLabel:        { en: "Open-source organisation", tr: "Açık kaynak organizasyonu" },
+    portfolioLabel:  { en: "Projects",                tr: "Projeler" },
     cvLabel:         { en: "CV",                      tr: "CV" },
 
     /* role sentence, appended to the intro when role/company are filled in.
@@ -298,20 +313,22 @@ function fmtToday(pin){
 
 function renderHeader(){
   const c = DATA.contact;
-  const rows = [
-    c.showPhone ? `<div>${esc(c.phone)}</div>` : "",
-    `<div><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></div>`,
-    `<div><a href="${esc(href(c.site))}">${esc(c.site)}</a></div>`,
-    `<div><a href="${esc(href(c.linkedin))}">${esc(c.linkedin)}</a></div>`,
-    `<div>${esc(t(c.location))}</div>`
-  ].filter(Boolean).join("");
+  /* One line under the name, in reading order, as in cv.html: a contact
+     column floated beside the name is read by parsers as a separate block. */
+  const items = [
+    esc(t(c.location)),
+    c.showPhone ? esc(c.phone) : "",
+    `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>`,
+    `<a href="${esc(href(c.linkedin))}">${esc(c.linkedin)}</a>`,
+    `<a href="${esc(href(c.site))}">${esc(c.site)}</a>`
+  ].filter(Boolean)
+   .map(item => `<span class="ci">${item}</span>`)
+   .join(' <span class="sep">|</span> ');
 
   return `<header class="masthead">
-    <div>
-      <h1>${esc(DATA.name)}</h1>
-      <div class="role">${esc(t(DATA.role))}</div>
-    </div>
-    <div class="contact">${rows}</div>
+    <h1>${esc(DATA.name)}</h1>
+    <div class="role">${esc(t(DATA.role))}</div>
+    <p class="contact">${items}</p>
   </header>`;
 }
 
@@ -339,22 +356,23 @@ function roleSentence(){
   const a = DATA.application;
   if (!a.role) return "";
   const tpl = a.company ? t(DATA.labels.roleSentence) : t(DATA.labels.roleSentenceNoCompany);
-  let s = tpl.replace("{role}", a.role).replace("{company}", a.company);
+  let s = tpl.replace("{role}", a.role).replace("{company}", a.company)
+             .replace(/\.\.(\s|$)/g, ".$1"); /* "Acme Ltd." + "." -> one period */
   if (a.company && a.source) s += t(DATA.labels.sourceClause).replace("{source}", a.source);
   return esc(s) + " ";
 }
 
 function renderTech(){
-  return `<p class="body-text">${esc(t(DATA.techIntro))}</p>
-    <ul class="techlist">${DATA.tech.map(r =>
+  return `<ul class="techlist">${DATA.tech.map(r =>
       `<li><b>${esc(t(r.label))}:</b> ${esc(t(r.value))}</li>`).join("")}</ul>`;
 }
 
 function renderLinks(){
   const c = DATA.contact, l = DATA.labels;
   return `<div class="links">
-    <div><span class="lbl">${esc(t(l.githubLabel))}:</span> <a href="${esc(href(c.github))}">${esc(c.github)}</a></div>
-    <div><span class="lbl">${esc(t(l.orgLabel))}:</span> <a href="${esc(href(c.org))}">${esc(c.org)}</a></div>
+    <span class="item"><span class="lbl">${esc(t(l.portfolioLabel))}:</span> <a href="${esc(href(c.site + (LANG === "tr" ? "/tr/#/projects" : "/#/projects")))}">${esc(c.site + "/projects")}</a></span>
+    <span class="sep">|</span>
+    <span class="item"><span class="lbl">${esc(t(l.githubLabel))}:</span> <a href="${esc(href(c.github))}">${esc(c.github)}</a></span>
   </div>`;
 }
 
@@ -387,6 +405,7 @@ function render(){
         return lead + esc(t(lead ? DATA.introAfterRole : DATA.intro));
       })()}</p>` +
     `<p class="body-text">${esc(t(DATA.experience))}</p>` +
+    `<p class="body-text">${esc(t(DATA.ai))}</p>` +
     renderTech() +
     renderCustom() +
     `<p class="body-text">${esc(t(DATA.closing))}</p>` +

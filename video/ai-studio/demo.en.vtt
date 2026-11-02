@@ -1,0 +1,49 @@
+WEBVTT
+
+00:00.000 --> 00:04.992
+Every second of every day, billions of invisible decisions are being made inside the
+
+00:05.039 --> 00:06.269
+devices around you.
+
+00:06.513 --> 00:10.762
+And behind almost all of them is a piece of silicon smaller than your fingernail,
+
+00:10.971 --> 00:15.093
+shaped by one question: what is this chip actually for?
+
+00:15.593 --> 00:17.694
+If you've shopped for a computer, a phone,
+
+00:17.718 --> 00:21.619
+or a graphics card lately, you've run into a wall of acronyms.
+
+00:21.793 --> 00:27.807
+CPU, GPU, TPU, NPU, FPGA, ASIC.
+
+00:27.981 --> 00:29.095
+They all compute.
+
+00:29.339 --> 00:30.895
+They all sit on silicon.
+
+00:31.336 --> 00:35.330
+So why are there so many of them, and why does it suddenly matter which one is
+
+00:35.388 --> 00:36.677
+inside your machine?
+
+00:37.177 --> 00:39.406
+Here's the core idea in one image.
+
+00:39.580 --> 00:43.110
+For fifty years, computing was a Swiss Army knife problem.
+
+00:43.435 --> 00:46.895
+We built one brain that could do everything reasonably well.
+
+00:47.220 --> 00:48.752
+That era is ending.
+
+00:49.077 --> 00:52.096
+Modern systems are becoming a collection of specialists,
