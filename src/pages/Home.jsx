@@ -54,12 +54,12 @@ const Home = () => {
             {t({
               en: (
                 <>
-                  I build backend systems and applications on LLMs. At an
+                  I&apos;m a full stack developer, strongest on the backend. At an
                   SPK-licensed fund platform I owned the TEFAS fund-order integration
                   end to end; on my own time I
                   build{" "}
                   <Link to="/projects/ai-sprite-studio" className="link">
-                    LLM agents
+                    AI tools
                   </Link>{" "}
                   that draw, animate and edit through tool calling. Underneath it
                   all are algorithms and systems: I created the{" "}
@@ -71,7 +71,7 @@ const Home = () => {
               ),
               tr: (
                 <>
-                  Backend sistemleri ve LLM tabanlı uygulamalar geliştiriyorum.
+                  Ağırlığı backend&apos;de olan bir full stack geliştiriciyim.
                   SPK lisanslı bir fon platformunda TEFAS fon emir altyapısını uçtan uca geliştirip
                   canlıya aldım; kendi projelerimde modelin araç kullanarak çizdiği,
                   animasyon yaptığı ve düzenlediği{" "}
@@ -112,7 +112,7 @@ const Home = () => {
 
         {/* Masthead info column */}
         <aside className="lg:pt-2">
-          <div className="mb-6 h-40 w-40 overflow-hidden rounded-sm border border-rule grayscale">
+          <div className="mb-6 h-40 w-40 overflow-hidden rounded-sm border border-rule">
             <img
               src="/photo.jpg"
               alt="Ahmetcan Aksu"
