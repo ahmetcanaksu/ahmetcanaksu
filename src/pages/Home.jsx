@@ -6,6 +6,9 @@ import projectsData from "../data/projects.json";
 import ProjectCard from "../components/ProjectCard";
 import { useLang } from "../i18n/LangContext";
 import { docUrl } from "../lib/docs";
+/* Imported, not served from public/: the build fingerprints the file name,
+   so a new photo is never hidden behind GitHub Pages' 4-hour cache. */
+import photo from "../assets/photo.jpg";
 
 const facts = [
   {
@@ -114,7 +117,7 @@ const Home = () => {
         <aside className="lg:pt-2">
           <div className="mb-6 h-40 w-40 overflow-hidden rounded-sm border border-rule">
             <img
-              src="/photo.jpg"
+              src={photo}
               alt="Ahmetcan Aksu"
               className="h-full w-full object-cover"
             />
