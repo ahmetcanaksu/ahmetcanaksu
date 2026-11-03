@@ -144,17 +144,10 @@ const chapters = [
       tr: "Ölçekli ürünler çıkarırken sistemlerde daha da derine indim.",
     },
     prose: {
-      en: "While maintaining Ellie, I went professional. At Qpien I built real-time e-commerce infrastructure handling 100,000+ messages per hour over WebSockets and RabbitMQ. At Fonmap I engineer the backend for Turkey's leading digital investment platform — TEFAS integration and regulatory-compliant fund processes in TypeScript and C#. On the side I kept exploring the low level: Menemen (streaming HTTP in Rust), SafeEn (a local database), and Rusty6502 (a MOS 6502 CPU emulator).",
-      tr: "Ellie'yi sürdürürken profesyonel olarak çalışmaya başladım. Qpien'de WebSocket ve RabbitMQ üzerinden saatte 100.000+ mesaj işleyen gerçek zamanlı e-ticaret altyapısı geliştirdim. Fonmap'te Türkiye'nin önde gelen dijital yatırım platformunun backend'ini geliştiriyorum — TypeScript ve C# ile TEFAS entegrasyonu ve mevzuata uyumlu fon süreçleri. Bir yandan da düşük seviyeyi keşfetmeye devam ettim: Menemen (Rust ile streaming HTTP), SafeEn (yerel bir veritabanı) ve Rusty6502 (MOS 6502 CPU emülatörü).",
+      en: "While maintaining Ellie, I went professional. At Qpien I built real-time e-commerce infrastructure handling 100,000+ messages per hour over WebSockets and RabbitMQ. On the side I kept exploring the low level: Menemen (streaming HTTP in Rust), SafeEn (a local database), and Rusty6502 (a MOS 6502 CPU emulator).",
+      tr: "Ellie'yi sürdürürken profesyonel olarak çalışmaya başladım. Qpien'de WebSocket ve RabbitMQ üzerinden saatte 100.000+ mesaj işleyen gerçek zamanlı e-ticaret altyapısı geliştirdim. Bir yandan da düşük seviyeyi keşfetmeye devam ettim: Menemen (Rust ile streaming HTTP), SafeEn (yerel bir veritabanı) ve Rusty6502 (MOS 6502 CPU emülatörü).",
     },
     milestones: [
-      {
-        name: "Fonmap",
-        note: {
-          en: "backend · fintech, TEFAS, TypeScript / C#",
-          tr: "backend · fintech, TEFAS, TypeScript / C#",
-        },
-      },
       {
         name: "Qpien",
         note: {
@@ -174,15 +167,86 @@ const chapters = [
     skills: [
       { en: "Backend at scale", tr: "Ölçekli backend" },
       { en: "Real-time", tr: "Gerçek zamanlı sistemler" },
-      "Fintech",
+      "WebSockets",
+      "RabbitMQ",
       "TypeScript",
-      "C#",
       "Rust",
     ],
   },
   {
-    id: "hardware",
+    id: "finance",
     rail: "'24",
+    kicker: {
+      en: "2024 – Now · Finance",
+      tr: "2024 – Bugün · Finans",
+    },
+    year: "2024",
+    headline: {
+      en: "Fund infrastructure, where every step has to finish.",
+      tr: "Her adımın eksiksiz tamamlanması gereken fon altyapısı.",
+    },
+    prose: {
+      en: "In 2024 I joined Fonmap, an SPK-licensed fund investment platform with 100,000+ downloads, and took its backend and back-office API from pre-production to go-live. I owned the TEFAS fund-order integration end to end, and built the custodian-bank integration, KYC and AML onboarding, and the regulated fund flows around them. Finance taught me a different kind of engineering: every order talks to outside systems, can fail halfway, and still has to end in a known state. So the work runs as locked, retryable background jobs, and every step leaves a record.",
+      tr: "2024'te SPK lisanslı, 100.000+ indirmeye ulaşan bir fon yatırım platformu olan Fonmap'e katıldım ve backend'i ile back-office API'sini ön üretimden canlıya taşıdım. TEFAS fon emir entegrasyonunu uçtan uca geliştirdim; saklamacı banka entegrasyonunu, KYC ve AML süreçlerini ve bunların etrafındaki mevzuata tabi fon akışlarını kurdum. Finans bana farklı bir mühendislik öğretti: her emir dış sistemlerle konuşuyor, yarıda kalabiliyor ve yine de bilinen bir durumda bitmek zorunda. Bu yüzden işler kilitli ve yeniden denenebilir arka plan görevleri olarak çalışıyor, her adım da kayıt bırakıyor.",
+    },
+    milestones: [
+      {
+        name: { en: "TEFAS integration", tr: "TEFAS entegrasyonu" },
+        note: {
+          en: "order submission, status tracking, cancellation and blockage release, end to end in .NET",
+          tr: "emir iletimi, durum takibi, iptal ve blokaj çözme; .NET ile uçtan uca",
+        },
+      },
+      {
+        name: { en: "Custodian bank", tr: "Saklamacı banka" },
+        note: {
+          en: "account opening, e-signing, blockage requests, money and portfolio transfers",
+          tr: "hesap açılışı, e-imza, blokaj talepleri, para ve portföy transferleri",
+        },
+      },
+      {
+        name: "KYC & AML",
+        note: {
+          en: "identity and address documents, sanctions screening, phone and device verification",
+          tr: "kimlik ve adres belgeleri, yaptırım taraması, telefon ve cihaz doğrulama",
+        },
+      },
+      {
+        name: { en: "Chain transactions", tr: "Zincir işlemler" },
+        note: {
+          en: "multi-step fund swaps that rebalance a portfolio in one request",
+          tr: "portföyü tek talepte yeniden dengeleyen çok adımlı fon değişimleri",
+        },
+      },
+      {
+        name: { en: "VCIF & REIF funds", tr: "GSYF & GYF" },
+        note: {
+          en: "fund issuance and pricing, qualified-investor applications and approvals",
+          tr: "fon ihracı ve fiyatlaması, nitelikli yatırımcı başvuruları ve onayları",
+        },
+      },
+      {
+        name: { en: "AI in the product", tr: "Üründe yapay zeka" },
+        note: {
+          en: "AI portfolio recommendations and fund risk evaluations",
+          tr: "yapay zeka destekli portföy önerileri ve fon risk değerlendirmeleri",
+        },
+      },
+    ],
+    skills: [
+      "C# / .NET",
+      "EF Core",
+      "Hangfire",
+      "MSSQL",
+      "Redis",
+      "TEFAS",
+      "KYC / AML",
+      { en: "SPK regulation", tr: "SPK mevzuatı" },
+    ],
+  },
+  {
+    id: "hardware",
+    rail: "'25",
     kicker: {
       en: "2024 – 2026 · The frontier",
       tr: "2024 – 2026 · Yeni sınırlar",
