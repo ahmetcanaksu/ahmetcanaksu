@@ -1,31 +1,17 @@
-import { FiArrowUpRight } from "react-icons/fi";
-import { ProjIcon, LangDot } from "./ProjectMeta";
+import { Link } from "react-router-dom";
+import { FiArrowRight, FiArrowUpRight } from "react-icons/fi";
+import { ProjIcon, LangDot, projectLinks } from "./ProjectMeta";
+import { useLang } from "../i18n/LangContext";
 
+/* One row in a project list. The name and the Details button open the
+   project's own page; the links beside it go straight to the product, source
+   or package. */
 const ProjectCard = ({ project, num }) => {
-  const {
-    name,
-    description,
-    techTags = [],
-    repoUrl,
-    liveUrl,
-    links = [],
-    stars,
-    status,
-    year,
-    language,
-    icon,
-  } = project;
-
-  const primary = liveUrl || repoUrl;
-  const isInternal = primary && primary.startsWith("#");
-  const extLinks = [
-    ...links,
-    repoUrl && { label: "Code", url: repoUrl },
-    liveUrl && {
-      label: liveUrl.includes("docs") ? "Docs" : "Live",
-      url: liveUrl,
-    },
-  ].filter(Boolean);
+  const { t } = useLang();
+  const { slug, name, description, techTags = [], stars, status, year, language, icon } = project;
+  const links = projectLinks(project);
+  // The language already has its own dot; don't list it again as a tag.
+  const tags = techTags.filter((tag) => tag !== language);
 
   return (
     <article className="row">
@@ -33,22 +19,9 @@ const ProjectCard = ({ project, num }) => {
       <div className="min-w-0 flex-1">
         <div className="flex items-baseline justify-between gap-4">
           <div className="flex min-w-0 items-center gap-2.5">
-            <ProjIcon
-              name={icon}
-              className="h-4 w-4 shrink-0 text-ink-3"
-            />
+            <ProjIcon name={icon} className="h-4 w-4 shrink-0 text-ink-3" />
             <h3 className="row-title truncate">
-              {primary ? (
-                <a
-                  href={primary}
-                  target={isInternal ? undefined : "_blank"}
-                  rel={isInternal ? undefined : "noopener noreferrer"}
-                >
-                  {name}
-                </a>
-              ) : (
-                name
-              )}
+              <Link to={`/projects/${slug}`}>{name}</Link>
             </h3>
           </div>
           <span className="meta shrink-0 tabular-nums">
@@ -59,40 +32,43 @@ const ProjectCard = ({ project, num }) => {
           </span>
         </div>
 
-        <p className="mt-1.5 max-w-2xl text-ink-2">{description}</p>
+        <p className="mt-1.5 max-w-2xl text-ink-2">{t(description)}</p>
 
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
-          <div className="tags">
-            <LangDot language={language} />
-            {techTags.map((t) => (
-              <span key={t}>
-                <span className="mr-2 text-rule">·</span>
-                {t}
-              </span>
-            ))}
-            {stars >= 2 && (
-              <span className="text-ink-3">
-                <span className="mr-2 text-rule">·</span>★ {stars}
-              </span>
-            )}
-          </div>
-
-          {extLinks.length > 0 && (
-            <div className="flex flex-wrap gap-4">
-              {extLinks.map((l) => (
-                <a
-                  key={l.url}
-                  href={l.url}
-                  target={l.url.startsWith("#") ? undefined : "_blank"}
-                  rel={l.url.startsWith("#") ? undefined : "noopener noreferrer"}
-                  className="link-arrow text-sm"
-                >
-                  {l.label}
-                  <FiArrowUpRight className="h-3.5 w-3.5" />
-                </a>
-              ))}
-            </div>
+        <div className="tags mt-3">
+          <LangDot language={language} />
+          {tags.map((tag, i) => (
+            <span key={i}>
+              <span className="mr-2 text-rule">·</span>
+              {t(tag)}
+            </span>
+          ))}
+          {stars >= 2 && (
+            <span className="text-ink-3">
+              <span className="mr-2 text-rule">·</span>★ {stars}
+            </span>
           )}
+        </div>
+
+        {/* Actions on their own row, always starting at the left: sharing a
+            row with the tags made them jump between the left and right edges
+            depending on how long the tag line was. */}
+        <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
+          <Link to={`/projects/${slug}`} className="btn-line btn-sm">
+            {t({ en: "Details", tr: "Detaylar" })}
+            <FiArrowRight className="h-3.5 w-3.5" />
+          </Link>
+          {links.map((l) => (
+            <a
+              key={l.url}
+              href={l.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-arrow text-sm"
+            >
+              {l.kind === "repo" ? t({ en: "Code", tr: "Kod" }) : t(l.label)}
+              <FiArrowUpRight className="h-3.5 w-3.5" />
+            </a>
+          ))}
         </div>
       </div>
     </article>

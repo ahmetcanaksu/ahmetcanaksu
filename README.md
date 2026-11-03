@@ -1,15 +1,15 @@
 # Ahmetcan Aksu
 
-**Software Developer — Backend, Fintech & AI** · Istanbul, Türkiye
+**Full Stack Developer — Fintech & AI** · Istanbul, Türkiye
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-ahmetcanaksu.com-3B82F6?style=for-the-badge&logo=google-chrome&logoColor=white)](https://ahmetcanaksu.com)
 [![CV](https://img.shields.io/badge/CV-PDF-B4421D?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://ahmetcanaksu.com/Ahmetcan%20Aksu%20CV%20EN.pdf)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-ahmetcanaksu-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ahmetcanaksu/)
 [![Email](https://img.shields.io/badge/Email-hello@ahmetcanaksu.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:hello@ahmetcanaksu.com)
 
-I build the systems that move money, and software that works with LLMs.
+Backend developer in C#/.NET, Node.js/TypeScript and Rust, building applications on LLMs on the side.
 
-At **Fonmap**, an SPK-licensed fund investment platform with 100,000+ downloads, I've owned the
+At an SPK-licensed fund investment platform with 100,000+ downloads, I've owned the
 **TEFAS order integration** end to end, along with the custodian-bank integration, KYC/AML checks
 and regulated fund flows, in C#/.NET and Node.js/TypeScript. On my own time I build tool-calling
 **LLM agents**, and I designed **Ellie**, a type-safe programming language and bytecode VM in Rust.
@@ -50,6 +50,10 @@ Every project has an introduction page at **[ahmetcanaksu.com/projects](https://
 ![Elasticsearch](https://img.shields.io/badge/Elasticsearch-005571?style=flat-square&logo=elasticsearch&logoColor=white)
 ![RabbitMQ](https://img.shields.io/badge/RabbitMQ-FF6600?style=flat-square&logo=rabbitmq&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=nginx&logoColor=white)
+![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=flat-square&logo=cloudflare&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white)
 
 ## Writing

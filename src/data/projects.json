@@ -1,228 +1,2433 @@
 [
-    {
-        "id": 1,
-        "name": "Ellie Language",
-        "description": "A type-safe programming language that runs on embedded and sandboxed environments — with a portable engine that shrinks to as little as 49KB.",
-        "longDescription": "Ellie is a compiled, type-safe language I designed and built from scratch — parser, compiler, bytecode virtual machine, and CLI tooling. It targets resource-constrained and sandboxed environments (embedded, IoT, cloud functions) with compile-time safety, a low memory footprint, and per-device error recovery. The ecosystem includes an online playground, a package manager (Lia), and full documentation.",
-        "techTags": [
-            "Rust",
-            "Compiler Design",
-            "Virtual Machine",
-            "Embedded",
-            "Type System"
-        ],
-        "repoUrl": "https://github.com/behemehal/Ellie-Language",
-        "liveUrl": "https://ellie-lang.org",
-        "links": [
-            {
-                "label": "docs",
-                "url": "https://docs.ellie-lang.org"
-            },
-            {
-                "label": "playground",
-                "url": "https://playground.ellie-lang.org/"
-            }
-        ],
-        "stars": 48,
-        "featured": true,
-        "status": "active",
-        "year": "2020",
-        "language": "Rust",
-        "icon": "terminal"
+  {
+    "id": 1,
+    "slug": "ellie-language",
+    "name": "Ellie Language",
+    "description": {
+      "en": "A type-safe programming language that runs on embedded and sandboxed environments — with a portable engine that shrinks to as little as 49KB.",
+      "tr": "Gömülü ve sandbox ortamlarda çalışan, tip güvenli bir programlama dili — taşınabilir motoru 49KB'a kadar küçülebiliyor."
     },
-    {
-        "id": 2,
-        "name": "UtilStation",
-        "description": "An all-in-one collection of 28+ fast, well-designed developer utilities — formatters, converters, generators, and inspectors, with no installs or sign-up.",
-        "longDescription": "UtilStation brings the tools developers reach for daily into one place: JSON/JS/HTML/CSS formatters, Base64 / JWT / URL inspectors, UUID / ULID / QR / cron / hash generators, JSON↔TypeScript/YAML and CSV↔JSON converters, a regex tester, a cURL converter, and more — fast, reliable, and beautifully designed.",
-        "techTags": [
-            "React",
-            "TypeScript",
-            "Web App",
-            "Developer Tools"
-        ],
-        "repoUrl": null,
-        "liveUrl": "https://utilstation.com",
-        "featured": true,
-        "status": "active",
-        "year": "2023",
-        "language": "TypeScript",
-        "icon": "tool"
+    "longDescription": {
+      "en": "Ellie is a compiled, type-safe language I designed and built from scratch — parser, compiler, bytecode virtual machine, and CLI tooling. It targets resource-constrained and sandboxed environments (embedded, IoT, cloud functions) with compile-time safety, a low memory footprint, and per-device error recovery. The ecosystem includes an online playground, a package manager (Lia), and full documentation.",
+      "tr": "Ellie, parser'ı, derleyicisi, bytecode sanal makinesi ve CLI araçlarıyla sıfırdan tasarlayıp geliştirdiğim, derlenen ve tip güvenli bir dil. Kaynakları kısıtlı ve sandbox ortamları (gömülü sistemler, IoT, bulut fonksiyonları) hedefliyor; derleme zamanı güvenliği, düşük bellek kullanımı ve cihaz bazında hata kurtarma sunuyor. Ekosisteminde online bir playground, bir paket yöneticisi (Lia) ve kapsamlı dokümantasyon bulunuyor."
     },
-    {
-        "id": 9,
-        "name": "Rust-NMEA",
-        "description": "A Rust parser for the NMEA 0183 protocol used in GPS and marine navigation, with u-blox support.",
-        "longDescription": "A robust Rust library for parsing NMEA 0183 sentences — the protocol behind GPS receivers and marine navigation hardware. Built for real-time use with careful error handling and support for common sentence types and u-blox devices.",
-        "techTags": [
-            "Rust",
-            "GPS",
-            "NMEA",
-            "Parser",
-            "crates.io"
-        ],
-        "repoUrl": "https://github.com/ahmetcanaksu/Rust-NMEA",
-        "liveUrl": "https://crates.io/crates/rust-nmea",
-        "stars": 1,
-        "featured": true,
-        "status": "active",
-        "year": "2020",
-        "language": "Rust",
-        "icon": "navigation"
+    "techTags": [
+      "Rust",
+      {
+        "en": "Compiler Design",
+        "tr": "Derleyici Tasarımı"
+      },
+      {
+        "en": "Virtual Machine",
+        "tr": "Sanal Makine"
+      },
+      {
+        "en": "Embedded",
+        "tr": "Gömülü"
+      },
+      {
+        "en": "Type System",
+        "tr": "Tip Sistemi"
+      }
+    ],
+    "repoUrl": "https://github.com/behemehal/Ellie-Language",
+    "liveUrl": "https://ellie-lang.org",
+    "links": [
+      {
+        "label": {
+          "en": "Docs",
+          "tr": "Dokümantasyon"
+        },
+        "url": "https://docs.ellie-lang.org"
+      },
+      {
+        "label": {
+          "en": "Playground",
+          "tr": "Playground"
+        },
+        "url": "https://playground.ellie-lang.org/"
+      },
+      {
+        "label": {
+          "en": "crates.io",
+          "tr": "crates.io"
+        },
+        "url": "https://crates.io/crates/ellie_engine"
+      },
+      {
+        "label": {
+          "en": "VS Code extension",
+          "tr": "VS Code eklentisi"
+        },
+        "url": "https://marketplace.visualstudio.com/items?itemName=behemehal.ellie-lang"
+      }
+    ],
+    "stars": 48,
+    "featured": true,
+    "status": "active",
+    "year": "2020",
+    "language": "Rust",
+    "icon": "terminal",
+    "code": {
+      "file": "chunker.ei",
+      "code": "// A generic, type-safe array chunker\nclass Chunker<T> {\n    co(chunkCount, items);\n    pri v chunkCount : int;\n    pri v items : [T, *];\n\n    fn chunks() : [[T, *], *] {\n        v chunks : [[T, *], *];\n        v temp : [T, self.chunkCount];\n        for i : self.items.len {\n            if temp.len == self.chunkCount {\n                chunks.push(temp);\n                temp.clean();\n            } else {\n                temp.push(this.items[i]!);\n            }\n        }\n        ret chunks;\n    }\n}"
     },
-    {
-        "id": 7,
-        "name": "Menemen",
-        "description": "A streaming HTTP/HTTPS request library for Rust, built for low-overhead network I/O.",
-        "longDescription": "A Rust library for efficient streaming HTTP/HTTPS requests, focused on performance and a small memory footprint. Designed for applications that stream large responses without buffering everything in memory — and used as the networking layer in several of my other projects.",
-        "techTags": [
-            "Rust",
-            "HTTP",
-            "Streaming",
-            "crates.io"
-        ],
-        "repoUrl": "https://github.com/behemehal/Menemen",
-        "liveUrl": "https://crates.io/crates/menemen",
-        "featured": true,
-        "status": "development",
-        "year": "2022",
-        "language": "Rust",
-        "icon": "activity"
+    "about": {
+      "en": [
+        "Ellie is a statically typed, compiled language I designed and built from scratch for places where a general-purpose runtime doesn't fit: microcontrollers, IoT devices, and sandboxes like WebAssembly and cloud functions.",
+        "Source code goes through a tokenizer and a parser, is compiled to Ellie's own bytecode, and runs on a virtual machine written for it. The compiler rejects type errors before anything ships, and the errors it reports carry a code that links to an online error index.",
+        "The engine is modular. The tokenizer, parser, bytecode compiler, VM and formatter are separate crates behind feature flags, so a build carries only what its target needs — the smallest engine comes in at about 49KB.",
+        "Around the language sits a full toolchain: the elliec compiler, the ellievm runtime, the elliefmt formatter, the Lia package manager, a browser playground, documentation, and a VS Code extension."
+      ],
+      "tr": [
+        "Ellie'yi, genel amaçlı bir çalışma zamanının sığmadığı yerler için sıfırdan tasarlayıp geliştirdim: mikrodenetleyiciler, IoT cihazları ve WebAssembly ya da bulut fonksiyonları gibi sandbox ortamları. Statik tipli ve derlenen bir dil.",
+        "Kaynak kod önce tokenizer'dan ve parser'dan geçiyor, Ellie'nin kendi bytecode'una derleniyor ve onun için yazılmış bir sanal makinede çalışıyor. Derleyici tip hatalarını daha hiçbir şey yayına çıkmadan yakalıyor; raporladığı her hatanın, online hata dizinine bağlanan bir kodu var.",
+        "Motor modüler. Tokenizer, parser, bytecode derleyicisi, sanal makine ve formatlayıcı, feature flag'lerin arkasında ayrı crate'ler olarak duruyor; böylece her derleme yalnızca hedefinin ihtiyaç duyduğunu taşıyor. En küçük motor yaklaşık 49KB.",
+        "Dilin etrafında eksiksiz bir araç zinciri var: elliec derleyicisi, ellievm çalışma ortamı, elliefmt formatlayıcısı, Lia paket yöneticisi, tarayıcıda çalışan playground, dokümantasyon ve bir VS Code eklentisi."
+      ]
     },
-    {
-        "id": 4,
-        "name": "Wole (CLI)",
-        "description": "A Wake-on-LAN magic-packet generator, sender, and listener CLI written in Rust.",
-        "longDescription": "A fast command-line tool written in Rust for Wake-on-LAN. Generates and sends magic packets to remotely wake devices on your network, and can also listen for incoming magic packets — a small, dependency-light systems utility.",
-        "techTags": [
-            "Rust",
-            "CLI",
-            "Networking",
-            "Wake-on-LAN"
-        ],
-        "repoUrl": "https://github.com/ahmetcanaksu/Wole",
-        "liveUrl": null,
-        "stars": 4,
-        "featured": false,
-        "status": "complete",
-        "year": "2020",
-        "language": "Rust",
-        "icon": "power"
+    "sections": [
+      {
+        "heading": {
+          "en": "The language",
+          "tr": "Dil"
+        },
+        "items": {
+          "en": [
+            "Static types with generics, checked at compile time",
+            "Classes with getters and setters",
+            "Imports and file keys for organising code",
+            "An FFI for calling native code"
+          ],
+          "tr": [
+            "Derleme zamanında denetlenen, generic destekli statik tipler",
+            "Getter ve setter destekli sınıflar",
+            "Kodu düzenlemek için import'lar ve file key'ler",
+            "Native kod çağırmak için FFI"
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "Under the hood",
+          "tr": "Perde arkası"
+        },
+        "items": {
+          "en": [
+            "Tokenizer → parser → bytecode → virtual machine pipeline",
+            "Modular engine: compiler, VM and formatter are opt-in features",
+            "no_std support for embedded targets",
+            "Runtime errors link to an online error index"
+          ],
+          "tr": [
+            "Tokenizer → parser → bytecode → sanal makine hattı",
+            "Modüler motor: derleyici, sanal makine ve formatlayıcı isteğe bağlı özellikler",
+            "Gömülü hedefler için no_std desteği",
+            "Çalışma zamanı hataları online hata dizinine bağlanıyor"
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "Toolchain",
+          "tr": "Araç zinciri"
+        },
+        "items": {
+          "en": [
+            "elliec — compiles Ellie source to bytecode",
+            "ellievm — runs compiled bytecode",
+            "elliefmt — formats Ellie code",
+            "Lia — creates, builds, tests and publishes packages",
+            "Browser playground and a VS Code extension"
+          ],
+          "tr": [
+            "elliec — Ellie kaynak kodunu bytecode'a derliyor",
+            "ellievm — derlenmiş bytecode'u çalıştırıyor",
+            "elliefmt — Ellie kodunu formatlıyor",
+            "Lia — paket oluşturuyor, derliyor, test ediyor ve yayınlıyor",
+            "Tarayıcıda çalışan playground ve VS Code eklentisi"
+          ]
+        }
+      }
+    ],
+    "stats": [
+      {
+        "value": "49KB",
+        "label": {
+          "en": "smallest engine build",
+          "tr": "en küçük motor boyutu"
+        }
+      },
+      {
+        "value": "8.6K+",
+        "label": {
+          "en": "crates.io downloads",
+          "tr": "crates.io indirmesi"
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "License",
+          "tr": "Lisans"
+        },
+        "value": {
+          "en": "GPL-2.0 (libraries: Apache-2.0 / MIT)",
+          "tr": "GPL-2.0 (kütüphaneler: Apache-2.0 / MIT)"
+        }
+      },
+      {
+        "label": {
+          "en": "Package",
+          "tr": "Paket"
+        },
+        "value": "ellie_engine (crates.io)"
+      },
+      {
+        "label": {
+          "en": "Latest version",
+          "tr": "Son sürüm"
+        },
+        "value": "1.5.20-alpha"
+      },
+      {
+        "label": {
+          "en": "Targets",
+          "tr": "Hedefler"
+        },
+        "value": {
+          "en": "Embedded (no_std), WebAssembly, desktop CLI",
+          "tr": "Gömülü (no_std), WebAssembly, masaüstü CLI"
+        }
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "/img/projects/ellie-language/site.webp",
+        "caption": {
+          "en": "ellie-lang.org — the language's home page",
+          "tr": "ellie-lang.org — dilin ana sayfası"
+        }
+      },
+      {
+        "src": "/img/projects/ellie-language/playground.webp",
+        "caption": {
+          "en": "The playground compiling and running Hello World in the browser",
+          "tr": "Playground, Hello World'ü tarayıcıda derleyip çalıştırırken"
+        }
+      },
+      {
+        "src": "/img/projects/ellie-language/docs.webp",
+        "caption": {
+          "en": "Documentation: the toolchain, Lia, syntax and bytecode",
+          "tr": "Dokümantasyon: araç zinciri, Lia, sözdizimi ve bytecode"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "utilstation",
+    "name": "UtilStation",
+    "description": {
+      "en": "An all-in-one collection of 85+ fast, well-designed developer utilities — formatters, converters, generators, and inspectors, with no installs or sign-up.",
+      "tr": "Formatlayıcılar, dönüştürücüler, üreteçler ve inceleyiciler — kurulum ya da üyelik gerektirmeyen, hızlı ve özenle tasarlanmış 85+ geliştirici aracından oluşan hepsi bir arada bir koleksiyon."
     },
-    {
-        "id": 3,
-        "name": "WoleApp",
-        "description": "A Wake-on-LAN magic-packet generator & sender for Android, built with Flutter.",
-        "longDescription": "An Android app built with Flutter that sends Wake-on-LAN magic packets to remotely wake devices on your network. Clean interface for managing multiple saved devices and network configurations.",
-        "techTags": [
-            "Dart",
-            "Flutter",
-            "Android",
-            "Networking"
-        ],
-        "repoUrl": "https://github.com/behemehal/WoleApp",
-        "liveUrl": null,
-        "featured": false,
-        "status": "complete",
-        "year": "2022",
-        "language": "Dart",
-        "icon": "smartphone"
+    "longDescription": {
+      "en": "UtilStation brings the tools developers reach for daily into one place: JSON/JS/HTML/CSS formatters, Base64 / JWT / URL inspectors, UUID / ULID / QR / cron / hash generators, JSON↔TypeScript/YAML and CSV↔JSON converters, a regex tester, a cURL converter, and more — fast, reliable, and beautifully designed.",
+      "tr": "UtilStation, geliştiricilerin her gün başvurduğu araçları tek bir yerde topluyor: JSON/JS/HTML/CSS formatlayıcıları, Base64 / JWT / URL inceleyicileri, UUID / ULID / QR / cron / hash üreteçleri, JSON↔TypeScript/YAML ve CSV↔JSON dönüştürücüleri, bir regex test aracı, bir cURL dönüştürücüsü ve daha fazlası — hızlı, güvenilir ve özenle tasarlanmış."
     },
-    {
-        "id": 5,
-        "name": "event_listener",
-        "description": "A Node.js-style event listener library for Dart (also ported to Rust as rust_event_listener).",
-        "longDescription": "A Dart library that brings familiar Node.js-style event handling to Dart and Flutter apps, with a simple API for event-driven patterns. Published on pub.dev, and later ported to Rust as rust_event_listener.",
-        "techTags": [
-            "Dart",
-            "Library",
-            "Events",
-            "pub.dev"
-        ],
-        "repoUrl": "https://github.com/behemehal/event_listener",
-        "liveUrl": "https://pub.dev/packages/event_listener",
-        "stars": 2,
-        "featured": false,
-        "status": "complete",
-        "year": "2020",
-        "language": "Dart",
-        "icon": "radio"
+    "techTags": [
+      "React",
+      "TypeScript",
+      {
+        "en": "Web App",
+        "tr": "Web Uygulaması"
+      },
+      {
+        "en": "Developer Tools",
+        "tr": "Geliştirici Araçları"
+      }
+    ],
+    "repoUrl": null,
+    "liveUrl": "https://utilstation.com",
+    "links": [],
+    "featured": true,
+    "status": "active",
+    "year": "2023",
+    "language": "TypeScript",
+    "icon": "tool",
+    "highlights": {
+      "en": [
+        "JSON / JS / HTML / CSS formatters & minifiers",
+        "Base64 · JWT · URL encoders and inspectors",
+        "UUID · ULID · QR · cron · hash generators",
+        "JSON ↔ TypeScript / YAML, CSV ↔ JSON converters",
+        "Regex tester, cURL converter, and 85+ tools total"
+      ],
+      "tr": [
+        "JSON / JS / HTML / CSS formatlayıcıları ve küçültücüleri",
+        "Base64 · JWT · URL kodlayıcıları ve inceleyicileri",
+        "UUID · ULID · QR · cron · hash üreteçleri",
+        "JSON ↔ TypeScript / YAML, CSV ↔ JSON dönüştürücüleri",
+        "Regex test aracı, cURL dönüştürücüsü ve toplamda 85+ araç"
+      ]
     },
-    {
-        "id": 8,
-        "name": "SafeEn",
-        "description": "A local database with clean, strict data integrity and easy portability, written in Rust.",
-        "longDescription": "A Rust-based local database focused on data integrity and portability. Designed for applications that need reliable local storage with strong consistency guarantees and simple deployment across environments. Published on crates.io as safe_en.",
-        "techTags": [
-            "Rust",
-            "Database",
-            "Data Integrity",
-            "crates.io"
-        ],
-        "repoUrl": "https://github.com/behemehal/SafeEn",
-        "liveUrl": "https://crates.io/crates/safe_en",
-        "featured": false,
-        "status": "development",
-        "year": "2022",
-        "language": "Rust",
-        "icon": "database"
+    "about": {
+      "en": [
+        "UtilStation collects the small tools developers keep reaching for — formatters, encoders, converters, generators and inspectors — into one fast web app that opens in the browser with nothing to install.",
+        "It has grown past 85 tools in more than ten categories: developer tools, converters, references, text utilities, SEO and math among them. Tools like the regex tester run entirely in the browser, so the text you test never leaves your machine.",
+        "The newest part is Pulse, an uptime monitor for websites and APIs. It shows live status and response times, refreshes every five minutes, and can be embedded on any site as a status widget."
+      ],
+      "tr": [
+        "UtilStation, geliştiricilerin sürekli ihtiyaç duyduğu küçük araçları — formatlayıcılar, kodlayıcılar, dönüştürücüler, üreteçler ve inceleyiciler — kurulum gerektirmeden tarayıcıda açılan, hızlı tek bir web uygulamasında topluyor.",
+        "Araç sayısı on'dan fazla kategoride 85'i geçti: geliştirici araçları, dönüştürücüler, referanslar, metin araçları, SEO ve matematik bunlardan bazıları. Regex test aracı gibi araçlar tamamen tarayıcıda çalışıyor; test ettiğiniz metin bilgisayarınızdan hiç çıkmıyor.",
+        "En yeni parçası Pulse: web siteleri ve API'ler için bir erişilebilirlik (uptime) izleyicisi. Canlı durumu ve yanıt sürelerini gösteriyor, beş dakikada bir güncelleniyor ve herhangi bir siteye durum widget'ı olarak gömülebiliyor."
+      ]
     },
-    {
-        "id": 6,
-        "name": "Bnots",
-        "description": "A note-taking app that combines simplicity with Markdown support, built with Flutter.",
-        "longDescription": "A cross-platform note-taking app built with Flutter, featuring Markdown support and a clean, distraction-free interface. Made for people who want a simple yet capable tool for organizing their thoughts.",
-        "techTags": [
-            "Dart",
-            "Flutter",
-            "Markdown",
-            "Cross-platform"
-        ],
-        "repoUrl": "https://github.com/behemehal/Bnots",
-        "liveUrl": null,
-        "featured": false,
-        "status": "complete",
-        "year": "2022",
-        "language": "Dart",
-        "icon": "edit"
+    "sections": [
+      {
+        "heading": {
+          "en": "What's inside",
+          "tr": "İçinde neler var"
+        },
+        "items": {
+          "en": [
+            "Code formatters and minifiers for JSON, JavaScript, HTML and CSS",
+            "File converters: JSON to TypeScript, Rust structs, YAML, CSV and JSON Schema",
+            "Unit converters: timestamps, time zones, number bases, data sizes",
+            "Inspectors and generators: JWT, Base64, URL, hashes, ULID, QR, cron, TOTP",
+            "References: ASCII tables, HTTP status codes and cheat sheets"
+          ],
+          "tr": [
+            "JSON, JavaScript, HTML ve CSS için formatlayıcılar ve küçültücüler",
+            "Dosya dönüştürücüleri: JSON'dan TypeScript'e, Rust struct'larına, YAML'a, CSV'ye ve JSON Schema'ya",
+            "Birim dönüştürücüleri: zaman damgaları, saat dilimleri, sayı tabanları, veri boyutları",
+            "İnceleyiciler ve üreteçler: JWT, Base64, URL, hash, ULID, QR, cron, TOTP",
+            "Referanslar: ASCII tabloları, HTTP durum kodları ve kopya kâğıtları"
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "Pulse",
+          "tr": "Pulse"
+        },
+        "items": {
+          "en": [
+            "Live up/down status, updated every five minutes",
+            "Response-time tracking to spot slowdowns early",
+            "Embeddable status widget with dark mode and graphs"
+          ],
+          "tr": [
+            "Beş dakikada bir güncellenen canlı çalışıyor/çöktü durumu",
+            "Yavaşlamaları erken fark etmek için yanıt süresi takibi",
+            "Karanlık mod ve grafik destekli, sitelere gömülebilen durum widget'ı"
+          ]
+        }
+      }
+    ],
+    "stats": [
+      {
+        "value": "85+",
+        "label": {
+          "en": "tools",
+          "tr": "araç"
+        }
+      },
+      {
+        "value": "10+",
+        "label": {
+          "en": "categories",
+          "tr": "kategori"
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "Platform",
+          "tr": "Platform"
+        },
+        "value": {
+          "en": "Web",
+          "tr": "Web"
+        }
+      },
+      {
+        "label": {
+          "en": "Publisher",
+          "tr": "Yayıncı"
+        },
+        "value": "Behemehal"
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "/img/projects/utilstation/home.webp",
+        "caption": {
+          "en": "The UtilStation home page",
+          "tr": "UtilStation ana sayfası"
+        }
+      },
+      {
+        "src": "/img/projects/utilstation/regex-tester.webp",
+        "caption": {
+          "en": "Regex tester — matching runs locally in the browser",
+          "tr": "Regex test aracı — eşleştirme tamamen tarayıcıda çalışıyor"
+        }
+      },
+      {
+        "src": "/img/projects/utilstation/jwt-inspector.webp",
+        "caption": {
+          "en": "JWT inspector — structure, expiry and signature checks",
+          "tr": "JWT inceleyici — yapı, süre ve imza kontrolleri"
+        }
+      }
+    ],
+    "developer": "Behemehal"
+  },
+  {
+    "id": 12,
+    "slug": "ai-sprite-studio",
+    "name": "AI Sprite Studio",
+    "description": {
+      "en": "A local-first pixel-art editor and animator where an LLM agent draws alongside you — through the same undoable tools you use.",
+      "tr": "Bir yapay zeka modelinin sizinle aynı geri alınabilir araçları kullanarak çizim yaptığı, yerelde çalışan bir piksel sanat editörü ve animatörü."
     },
-    {
-        "id": 10,
-        "name": "Device-Database",
-        "description": "A JavaScript library that detects and identifies development boards and IoT devices (Raspberry Pi, Orange Pi, and more).",
-        "longDescription": "A JavaScript library that detects and identifies development boards, single-board computers, and IoT hardware. Useful for tools and applications that need to adapt to whatever board they're running on. Published on npm as device-database.",
-        "techTags": [
-            "JavaScript",
-            "IoT",
-            "Hardware Detection",
-            "npm"
-        ],
-        "repoUrl": "https://github.com/ahmetcanaksu/Device-Database",
-        "liveUrl": "https://www.npmjs.com/package/device-database",
-        "featured": false,
-        "status": "complete",
-        "year": "2019",
-        "language": "JavaScript",
-        "icon": "cpu"
+    "longDescription": {
+      "en": "A sprite editor, animator and asset library built around a tool-calling LLM agent. The model gets a compact, palette-indexed view of the canvas and paints through a small catalog of drawing tools; every AI edit is a reversible command, exactly like a human stroke. Runs against local models in LM Studio or Google AI Studio's OpenAI-compatible endpoint.",
+      "tr": "Araç kullanabilen (tool calling) bir yapay zeka modeli etrafında kurduğum sprite editörü, animatörü ve varlık kütüphanesi. Model, tuvalin palet indeksli kompakt bir görünümünü alıyor ve küçük bir çizim aracı kataloğu üzerinden boyuyor; yapay zekanın her düzenlemesi, tıpkı bir insan fırça darbesi gibi geri alınabilir bir komut. LM Studio'daki yerel modellerle ya da Google AI Studio'nun OpenAI uyumlu uç noktasıyla çalışıyor."
     },
-    {
-        "id": 11,
-        "name": "rpifan",
-        "description": "An automatic CPU-temperature fan controller service for Raspberry Pi.",
-        "longDescription": "A Node.js service that automatically controls a cooling fan on a Raspberry Pi based on CPU temperature, with configurable thresholds and smooth speed control for quiet, efficient thermal management. One of my earliest open-source projects.",
-        "techTags": [
-            "JavaScript",
-            "Node.js",
-            "Raspberry Pi",
-            "IoT"
-        ],
-        "repoUrl": "https://github.com/ahmetcanaksu/rpifan",
-        "liveUrl": null,
-        "stars": 2,
-        "featured": false,
-        "status": "complete",
-        "year": "2018",
-        "language": "JavaScript",
-        "icon": "wind"
-    }
+    "techTags": [
+      "TypeScript",
+      "React",
+      "Node.js",
+      {
+        "en": "LLM Agents",
+        "tr": "LLM Uygulamaları"
+      },
+      "Tool Calling",
+      {
+        "en": "Local LLMs",
+        "tr": "Yerel LLM'ler"
+      },
+      {
+        "en": "Computer Vision",
+        "tr": "Görüntü İşleme"
+      }
+    ],
+    "repoUrl": null,
+    "liveUrl": null,
+    "links": [],
+    "featured": true,
+    "status": "development",
+    "year": "2026",
+    "language": "TypeScript",
+    "icon": "grid",
+    "about": {
+      "en": [
+        "Pixel art is the one image domain where a language model can reason about the actual pixels: a 32×32 sprite is 1,024 cells, small enough to hand the model as a grid. AI Sprite Studio is built on that idea. It's a full sprite editor — pencil, shapes, fill, layers, frames, onion skin, GIF and PNG export — with an AI panel where you ask for a sprite or an animation and watch the model draw it.",
+        "Underneath is a single Command layer: every change to a document, whether from a mouse stroke or an AI tool call, is a command with a forward and an inverse. That one design gives undo/redo, the AI tool API and the animated replay of AI edits at once — an AI result can be undone with ⌘Z like anything else.",
+        "The agent loop runs in the client against a stateless server that streams one model turn at a time over SSE. The tool catalog is designed for token economy on small local models: the model paints whole regions as rows of palette indices, gets mirror symmetry for free, and builds animation frames by copying a frame and editing only the pixels that change.",
+        "It runs against any OpenAI-compatible endpoint — LM Studio locally (verified live with qwen3-vl-8b) or Google AI Studio — with the API key held in server memory only."
+      ],
+      "tr": [
+        "Piksel sanatı, bir dil modelinin gerçekten piksellerin kendisi üzerinde akıl yürütebildiği tek görsel alan: 32×32'lik bir sprite 1.024 hücre, yani modele bir ızgara olarak verilebilecek kadar küçük. AI Sprite Studio bu fikir üzerine kurulu. Kalem, şekiller, doldurma, katmanlar, kareler, onion skin, GIF ve PNG dışa aktarımıyla tam bir sprite editörü; yanında da bir sprite ya da animasyon isteyip modelin onu çizişini izlediğiniz bir yapay zeka paneli var.",
+        "Altta tek bir Command katmanı var: bir dokümandaki her değişiklik, ister fare darbesinden ister yapay zekanın tool çağrısından gelsin, ileri ve geri yönü olan bir komut. Bu tek tasarım geri al/yinele'yi, yapay zeka araç API'sini ve yapay zeka düzenlemelerinin animasyonlu tekrarını aynı anda sağlıyor — yapay zekanın ürettiği bir sonuç da diğer her şey gibi ⌘Z ile geri alınabiliyor.",
+        "Ajan döngüsü istemcide çalışıyor; sunucu durumsuz ve her seferinde modelin tek bir turunu SSE ile akıtıyor. Araç kataloğunu küçük yerel modellerde token ekonomisi için tasarladım: model bütün bir bölgeyi palet indeksi satırları olarak boyuyor, ayna simetrisini bedavaya alıyor ve animasyon karelerini bir kareyi kopyalayıp yalnızca değişen pikselleri düzenleyerek oluşturuyor.",
+        "OpenAI uyumlu her uç noktayla çalışıyor — yerelde LM Studio (qwen3-vl-8b ile canlı doğrulandı) ya da Google AI Studio; API anahtarı yalnızca sunucu belleğinde tutuluyor."
+      ]
+    },
+    "sections": [
+      {
+        "heading": {
+          "en": "The agent",
+          "tr": "Ajan"
+        },
+        "items": {
+          "en": [
+            "Client-driven tool-calling loop over a stateless SSE endpoint, with a configurable step budget",
+            "16 drawing and inspection tools: region painting, pixels, lines, fill, palette, symmetry, frames, references",
+            "Checkpoints the model can save and roll back to instead of clearing and starting over",
+            "Fallback parser for models that print tool calls as fenced JSON instead of calling them",
+            "Token accounting from server usage, estimated when the model server doesn't report it",
+            "Reasoning-effort control, with rejected parameters dropped and retried automatically"
+          ],
+          "tr": [
+            "Durumsuz bir SSE uç noktası üzerinde istemci tarafından yürütülen, adım bütçesi ayarlanabilen tool calling döngüsü",
+            "16 çizim ve inceleme aracı: bölge boyama, piksel, çizgi, doldurma, palet, simetri, kareler, referanslar",
+            "Modelin her şeyi silip baştan başlamak yerine kaydedip geri dönebildiği kontrol noktaları",
+            "Araç çağrısı yapmak yerine çağrıyı JSON bloğu olarak yazan modeller için yedek ayrıştırıcı",
+            "Sunucunun bildirdiği kullanım üzerinden token hesabı; model sunucusu bildirmediğinde tahmini",
+            "Reasoning effort ayarı; modelin reddettiği parametreler otomatik olarak çıkarılıp yeniden deneniyor"
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "Vision",
+          "tr": "Görüntü"
+        },
+        "items": {
+          "en": [
+            "With a vision model, the agent screenshots the canvas, looks at its own result and reviews it",
+            "Reproduce an image: the model redraws a reference picture as a fresh sprite, shown side by side with the original",
+            "One-shot classification of a sprite into a name, category and tags for the asset library"
+          ],
+          "tr": [
+            "Görüntü destekli bir modelle ajan tuvalin ekran görüntüsünü alıp kendi sonucuna bakıyor ve değerlendiriyor",
+            "Görsel yeniden üretme: model bir referans resmi yeni bir sprite olarak yeniden çiziyor, orijinaliyle yan yana gösteriliyor",
+            "Varlık kütüphanesi için bir sprite'ı tek seferde isim, kategori ve etiketlere sınıflandırma"
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "The editor",
+          "tr": "Editör"
+        },
+        "items": {
+          "en": [
+            "Palette-indexed documents: tiny files, instant recolours, and a format a model can read",
+            "Mirror X/Y symmetry, layers, frames, onion skin and playback",
+            "Image import through median-cut colour quantization into an editable sprite",
+            "Animated GIF export with one shared palette across frames, so nothing flickers",
+            "Animated replay of AI edits with a virtual cursor that picks colours and paints"
+          ],
+          "tr": [
+            "Palet indeksli dokümanlar: küçük dosyalar, anında renk değişimi ve bir modelin okuyabildiği bir format",
+            "X/Y ayna simetrisi, katmanlar, kareler, onion skin ve oynatma",
+            "Median-cut renk nicemleme ile görselleri düzenlenebilir sprite olarak içe aktarma",
+            "Kareler arasında tek bir ortak palet kullanan, titremeyen animasyonlu GIF dışa aktarımı",
+            "Yapay zeka düzenlemelerinin, renk seçip boyayan sanal bir imleçle animasyonlu tekrarı"
+          ]
+        }
+      }
+    ],
+    "stats": [
+      {
+        "value": "16",
+        "label": {
+          "en": "AI tools",
+          "tr": "yapay zeka aracı"
+        }
+      },
+      {
+        "value": "7.4K",
+        "label": {
+          "en": "lines of TypeScript",
+          "tr": "satır TypeScript"
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "Platform",
+          "tr": "Platform"
+        },
+        "value": {
+          "en": "Web (React + Node.js)",
+          "tr": "Web (React + Node.js)"
+        }
+      },
+      {
+        "label": {
+          "en": "AI providers",
+          "tr": "Yapay zeka sağlayıcıları"
+        },
+        "value": {
+          "en": "LM Studio (local), Google AI Studio — any OpenAI-compatible endpoint",
+          "tr": "LM Studio (yerel), Google AI Studio — OpenAI uyumlu her uç nokta"
+        }
+      },
+      {
+        "label": {
+          "en": "Tested with",
+          "tr": "Test edilen model"
+        },
+        "value": "qwen3-vl-8b"
+      },
+      {
+        "label": {
+          "en": "Source",
+          "tr": "Kaynak"
+        },
+        "value": {
+          "en": "Private repository — demo on request",
+          "tr": "Özel depo — talep üzerine demo"
+        }
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "/img/projects/ai-sprite-studio/editor.webp",
+        "caption": {
+          "en": "The editor: palette, layers, frames and the AI panel",
+          "tr": "Editör: palet, katmanlar, kareler ve yapay zeka paneli"
+        }
+      },
+      {
+        "src": "/img/projects/ai-sprite-studio/ai-settings.webp",
+        "caption": {
+          "en": "AI settings: provider, step budget, vision and reasoning effort",
+          "tr": "Yapay zeka ayarları: sağlayıcı, adım bütçesi, görüntü desteği ve reasoning effort"
+        }
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "slug": "ai-studio",
+    "name": "AIStudio",
+    "description": {
+      "en": "An AI video studio: an LLM agent writes animated HTML frames, ElevenLabs narrates them, and headless Chrome renders the result to MP4.",
+      "tr": "Bir yapay zeka video stüdyosu: bir yapay zeka modeli animasyonlu HTML kareler yazıyor, ElevenLabs seslendiriyor, headless Chrome da sonucu MP4'e dönüştürüyor."
+    },
+    "longDescription": {
+      "en": "A desktop-style studio for making explainer videos with an AI agent. Each frame is a self-contained HTML page; the agent creates and edits frames through file and DOM tools, a script writer turns a script into scenes, ElevenLabs adds narration and subtitles, and an exporter renders everything deterministically in headless Chrome and encodes it with ffmpeg. Works with local models in LM Studio, Groq, the Claude API or the Claude CLI.",
+      "tr": "Bir yapay zeka ajanıyla anlatım videoları hazırlamak için masaüstü tarzı bir stüdyo. Her kare kendi başına çalışan bir HTML sayfası; ajan kareleri dosya ve DOM araçlarıyla oluşturup düzenliyor, senaryo yazıcısı bir metni sahnelere bölüyor, ElevenLabs seslendirme ve altyazı ekliyor, dışa aktarıcı da her şeyi headless Chrome'da deterministik olarak render edip ffmpeg ile kodluyor. LM Studio'daki yerel modellerle, Groq ile, Claude API ile ya da Claude CLI ile çalışıyor."
+    },
+    "techTags": [
+      "TypeScript",
+      "React",
+      "Node.js",
+      {
+        "en": "LLM Agents",
+        "tr": "LLM Uygulamaları"
+      },
+      "Tool Calling",
+      "Claude API",
+      {
+        "en": "Local LLMs",
+        "tr": "Yerel LLM'ler"
+      },
+      "ElevenLabs",
+      "ffmpeg",
+      "Puppeteer"
+    ],
+    "repoUrl": null,
+    "liveUrl": null,
+    "links": [],
+    "featured": true,
+    "status": "development",
+    "year": "2026",
+    "language": "TypeScript",
+    "icon": "film",
+    "about": {
+      "en": [
+        "AIStudio makes videos out of web pages. A project is a folder of frames, and every frame is a self-contained HTML file that plays its animation on load — CSS keyframes, Anime.js, Canvas, Three.js or Lottie. That makes a frame something a language model can write, read and fix, and something a browser can render exactly.",
+        "The AI side is an agent loop with 20+ tools: create and list frames, read a frame's HTML/CSS/JS or its element tree, rewrite a whole file or make surgical edits to a single CSS rule, JS function or element, pull assets from the library, and keep a project knowledge base. Creative tools run freely; running shell commands asks for permission first. Vision-capable models get a screenshot of the rendered frame so they can check their own work.",
+        "Around the agent: a script writer that breaks a script into scene beats and generates their frames in the background, an AI asset studio that generates animated HTML, Canvas or SVG assets into a tagged global library, and ElevenLabs narration whose character timings become line-by-line subtitles.",
+        "Export is deterministic. Every frame is rendered in headless Chrome under a virtual clock — timers, requestAnimationFrame, performance.now and CSS animations only advance when the exporter says so — captured frame by frame, piped into ffmpeg, and combined with the narration and burned-in or soft subtitles."
+      ],
+      "tr": [
+        "AIStudio web sayfalarından video üretiyor. Bir proje karelerden oluşan bir klasör; her kare de yüklendiğinde animasyonunu oynatan, kendi başına çalışan bir HTML dosyası — CSS keyframe'leri, Anime.js, Canvas, Three.js ya da Lottie. Bu sayede bir kare, bir dil modelinin yazıp okuyabileceği ve düzeltebileceği, bir tarayıcının da birebir render edebileceği bir şey oluyor.",
+        "Yapay zeka tarafı 20'den fazla araca sahip bir ajan döngüsü: kare oluşturma ve listeleme, bir karenin HTML/CSS/JS'ini ya da eleman ağacını okuma, bir dosyayı baştan yazma ya da tek bir CSS kuralında, JS fonksiyonunda veya elemanda nokta atışı düzenleme, kütüphaneden varlık çekme ve bir proje bilgi tabanı tutma. Yaratıcı araçlar serbestçe çalışıyor; shell komutu çalıştırmak ise önce izin istiyor. Görüntü destekli modeller, kendi işlerini kontrol edebilmeleri için render edilmiş karenin ekran görüntüsünü alıyor.",
+        "Ajanın etrafında: bir senaryoyu sahne parçalarına bölüp karelerini arka planda üreten bir senaryo yazıcısı, etiketli global bir kütüphaneye animasyonlu HTML, Canvas ya da SVG varlıklar üreten bir yapay zeka varlık stüdyosu ve karakter zamanlamaları satır satır altyazıya dönüşen ElevenLabs seslendirmesi.",
+        "Dışa aktarım deterministik. Her kare headless Chrome'da sanal bir saat altında render ediliyor — zamanlayıcılar, requestAnimationFrame, performance.now ve CSS animasyonları yalnızca dışa aktarıcı ilerlettiğinde ilerliyor — kare kare yakalanıp ffmpeg'e aktarılıyor ve seslendirmeyle, gömülü ya da ayrı altyazılarla birleştiriliyor."
+      ]
+    },
+    "sections": [
+      {
+        "heading": {
+          "en": "The agent",
+          "tr": "Ajan"
+        },
+        "items": {
+          "en": [
+            "Tool-calling loop over 20+ frame, file, DOM, asset and knowledge-base tools",
+            "Whole-file writes plus surgical edits to one CSS rule, JS function or element",
+            "Per-tool permission modes: creative tools auto-allowed, shell commands gated",
+            "Screenshots of the rendered frame fed back to vision-capable models"
+          ],
+          "tr": [
+            "Kare, dosya, DOM, varlık ve bilgi tabanı için 20'den fazla araçla çalışan tool calling döngüsü",
+            "Dosyayı baştan yazmanın yanında tek bir CSS kuralı, JS fonksiyonu ya da elemanda nokta atışı düzenleme",
+            "Araç bazında izin modları: yaratıcı araçlar otomatik, shell komutları onaya bağlı",
+            "Render edilen karenin ekran görüntüsü, görüntü destekli modellere geri besleniyor"
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "Models",
+          "tr": "Modeller"
+        },
+        "items": {
+          "en": [
+            "LM Studio through its OpenAI-compatible API, loading the selected model on demand",
+            "Claude through the Anthropic SDK, or through the local Claude CLI with no API key",
+            "Groq through its OpenAI-compatible endpoint for fast hosted inference",
+            "Defaults to a small local model (Gemma 4 E4B), so it runs without any API key"
+          ],
+          "tr": [
+            "OpenAI uyumlu API'si üzerinden LM Studio; seçilen model ihtiyaç anında yükleniyor",
+            "Anthropic SDK ile Claude ya da API anahtarı gerektirmeden yerel Claude CLI ile",
+            "Hızlı bulut çıkarımı için OpenAI uyumlu uç noktası üzerinden Groq",
+            "Varsayılan olarak küçük bir yerel model (Gemma 4 E4B) kullanıyor; hiçbir API anahtarı olmadan çalışıyor"
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "Video pipeline",
+          "tr": "Video hattı"
+        },
+        "items": {
+          "en": [
+            "Deterministic capture under a virtual clock, independent of machine speed",
+            "ffmpeg encoding with narration laid onto the timeline",
+            "ElevenLabs voiceover, with character timings grouped into subtitle cues (burned in or soft)",
+            "Script writer that generates scene frames in the background"
+          ],
+          "tr": [
+            "Makine hızından bağımsız, sanal saat altında deterministik kare yakalama",
+            "Seslendirmenin zaman çizelgesine yerleştirildiği ffmpeg kodlaması",
+            "Karakter zamanlamaları altyazı satırlarına gruplanan ElevenLabs seslendirmesi (gömülü ya da ayrı)",
+            "Sahne karelerini arka planda üreten senaryo yazıcısı"
+          ]
+        }
+      }
+    ],
+    "stats": [
+      {
+        "value": "20+",
+        "label": {
+          "en": "agent tools",
+          "tr": "ajan aracı"
+        }
+      },
+      {
+        "value": "4",
+        "label": {
+          "en": "AI providers",
+          "tr": "yapay zeka sağlayıcısı"
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "Platform",
+          "tr": "Platform"
+        },
+        "value": {
+          "en": "Web (React + Node.js)",
+          "tr": "Web (React + Node.js)"
+        }
+      },
+      {
+        "label": {
+          "en": "AI providers",
+          "tr": "Yapay zeka sağlayıcıları"
+        },
+        "value": {
+          "en": "LM Studio (local), Groq, Claude API, Claude CLI",
+          "tr": "LM Studio (yerel), Groq, Claude API, Claude CLI"
+        }
+      },
+      {
+        "label": {
+          "en": "Voice",
+          "tr": "Ses"
+        },
+        "value": "ElevenLabs"
+      },
+      {
+        "label": {
+          "en": "Rendering",
+          "tr": "Render"
+        },
+        "value": "Puppeteer + ffmpeg"
+      },
+      {
+        "label": {
+          "en": "Source",
+          "tr": "Kaynak"
+        },
+        "value": {
+          "en": "Private repository — demo on request",
+          "tr": "Özel depo — talep üzerine demo"
+        }
+      }
+    ],
+    "video": {
+      "src": "/video/ai-studio/demo.mp4",
+      "poster": "/video/ai-studio/poster.webp",
+      "captions": "/video/ai-studio/demo.en.vtt",
+      "caption": {
+        "en": "The first 50 seconds of an explainer AIStudio produced: every scene is an HTML frame the agent wrote, narrated with ElevenLabs and rendered to MP4.",
+        "tr": "AIStudio'nun ürettiği bir anlatım videosunun ilk 50 saniyesi: her sahne ajanın yazdığı bir HTML kare; ElevenLabs ile seslendirilip MP4'e render edildi."
+      }
+    },
+    "screenshots": [
+      {
+        "src": "/img/projects/ai-studio/editor.webp",
+        "caption": {
+          "en": "The editor: 26 frames on the left, the rendered frame, its code, and the agent diagnosing and fixing a runtime error in the chat",
+          "tr": "Editör: solda 26 kare, ortada render edilen kare ve kodu, sağda çalışma zamanı hatasını teşhis edip düzelten ajan"
+        }
+      },
+      {
+        "src": "/img/projects/ai-studio/script-writer.webp",
+        "caption": {
+          "en": "Script Writer: each scene beat becomes a frame, with its narration line, render status and duration",
+          "tr": "Senaryo yazıcısı: her sahne bir kareye dönüşüyor; seslendirme satırı, render durumu ve süresiyle"
+        }
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "slug": "protoboard",
+    "name": "ProtoBoard",
+    "description": {
+      "en": "An AI-assisted prototyping tool for hand-built electronics: turn a photo of a module into a to-scale part, check the wiring for electrical mistakes, and lay the build out on a perfboard in 2D and 3D.",
+      "tr": "Elle kurulan elektronik projeler için yapay zeka destekli bir prototipleme aracı: bir modülün fotoğrafını ölçekli bir parçaya dönüştür, kablolamayı elektriksel hatalara karşı kontrol et, devreyi pertinaks üzerinde 2D ve 3D olarak yerleştir."
+    },
+    "longDescription": {
+      "en": "Not a simulator but a build guide. A vision model turns a photo of a breakout board into a component with its pads, a net-aware wiring engine catches mistakes like 5V into a 3.3V pin, and a perfboard layout engine checks that the copper makes exactly the connections the project needs — with front, solder-side and 3D views and step-by-step assembly.",
+      "tr": "Bir simülatör değil, bir kurulum rehberi. Görüntü modeli bir modülün fotoğrafını pinleriyle birlikte bir bileşene dönüştürüyor, ağ farkındalıklı kablolama motoru 3.3V pine 5V vermek gibi hataları yakalıyor, pertinaks yerleşim motoru da bakır yolların projenin gerektirdiği bağlantıları tam olarak kurduğunu doğruluyor — ön yüz, lehim yüzü ve 3D görünümler ile adım adım montajla."
+    },
+    "techTags": [
+      "TypeScript",
+      "React",
+      "Three.js",
+      "Node.js",
+      {
+        "en": "Vision Models",
+        "tr": "Görüntü Modelleri"
+      },
+      {
+        "en": "Local LLMs",
+        "tr": "Yerel LLM'ler"
+      },
+      {
+        "en": "Electronics",
+        "tr": "Elektronik"
+      },
+      {
+        "en": "PCB Layout",
+        "tr": "Devre Yerleşimi"
+      }
+    ],
+    "repoUrl": null,
+    "liveUrl": null,
+    "links": [],
+    "featured": true,
+    "status": "development",
+    "year": "2026",
+    "language": "TypeScript",
+    "icon": "layers",
+    "about": {
+      "en": [
+        "ProtoBoard is the tool I wanted every time I soldered a project on perfboard: a library of the breakout modules I actually own, a wiring plan that tells me when I'm about to destroy something, and a layout I can follow at the bench.",
+        "New components come from a photo. Drop a picture of a board, and a vision model finds its pads and guesses their types; give the real dimensions, confirm the pad card it prefilled, and the to-scale part is generated. From there the chat edits it — \"add screw holes to the corners\", \"rename AD0 to ADDR\". Drop a PDF datasheet and the supply range and logic levels are extracted for the wiring checks. It runs against any OpenAI-compatible API, including local models in LM Studio or Ollama, with a dedicated prompt per task and the API key kept on the server.",
+        "Photos are straightened before they are used: drag four handles onto the board's corners, give its size in millimetres, and a perspective transform turns the photo into a to-scale drawing that lines up with the pads — top side or underside.",
+        "Wiring is net-aware: wires that meet in a breadboard column or rail collapse into one electrical net, and every check runs per net — a power rail shorted to ground, a source above a pin's maximum voltage, TX→TX and SDA↔SCL swaps, wires to unconnected pins.",
+        "Then the layout: parts are placed on a perfboard, and the engine checks that the copper — strips, solder traces, jumper wires — makes exactly the connections the wiring asks for, no more and no less. Front, solder side and an exploded 3D view show the build, and an assembly assistant turns it into steps in the order a board is really put together."
+      ],
+      "tr": [
+        "ProtoBoard, pertinaks üzerine her proje lehimlediğimde istediğim araç: gerçekten elimde olan modüllerin bir kütüphanesi, bir şeyi yakmak üzereyken beni uyaran bir kablolama planı ve tezgâhta takip edebileceğim bir yerleşim.",
+        "Yeni bileşenler bir fotoğraftan doğuyor. Bir kartın fotoğrafını bıraktığınızda görüntü modeli pinlerini bulup tiplerini tahmin ediyor; gerçek ölçüleri girip önceden doldurduğu pin kartını onayladığınızda ölçekli parça oluşuyor. Sonrasında sohbetle düzenleniyor — \"köşelere vida delikleri ekle\", \"AD0'ın adını ADDR yap\". Bir PDF datasheet bıraktığınızda besleme aralığı ve lojik seviyeler kablolama kontrolleri için çıkarılıyor. Her OpenAI uyumlu API ile çalışıyor; LM Studio ya da Ollama'daki yerel modeller dahil. Her görev için ayrı bir prompt var, API anahtarı sunucuda kalıyor.",
+        "Fotoğraflar kullanılmadan önce düzeltiliyor: dört tutamacı kartın köşelerine sürükleyip ölçüsünü milimetre olarak verdiğinizde, perspektif dönüşümü fotoğrafı pinlerle hizalanan ölçekli bir çizime çeviriyor — üst yüz ya da alt yüz.",
+        "Kablolama ağ farkındalıklı: bir breadboard sütununda ya da hattında buluşan kablolar tek bir elektriksel ağa dönüşüyor ve her kontrol ağ bazında çalışıyor — toprağa kısa devre olan bir güç hattı, bir pinin maksimumunu aşan gerilim, TX→TX ve SDA↔SCL karışıklıkları, bağlantısız pinlere giden kablolar.",
+        "Sonra yerleşim: parçalar pertinaksa yerleştiriliyor ve motor, bakırın — şeritler, lehim yolları, köprü kablolar — kablolamanın istediği bağlantıları tam olarak kurduğunu, fazlasını ya da eksiğini değil, doğruluyor. Ön yüz, lehim yüzü ve katmanları ayrılabilen bir 3D görünüm devreyi gösteriyor; montaj asistanı da bunu bir kartın gerçekte toplandığı sırayla adımlara dönüştürüyor."
+      ]
+    },
+    "sections": [
+      {
+        "heading": {
+          "en": "AI component builder",
+          "tr": "Yapay zeka destekli bileşen oluşturucu"
+        },
+        "items": {
+          "en": [
+            "Photo → pads and pad types with a vision model",
+            "Chat edits to the generated layout",
+            "PDF datasheet → supply range and logic levels",
+            "Model picker fed live from the API's /v1/models"
+          ],
+          "tr": [
+            "Fotoğraf → görüntü modeliyle pinler ve pin tipleri",
+            "Oluşturulan yerleşimin sohbetle düzenlenmesi",
+            "PDF datasheet → besleme aralığı ve lojik seviyeler",
+            "API'nin /v1/models listesinden canlı beslenen model seçici"
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "Wiring and layout",
+          "tr": "Kablolama ve yerleşim"
+        },
+        "items": {
+          "en": [
+            "Net-aware checks: shorts, over-voltage, TX/RX and I²C swaps",
+            "Perfboard layout verified against the wiring",
+            "Front, solder-side and exploded 3D views (three.js)",
+            "Assembly steps in real build order",
+            "Curated Fritzing parts import (CC-BY-SA)"
+          ],
+          "tr": [
+            "Ağ bazında kontroller: kısa devre, aşırı gerilim, TX/RX ve I²C karışıklıkları",
+            "Kablolamaya göre doğrulanan pertinaks yerleşimi",
+            "Ön yüz, lehim yüzü ve katmanlı 3D görünüm (three.js)",
+            "Gerçek montaj sırasıyla kurulum adımları",
+            "Seçilmiş Fritzing parçalarının içe aktarımı (CC-BY-SA)"
+          ]
+        }
+      }
+    ],
+    "stats": [
+      {
+        "value": "15K",
+        "label": {
+          "en": "lines of TypeScript",
+          "tr": "satır TypeScript"
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "Source",
+          "tr": "Kaynak"
+        },
+        "value": {
+          "en": "Private repository — demo on request",
+          "tr": "Özel depo — talep üzerine demo"
+        }
+      },
+      {
+        "label": {
+          "en": "AI providers",
+          "tr": "Yapay zeka sağlayıcıları"
+        },
+        "value": {
+          "en": "Any OpenAI-compatible API (LM Studio, Ollama, OpenAI…)",
+          "tr": "Her OpenAI uyumlu API (LM Studio, Ollama, OpenAI…)"
+        }
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "/img/projects/protoboard/board-3d.webp",
+        "caption": {
+          "en": "3D view of a perfboard build: ESP32-S3, I/O expander, I²S amplifier, ADC and a 2.8\" display, with the parts list and every wire",
+          "tr": "Bir pertinaks devresinin 3D görünümü: ESP32-S3, I/O genişletici, I²S amplifikatör, ADC ve 2.8\" ekran; parça listesi ve tüm kablolarla"
+        }
+      },
+      {
+        "src": "/img/projects/protoboard/layout.webp",
+        "caption": {
+          "en": "Component side and solder side together; wires coloured by net — 5V, 3.3V, GND",
+          "tr": "Bileşen yüzü ve lehim yüzü yan yana; kablolar ağlarına göre renkli — 5V, 3.3V, GND"
+        }
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "slug": "quickv",
+    "name": "QuicKV",
+    "developer": "Behemehal",
+    "description": {
+      "en": "A desktop client for Redis, Valkey and DragonflyDB that shows the shape of a keyspace, not just a list of keys. Built with Tauri, Rust and React.",
+      "tr": "Redis, Valkey ve DragonflyDB için, anahtar uzayını düz bir liste yerine yapısıyla gösteren bir masaüstü istemcisi. Tauri, Rust ve React ile geliştirildi."
+    },
+    "longDescription": {
+      "en": "Most Redis clients assume you know your key patterns. QuicKV walks the keyspace with SCAN, groups it by the separator the keys already use, and reports what sits under each prefix: key counts, bytes and types. Typed, paged editors for every value type, live pub/sub, and guard rails against destructive commands.",
+      "tr": "Çoğu Redis istemcisi anahtar kalıplarını bildiğinizi varsayar. QuicKV anahtar uzayını SCAN ile tarıyor, anahtarların zaten kullandığı ayraca göre grupluyor ve her önekin altında ne olduğunu raporluyor: anahtar sayısı, boyut ve tipler. Her değer tipi için sayfalı editörler, canlı pub/sub ve yıkıcı komutlara karşı korumalar."
+    },
+    "techTags": [
+      "Rust",
+      "Tauri",
+      "React",
+      "TypeScript",
+      "Redis",
+      {
+        "en": "Desktop",
+        "tr": "Masaüstü"
+      }
+    ],
+    "repoUrl": null,
+    "liveUrl": "https://behemehal.org/apps/quickv",
+    "links": [],
+    "featured": false,
+    "status": "development",
+    "year": "2026",
+    "language": "Rust",
+    "icon": "key",
+    "about": {
+      "en": [
+        "A keyspace is a shape, and most clients show you a list. QuicKV is built for the question people actually arrive with: they don't know what the patterns are.",
+        "It walks the keyspace, groups it by the separator the keys already use, and shows how many keys and bytes sit under each prefix and of which types. Then it offers the prefixes worth keeping as saved searches.",
+        "Everything is done with SCAN. KEYS appears nowhere in the app: on a database large enough to want a browser, KEYS blocks the server for as long as its reply takes to build.",
+        "The backend is a Rust trait rather than a pile of Redis calls. Every screen asks for a key, a value or a page and doesn't know what answered, so Valkey and DragonflyDB run on the same code and a new store is one module."
+      ],
+      "tr": [
+        "Anahtar uzayının bir yapısı var, çoğu istemci ise size bir liste gösteriyor. QuicKV, insanların gerçekte geldiği soru için yapıldı: kalıpların ne olduğunu bilmiyorlar.",
+        "Anahtar uzayını tarıyor, anahtarların zaten kullandığı ayraca göre grupluyor ve her önekin altında kaç anahtar, kaç bayt ve hangi tipler olduğunu gösteriyor. Ardından saklamaya değer önekleri kayıtlı arama olarak öneriyor.",
+        "Her şey SCAN ile yapılıyor. Uygulamada KEYS hiçbir yerde yok: tarayıcıya ihtiyaç duyacak kadar büyük bir veritabanında KEYS, yanıtı hazırlanana kadar sunucuyu kilitler.",
+        "Backend, bir yığın Redis çağrısı değil bir Rust trait'i. Her ekran bir anahtar, değer ya da sayfa istiyor ve yanıtı kimin verdiğini bilmiyor; bu yüzden Valkey ve DragonflyDB aynı kodla çalışıyor, yeni bir veri deposu tek bir modül demek."
+      ]
+    },
+    "sections": [
+      {
+        "heading": {
+          "en": "Find and read",
+          "tr": "Bul ve oku"
+        },
+        "items": {
+          "en": [
+            "Glob search with a type filter over SCAN, as a folder tree or a flat list",
+            "Keyspace report by prefix, type and size",
+            "Hot keys from the server's LFU counter and from local history, side by side",
+            "Paged editors for strings, hashes, lists, sets, sorted sets, streams and RedisJSON",
+            "Live pub/sub and keyspace notifications"
+          ],
+          "tr": [
+            "SCAN üzerinde tip filtreli glob arama; klasör ağacı ya da düz liste",
+            "Önek, tip ve boyuta göre anahtar uzayı raporu",
+            "Sunucunun LFU sayacından ve yerel geçmişten sıcak anahtarlar, yan yana",
+            "String, hash, list, set, sorted set, stream ve RedisJSON için sayfalı editörler",
+            "Canlı pub/sub ve keyspace bildirimleri"
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "Hard to break things with",
+          "tr": "Bir şeyi bozmak zor"
+        },
+        "items": {
+          "en": [
+            "Read-only connections refuse every write; the server itself is asked which commands write",
+            "FLUSHALL, FLUSHDB, SHUTDOWN and KEYS held back behind a setting",
+            "Passwords encrypted on the machine; no account, no telemetry"
+          ],
+          "tr": [
+            "Salt okunur bağlantılar her yazmayı reddediyor; hangi komutların yazdığı sunucunun kendisine soruluyor",
+            "FLUSHALL, FLUSHDB, SHUTDOWN ve KEYS bir ayarın arkasında tutuluyor",
+            "Parolalar makinede şifreli; hesap yok, telemetri yok"
+          ]
+        }
+      }
+    ],
+    "stats": [
+      {
+        "value": "7",
+        "label": {
+          "en": "value types",
+          "tr": "değer tipi"
+        }
+      },
+      {
+        "value": "SCAN",
+        "label": {
+          "en": "never blocks the server",
+          "tr": "sunucuyu kilitlemez"
+        }
+      },
+      {
+        "value": "16K",
+        "label": {
+          "en": "lines of Rust & TypeScript",
+          "tr": "satır Rust & TypeScript"
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "Platforms",
+          "tr": "Platformlar"
+        },
+        "value": "macOS · Windows · Linux"
+      },
+      {
+        "label": {
+          "en": "Built with",
+          "tr": "Teknoloji"
+        },
+        "value": "Tauri 2 · Rust · React"
+      },
+      {
+        "label": {
+          "en": "Releases",
+          "tr": "Sürümler"
+        },
+        "value": {
+          "en": "Beta",
+          "tr": "Beta"
+        }
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "/img/projects/quickv/01-keys.webp",
+        "caption": {
+          "en": "The key browser, folded into folders on the keyspace's own separator",
+          "tr": "Anahtar tarayıcısı; anahtar uzayının kendi ayracına göre klasörlere ayrılmış"
+        }
+      },
+      {
+        "src": "/img/projects/quickv/06-value-dark.webp",
+        "caption": {
+          "en": "A typed, paged editor per value type — here a hash, in the dark theme",
+          "tr": "Her değer tipi için sayfalı editör; burada koyu temada bir hash"
+        }
+      },
+      {
+        "src": "/img/projects/quickv/02-namespaces.webp",
+        "caption": {
+          "en": "Keyspace report: what's in a database you've never opened",
+          "tr": "Anahtar uzayı raporu: hiç açmadığınız bir veritabanında ne olduğu"
+        }
+      },
+      {
+        "src": "/img/projects/quickv/03-hot.webp",
+        "caption": {
+          "en": "Hot keys from two sources, never averaged",
+          "tr": "İki kaynaktan sıcak anahtarlar, ortalaması alınmadan"
+        }
+      },
+      {
+        "src": "/img/projects/quickv/04-channels.webp",
+        "caption": {
+          "en": "Pub/sub channels and keyspace events, live",
+          "tr": "Pub/sub kanalları ve keyspace olayları, canlı"
+        }
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "slug": "envelope",
+    "name": "Envelope",
+    "developer": "Behemehal",
+    "description": {
+      "en": "A local HTTP client: no cloud, no account. Collections are plain files you can commit, secrets stay encrypted on your machine, and an endpoint can become a small app. Built with Tauri, Rust and React.",
+      "tr": "Yerel bir HTTP istemcisi: bulut yok, hesap yok. Koleksiyonlar commit'lenebilen düz dosyalar, gizli bilgiler makinede şifreli kalıyor, bir endpoint küçük bir uygulamaya dönüşebiliyor. Tauri, Rust ve React ile geliştirildi."
+    },
+    "longDescription": {
+      "en": "An API client that keeps the request editor you know and fixes the parts that never worked: every variable traces back to the layer it came from, secrets never reach a collection file, scripts run in a Rust sandbox, and OpenAPI, Swagger, Postman and curl import in.",
+      "tr": "Alışık olduğunuz istek editörünü koruyup hiç düzgün çalışmamış kısımları düzelten bir API istemcisi: her değişken geldiği katmana kadar izlenebiliyor, gizli bilgiler koleksiyon dosyasına hiç yazılmıyor, script'ler bir Rust sandbox'ında çalışıyor; OpenAPI, Swagger, Postman ve curl içe aktarılabiliyor."
+    },
+    "techTags": [
+      "Rust",
+      "Tauri",
+      "React",
+      "TypeScript",
+      "HTTP",
+      {
+        "en": "Desktop",
+        "tr": "Masaüstü"
+      }
+    ],
+    "repoUrl": null,
+    "liveUrl": "https://behemehal.org/apps/envelope",
+    "links": [],
+    "featured": false,
+    "status": "development",
+    "year": "2026",
+    "language": "Rust",
+    "icon": "send",
+    "about": {
+      "en": [
+        "Envelope is a program on your computer: no cloud, no account, nothing to sign in to. A collection is a folder of plain JSON files, so you can commit it with the code it tests and review it in a pull request.",
+        "Every variable shows which of seven layers it came from, and the URL preview is the bytes on the wire, so \"why is this going to the wrong server\" is answered by looking, not guessing.",
+        "A secret's value never reaches a collection file; values are encrypted and sealed to the machine, so a copied folder opens to nothing.",
+        "A few lines of script turn an endpoint into a form with pickers, sliders and a button. Scripts run in a Rust sandbox, not in the page, and imported Postman scripts aren't run until you've read them."
+      ],
+      "tr": [
+        "Envelope bilgisayarınızda çalışan bir program: bulut yok, hesap yok, giriş yapılacak bir şey yok. Bir koleksiyon düz JSON dosyalarından oluşan bir klasör; test ettiği kodla birlikte commit'leyip pull request'te inceleyebiliyorsunuz.",
+        "Her değişken yedi katmandan hangisinden geldiğini gösteriyor, URL önizlemesi de tam olarak gönderilecek baytlar. \"Bu istek neden yanlış sunucuya gidiyor\" sorusu tahminle değil bakarak cevaplanıyor.",
+        "Bir gizli bilginin değeri koleksiyon dosyasına hiç yazılmıyor; değerler şifreli ve makineye bağlı, kopyalanan bir klasör boş açılıyor.",
+        "Birkaç satır script bir endpoint'i seçicileri, kaydırıcıları ve bir butonu olan bir forma dönüştürüyor. Script'ler sayfada değil bir Rust sandbox'ında çalışıyor; içe aktarılan Postman script'leri siz okuyana kadar çalıştırılmıyor."
+      ]
+    },
+    "sections": [
+      {
+        "heading": {
+          "en": "Features",
+          "tr": "Özellikler"
+        },
+        "items": {
+          "en": [
+            "Seven variable layers, each traced to the one that won",
+            "Environments with secrets encrypted on the machine",
+            "Endpoints as small apps, scripted in a Rust sandbox",
+            "Scenarios: requests chained with state carried between them",
+            "Import OpenAPI 3.x, Swagger 2.0, Postman and curl"
+          ],
+          "tr": [
+            "Yedi değişken katmanı; her biri kazanan katmana kadar izlenebiliyor",
+            "Gizli bilgileri makinede şifreli tutan ortamlar",
+            "Rust sandbox'ında script'lenen, küçük uygulamaya dönüşen endpoint'ler",
+            "Senaryolar: aralarında durum taşınan zincirleme istekler",
+            "OpenAPI 3.x, Swagger 2.0, Postman ve curl içe aktarma"
+          ]
+        }
+      }
+    ],
+    "stats": [
+      {
+        "value": "7",
+        "label": {
+          "en": "variable layers",
+          "tr": "değişken katmanı"
+        }
+      },
+      {
+        "value": "0",
+        "label": {
+          "en": "accounts",
+          "tr": "hesap"
+        }
+      },
+      {
+        "value": "3",
+        "label": {
+          "en": "platforms",
+          "tr": "platform"
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "Platforms",
+          "tr": "Platformlar"
+        },
+        "value": "macOS · Windows · Linux"
+      },
+      {
+        "label": {
+          "en": "Built with",
+          "tr": "Teknoloji"
+        },
+        "value": "Tauri 2 · Rust · React"
+      },
+      {
+        "label": {
+          "en": "Releases",
+          "tr": "Sürümler"
+        },
+        "value": {
+          "en": "Beta",
+          "tr": "Beta"
+        }
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "/img/projects/envelope/01-request.webp",
+        "caption": {
+          "en": "The request editor: every variable traced back to the layer it came from",
+          "tr": "İstek editörü: her değişken geldiği katmana kadar izlenebiliyor"
+        }
+      },
+      {
+        "src": "/img/projects/envelope/02-form.webp",
+        "caption": {
+          "en": "An endpoint as a small app — a few lines of script describe the controls",
+          "tr": "Küçük bir uygulamaya dönüşen endpoint; kontrolleri birkaç satır script tanımlıyor"
+        }
+      },
+      {
+        "src": "/img/projects/envelope/03-secrets.webp",
+        "caption": {
+          "en": "Environments, with secrets encrypted on the machine",
+          "tr": "Ortamlar; gizli bilgiler makinede şifreli"
+        }
+      },
+      {
+        "src": "/img/projects/envelope/04-scenario.webp",
+        "caption": {
+          "en": "A scenario: existing requests chained with state between them",
+          "tr": "Bir senaryo: aralarında durum taşınan mevcut istekler"
+        }
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "slug": "laser",
+    "name": "L.A.S.E.R",
+    "developer": "Behemehal",
+    "description": {
+      "en": "A neon puzzle game about steering a single laser beam with mirrors, prisms and splitters — 74 campaign levels, an endless arcade and a daily puzzle. Built with React Native and Skia, live on Google Play.",
+      "tr": "Tek bir lazer ışınını aynalar, prizmalar ve ayırıcılarla yönlendirdiğiniz neon bir bulmaca oyunu: 74 bölümlük kampanya, sonsuz arcade modu ve günlük bulmaca. React Native ve Skia ile geliştirildi, Google Play'de yayında."
+    },
+    "longDescription": {
+      "en": "A mobile game drawn entirely in code on the GPU with Skia. Mirrors, prisms with colour mixing, gates, fiber lines and moving obstacles stack across 74 levels, and a test suite enforces the level design rules: no level starts solved and no mechanic can be skipped.",
+      "tr": "Tamamen kodla, Skia ile GPU üzerinde çizilen bir mobil oyun. Aynalar, renk karışımlı prizmalar, kapılar, fiber hatlar ve hareketli engeller 74 bölüm boyunca birbirinin üzerine ekleniyor; test paketi de bölüm tasarım kurallarını zorunlu kılıyor: hiçbir bölüm çözülmüş başlamıyor, hiçbir mekanik atlanamıyor."
+    },
+    "techTags": [
+      "React Native",
+      "TypeScript",
+      "Skia",
+      "Reanimated",
+      "Expo",
+      {
+        "en": "Mobile game",
+        "tr": "Mobil oyun"
+      }
+    ],
+    "repoUrl": null,
+    "liveUrl": "https://play.google.com/store/apps/details?id=com.behemehal.laser",
+    "links": [
+      {
+        "label": {
+          "en": "Website",
+          "tr": "Web sitesi"
+        },
+        "url": "https://behemehal.org/apps/com.behemehal.laser"
+      }
+    ],
+    "featured": false,
+    "status": "active",
+    "year": "2026",
+    "language": "TypeScript",
+    "icon": "zap",
+    "orientation": "portrait",
+    "about": {
+      "en": [
+        "Light is the only tool you have. Turn the mirrors, feed the prism, split the beam, press the button that opens the gate, and get the light where it needs to go before the cell overloads.",
+        "Every level introduces or combines a mechanic, and none can be won by luck. That's enforced in code: a test suite checks that no level starts solved, no mechanic can be bypassed, and every solution angle is a multiple of 3°.",
+        "Everything on screen is drawn in code on the GPU with Skia, animated with Reanimated, and tuned for touch: select a piece and drag from anywhere — the further your finger, the finer the aim. Colour tags for colour-blind players, three haptic modes, English and Turkish.",
+        "No account, no real-money purchases and no internet needed. The only ad is an optional rewarded one."
+      ],
+      "tr": [
+        "Elinizdeki tek araç ışık. Aynaları çevirin, prizmayı besleyin, ışını bölün, kapıyı açan butona basın ve hücre aşırı yüklenmeden ışığı gitmesi gereken yere ulaştırın.",
+        "Her bölüm yeni bir mekanik getiriyor ya da mekanikleri birleştiriyor; hiçbiri şansla kazanılamıyor. Bu kodla zorunlu kılınıyor: test paketi hiçbir bölümün çözülmüş başlamadığını, hiçbir mekaniğin atlanamadığını ve her çözüm açısının 3°'nin katı olduğunu kontrol ediyor.",
+        "Ekrandaki her şey Skia ile GPU üzerinde kodla çiziliyor, Reanimated ile canlandırılıyor ve dokunmaya göre ayarlanıyor: bir parçayı seçip herhangi bir yerden sürükleyin, parmağınız ne kadar uzaksa nişan o kadar hassas. Renk körleri için renk etiketleri, üç titreşim modu, İngilizce ve Türkçe.",
+        "Hesap yok, gerçek parayla satın alma yok, internet gerekmiyor. Tek reklam isteğe bağlı ödüllü reklam."
+      ]
+    },
+    "sections": [
+      {
+        "heading": {
+          "en": "Mechanics",
+          "tr": "Mekanikler"
+        },
+        "items": {
+          "en": [
+            "Mirrors and beam splitters — each arm loses half its power",
+            "Prisms and colour mixing: red + green = yellow, and so on",
+            "Gates and buttons, fiber lines through walls, balloons that drop walls",
+            "Moving obstacles and a megawatt power budget"
+          ],
+          "tr": [
+            "Aynalar ve ışın ayırıcılar; her kol gücünün yarısını kaybediyor",
+            "Prizmalar ve renk karışımı: kırmızı + yeşil = sarı gibi",
+            "Kapılar ve butonlar, duvarların içinden geçen fiber hatlar, tuttuğu duvarı düşüren balonlar",
+            "Hareketli engeller ve megavat cinsinden güç bütçesi"
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "Engineering",
+          "tr": "Mühendislik"
+        },
+        "items": {
+          "en": [
+            "Expo and React Native 0.86 on the New Architecture",
+            "GPU drawing with Skia, animation with Reanimated 4, state with Zustand",
+            "477 tests across the engine, mechanics and level audits",
+            "Google Play Games integration and optional rewarded ads"
+          ],
+          "tr": [
+            "New Architecture üzerinde Expo ve React Native 0.86",
+            "Skia ile GPU çizimi, Reanimated 4 ile animasyon, Zustand ile durum yönetimi",
+            "Motor, mekanikler ve bölüm denetimleri genelinde 477 test",
+            "Google Play Games entegrasyonu ve isteğe bağlı ödüllü reklamlar"
+          ]
+        }
+      }
+    ],
+    "stats": [
+      {
+        "value": "74",
+        "label": {
+          "en": "campaign levels",
+          "tr": "kampanya bölümü"
+        }
+      },
+      {
+        "value": "477",
+        "label": {
+          "en": "tests",
+          "tr": "test"
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "Platform",
+          "tr": "Platform"
+        },
+        "value": "Android · Google Play"
+      },
+      {
+        "label": {
+          "en": "Built with",
+          "tr": "Teknoloji"
+        },
+        "value": "React Native · Expo · Skia"
+      },
+      {
+        "label": {
+          "en": "Rating",
+          "tr": "Yaş sınırı"
+        },
+        "value": "PEGI 3"
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "/img/projects/laser/01-prism.webp",
+        "caption": {
+          "en": "A prism splitting white light into red, green and blue",
+          "tr": "Beyaz ışığı kırmızı, yeşil ve maviye ayıran bir prizma"
+        }
+      },
+      {
+        "src": "/img/projects/laser/02-gate.webp",
+        "caption": {
+          "en": "Buttons and gates — send light elsewhere to open the road here",
+          "tr": "Butonlar ve kapılar: burada yolu açmak için ışığı başka yere gönderin"
+        }
+      },
+      {
+        "src": "/img/projects/laser/03-balloon.webp",
+        "caption": {
+          "en": "Balloons that drop the wall they're holding",
+          "tr": "Tuttuğu duvarı düşüren balonlar"
+        }
+      },
+      {
+        "src": "/img/projects/laser/04-arcade.webp",
+        "caption": {
+          "en": "Endless arcade — the run never repeats",
+          "tr": "Sonsuz arcade: hiçbir koşu tekrarlanmıyor"
+        }
+      },
+      {
+        "src": "/img/projects/laser/05-levels.webp",
+        "caption": {
+          "en": "74 hand-built campaign levels",
+          "tr": "74 bölümlük kampanya"
+        }
+      },
+      {
+        "src": "/img/projects/laser/06-shop.webp",
+        "caption": {
+          "en": "Beam casings bought with credits earned by playing",
+          "tr": "Oynayarak kazanılan kredilerle alınan ışın kaplamaları"
+        }
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "slug": "rust-nmea",
+    "name": "Rust-NMEA",
+    "description": {
+      "en": "A Rust parser for the NMEA 0183 protocol used in GPS and marine navigation, with u-blox support.",
+      "tr": "GPS ve deniz seyrüseferinde kullanılan NMEA 0183 protokolü için u-blox destekli bir Rust ayrıştırıcısı."
+    },
+    "longDescription": {
+      "en": "A robust Rust library for parsing NMEA 0183 sentences — the protocol behind GPS receivers and marine navigation hardware. Built for real-time use with careful error handling and support for common sentence types and u-blox devices.",
+      "tr": "GPS alıcılarının ve deniz seyrüsefer donanımlarının kullandığı NMEA 0183 cümlelerini ayrıştıran sağlam bir Rust kütüphanesi. Gerçek zamanlı kullanım için özenli hata yönetimiyle geliştirildi; yaygın cümle tiplerini ve u-blox cihazlarını destekliyor."
+    },
+    "techTags": [
+      "Rust",
+      "GPS",
+      "NMEA",
+      {
+        "en": "Parser",
+        "tr": "Ayrıştırıcı"
+      },
+      "crates.io"
+    ],
+    "repoUrl": "https://github.com/ahmetcanaksu/Rust-NMEA",
+    "liveUrl": "https://crates.io/crates/rust-nmea",
+    "links": [],
+    "stars": 1,
+    "featured": true,
+    "status": "active",
+    "year": "2020",
+    "language": "Rust",
+    "icon": "navigation",
+    "code": {
+      "file": "gps.rs",
+      "code": "use rust_nmea::parser::Parser;\n\n// A raw GPS sentence from the receiver\nlet line = \"$GPGGA,161009.00,1122.20418,N,02339.35234,E,1,08,1.09,11.5,M,11.3,M,,*62\";\n\nlet fix = Parser::parse_line(line).unwrap();\n\n// -> GGA { satellites: 8, altitude: 11.5, lat, lon, .. }"
+    },
+    "about": {
+      "en": [
+        "Rust-NMEA parses NMEA 0183, the line-based text protocol GPS and GNSS receivers speak, into typed Rust structs: fix data, positions, satellites in view, course and speed, time and date.",
+        "It runs on std and on no_std embedded targets, where it needs only an allocator. On a microcontroller you don't have to assemble lines yourself: a Reader takes raw bytes straight from a UART, frames complete sentences in a fixed, allocation-free buffer, and resyncs if it joins a stream mid-sentence.",
+        "Every sentence is checksum-verified. Fields a receiver leaves empty before it has a fix parse to None instead of an error, so a receiver that hasn't locked on yet still produces valid, inspectable data."
+      ],
+      "tr": [
+        "Rust-NMEA, GPS ve GNSS alıcılarının konuştuğu satır tabanlı metin protokolü NMEA 0183'ü tipli Rust struct'larına ayrıştırıyor: konum bilgisi, koordinatlar, görünen uydular, rota ve hız, saat ve tarih.",
+        "Hem std'de hem de yalnızca bir allocator'a ihtiyaç duyduğu no_std gömülü hedeflerde çalışıyor. Mikrodenetleyicide satırları kendiniz birleştirmek zorunda değilsiniz: Reader, UART'tan gelen ham baytları doğrudan alıyor, tam cümleleri sabit boyutlu ve bellek ayırmayan bir tamponda çerçeveliyor, akışa bir cümlenin ortasında katılırsa da kendini yeniden hizalıyor.",
+        "Her cümlenin checksum'ı doğrulanıyor. Alıcının konum kilitlenmeden önce boş bıraktığı alanlar hata yerine None olarak ayrıştırılıyor; böylece henüz kilitlenmemiş bir alıcı bile geçerli, incelenebilir veri üretiyor."
+      ]
+    },
+    "sections": [
+      {
+        "heading": {
+          "en": "Features",
+          "tr": "Özellikler"
+        },
+        "items": {
+          "en": [
+            "16 sentence types, all implemented and tested: GGA, RMC, GSA, GSV, GLL, VTG, ZDA and more",
+            "Checksum verification on every sentence",
+            "Allocation-free streaming Reader for byte-by-byte input",
+            "Optional fields modelled as Option, so no-fix sentences still parse"
+          ],
+          "tr": [
+            "Tamamı uygulanmış ve test edilmiş 16 cümle tipi: GGA, RMC, GSA, GSV, GLL, VTG, ZDA ve dahası",
+            "Her cümlede checksum doğrulaması",
+            "Bayt bayt gelen veri için bellek ayırmayan, akış tabanlı Reader",
+            "Opsiyonel alanlar Option olarak modellendiği için konumsuz cümleler de ayrıştırılıyor"
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "Where it runs",
+          "tr": "Nerede çalışır"
+        },
+        "items": {
+          "en": [
+            "Desktop and server with std (the default)",
+            "no_std embedded targets — an ESP32-C3 example is included",
+            "nmea-cli: read and print sentences from a serial port",
+            "nmea-tui: a live terminal dashboard, with a demo mode that needs no hardware"
+          ],
+          "tr": [
+            "std ile masaüstü ve sunucu (varsayılan)",
+            "no_std gömülü hedefler — bir ESP32-C3 örneği de mevcut",
+            "nmea-cli: seri porttan cümleleri okuyup yazdırıyor",
+            "nmea-tui: donanım gerektirmeyen demo modu da olan canlı bir terminal paneli"
+          ]
+        }
+      }
+    ],
+    "stats": [
+      {
+        "value": "16",
+        "label": {
+          "en": "sentence types",
+          "tr": "cümle tipi"
+        }
+      },
+      {
+        "value": "4.9K+",
+        "label": {
+          "en": "crates.io downloads",
+          "tr": "crates.io indirmesi"
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "License",
+          "tr": "Lisans"
+        },
+        "value": "GPL-2.0"
+      },
+      {
+        "label": {
+          "en": "Package",
+          "tr": "Paket"
+        },
+        "value": "rust_nmea (crates.io)"
+      },
+      {
+        "label": {
+          "en": "Latest version",
+          "tr": "Son sürüm"
+        },
+        "value": "3.0.0"
+      },
+      {
+        "label": {
+          "en": "Embedded",
+          "tr": "Gömülü"
+        },
+        "value": {
+          "en": "no_std (requires alloc)",
+          "tr": "no_std (alloc gerektirir)"
+        }
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "slug": "menemen",
+    "name": "Menemen",
+    "description": {
+      "en": "A streaming HTTP/HTTPS request library for Rust, built for low-overhead network I/O.",
+      "tr": "Düşük maliyetli ağ G/Ç'si için geliştirilmiş, Rust'a özel streaming HTTP/HTTPS istek kütüphanesi."
+    },
+    "longDescription": {
+      "en": "A Rust library for efficient streaming HTTP/HTTPS requests, focused on performance and a small memory footprint. Designed for applications that stream large responses without buffering everything in memory — and used as the networking layer in several of my other projects.",
+      "tr": "Performansa ve küçük bellek ayak izine odaklanan, verimli streaming HTTP/HTTPS istekleri için bir Rust kütüphanesi. Büyük yanıtları tamamını belleğe almadan akış halinde işleyen uygulamalar için tasarlandı — diğer birçok projemde de ağ katmanı olarak kullanılıyor."
+    },
+    "techTags": [
+      "Rust",
+      "HTTP",
+      {
+        "en": "Streaming",
+        "tr": "Akış"
+      },
+      "crates.io"
+    ],
+    "repoUrl": "https://github.com/behemehal/Menemen",
+    "liveUrl": "https://crates.io/crates/menemen",
+    "links": [],
+    "featured": true,
+    "status": "development",
+    "year": "2022",
+    "language": "Rust",
+    "icon": "activity",
+    "code": {
+      "file": "main.rs",
+      "code": "use menemen::request::{Request, RequestTypes};\n\nfn main() {\n    let mut req = Request::new(\n        \"http://postman-echo.com/get\",\n        RequestTypes::GET,\n    ).unwrap();\n\n    // Read the response as a stream, not a buffer\n    let mut res = req.send().unwrap();\n    let mut buf = Vec::new();\n    res.stream.read_to_end(&mut buf);\n\n    println!(\"{}\", String::from_utf8_lossy(&buf));\n}"
+    },
+    "about": {
+      "en": [
+        "Menemen — named after the Turkish breakfast dish — is a small HTTP/HTTPS client for Rust built around streaming. A response is a reader, so you can pipe a multi-gigabyte download straight to disk while memory use stays flat.",
+        "It's blocking by default: no runtime, no executor, no async unless you ask for one. Switch to the Tokio-based async client and the same code works with .await in two places.",
+        "Everything beyond the core is opt-in. TLS, JSON, multipart forms and gzip are feature flags, so you only compile what you use. It also ships an optional curl-like command-line client."
+      ],
+      "tr": [
+        "Adını bildiğimiz menemenden alan Menemen, akış (streaming) odaklı küçük bir Rust HTTP/HTTPS istemcisi. Yanıtın kendisi bir reader; böylece gigabaytlarca büyüklükteki bir indirmeyi bellek kullanımı hiç artmadan doğrudan diske yazabiliyorsunuz.",
+        "Varsayılan olarak blocking çalışıyor: siz istemedikçe ne bir runtime, ne bir executor, ne de async var. Tokio tabanlı async istemciye geçtiğinizde aynı kod, iki yere .await ekleyerek çalışıyor.",
+        "Çekirdeğin ötesindeki her şey isteğe bağlı. TLS, JSON, multipart formlar ve gzip birer feature flag; yalnızca kullandığınızı derliyorsunuz. İsteğe bağlı olarak curl benzeri bir komut satırı istemcisiyle de geliyor."
+      ]
+    },
+    "sections": [
+      {
+        "heading": {
+          "en": "Features",
+          "tr": "Özellikler"
+        },
+        "items": {
+          "en": [
+            "Responses implement Read (blocking) and AsyncRead (async)",
+            "Transparent chunked transfer decoding",
+            "JSON and multipart form bodies, on by default",
+            "Opt-in HTTPS and gzip decompression",
+            "Optional curl-like CLI"
+          ],
+          "tr": [
+            "Yanıtlar Read (blocking) ve AsyncRead (async) arayüzlerini uyguluyor",
+            "Chunked transfer kodlaması şeffaf biçimde çözülüyor",
+            "JSON ve multipart form gövdeleri varsayılan olarak açık",
+            "İsteğe bağlı HTTPS ve gzip açma",
+            "İsteğe bağlı, curl benzeri CLI"
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "Two modes",
+          "tr": "İki mod"
+        },
+        "items": {
+          "en": [
+            "Blocking (default) — no async runtime required",
+            "Async — Tokio-based, replaces the blocking client",
+            "Enabling both is a compile error that tells you how to fix it"
+          ],
+          "tr": [
+            "Blocking (varsayılan) — async runtime gerektirmiyor",
+            "Async — Tokio tabanlı, blocking istemcinin yerini alıyor",
+            "İkisini birden açmak, nasıl düzelteceğinizi söyleyen bir derleme hatası veriyor"
+          ]
+        }
+      }
+    ],
+    "stats": [
+      {
+        "value": "11K+",
+        "label": {
+          "en": "crates.io downloads",
+          "tr": "crates.io indirmesi"
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "License",
+          "tr": "Lisans"
+        },
+        "value": "GPL-2.0"
+      },
+      {
+        "label": {
+          "en": "Package",
+          "tr": "Paket"
+        },
+        "value": "menemen (crates.io)"
+      },
+      {
+        "label": {
+          "en": "Latest version",
+          "tr": "Son sürüm"
+        },
+        "value": "2.0.0"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "wole",
+    "name": "Wole (CLI)",
+    "description": {
+      "en": "A Wake-on-LAN magic-packet generator, sender, and listener CLI written in Rust.",
+      "tr": "Rust ile yazılmış Wake-on-LAN magic packet üreteci, göndericisi ve dinleyicisi CLI."
+    },
+    "longDescription": {
+      "en": "A fast command-line tool written in Rust for Wake-on-LAN. Generates and sends magic packets to remotely wake devices on your network, and can also listen for incoming magic packets — a small, dependency-light systems utility.",
+      "tr": "Wake-on-LAN için Rust ile yazılmış hızlı bir komut satırı aracı. Ağınızdaki cihazları uzaktan uyandırmak için magic packet üretip gönderiyor, gelen magic packet'leri de dinleyebiliyor — küçük, bağımlılıkları az bir sistem aracı."
+    },
+    "techTags": [
+      "Rust",
+      "CLI",
+      {
+        "en": "Networking",
+        "tr": "Ağ"
+      },
+      "Wake-on-LAN"
+    ],
+    "repoUrl": "https://github.com/ahmetcanaksu/Wole",
+    "liveUrl": null,
+    "links": [
+      {
+        "label": {
+          "en": "crates.io",
+          "tr": "crates.io"
+        },
+        "url": "https://crates.io/crates/wole"
+      }
+    ],
+    "stars": 4,
+    "featured": false,
+    "status": "complete",
+    "year": "2020",
+    "language": "Rust",
+    "icon": "power",
+    "about": {
+      "en": [
+        "Wole wakes computers on your network from the command line. Give it a MAC address and an IP, and it builds the Wake-on-LAN magic packet and sends it.",
+        "It can wake several devices in one command, resend packets aggressively for machines that miss the first one, and switch into listen mode to show incoming magic packets — handy when you're debugging why a machine won't wake.",
+        "The same code is published as a library, so a Rust program can generate and send magic packets directly."
+      ],
+      "tr": [
+        "Wole, ağınızdaki bilgisayarları komut satırından uyandırıyor. Bir MAC adresi ve IP verdiğinizde Wake-on-LAN magic packet'ini oluşturup gönderiyor.",
+        "Tek komutla birden fazla cihazı uyandırabiliyor, ilk paketi kaçıran makineler için paketleri agresif modda tekrar tekrar gönderebiliyor ve gelen magic packet'leri göstermek için dinleme moduna geçebiliyor — bir makinenin neden uyanmadığını ararken çok işe yarıyor.",
+        "Aynı kod bir kütüphane olarak da yayınlandı; bir Rust programı magic packet'leri doğrudan üretip gönderebiliyor."
+      ]
+    },
+    "sections": [
+      {
+        "heading": {
+          "en": "Features",
+          "tr": "Özellikler"
+        },
+        "items": {
+          "en": [
+            "Wake one device or several in a single command",
+            "Aggressive mode that resends packets",
+            "Listen mode for incoming magic packets",
+            "Library API: generate_magic_package and send_package"
+          ],
+          "tr": [
+            "Tek komutla bir ya da birden fazla cihazı uyandırma",
+            "Paketleri tekrar gönderen agresif mod",
+            "Gelen magic packet'ler için dinleme modu",
+            "Kütüphane API'si: generate_magic_package ve send_package"
+          ]
+        }
+      }
+    ],
+    "stats": [
+      {
+        "value": "9.2K+",
+        "label": {
+          "en": "crates.io downloads",
+          "tr": "crates.io indirmesi"
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "License",
+          "tr": "Lisans"
+        },
+        "value": "MIT"
+      },
+      {
+        "label": {
+          "en": "Package",
+          "tr": "Paket"
+        },
+        "value": "wole (crates.io)"
+      },
+      {
+        "label": {
+          "en": "Latest version",
+          "tr": "Son sürüm"
+        },
+        "value": "1.2.8"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "woleapp",
+    "name": "WoleApp",
+    "description": {
+      "en": "A Wake-on-LAN magic-packet generator & sender for Android, built with Flutter.",
+      "tr": "Flutter ile geliştirilmiş, Android için Wake-on-LAN magic packet üreteci ve göndericisi."
+    },
+    "longDescription": {
+      "en": "An Android app built with Flutter that sends Wake-on-LAN magic packets to remotely wake devices on your network. Clean interface for managing multiple saved devices and network configurations.",
+      "tr": "Ağınızdaki cihazları uzaktan uyandırmak için Wake-on-LAN magic packet'leri gönderen, Flutter ile geliştirilmiş bir Android uygulaması. Kayıtlı birden fazla cihazı ve ağ ayarını yönetmek için sade bir arayüz sunuyor."
+    },
+    "techTags": [
+      "Dart",
+      "Flutter",
+      "Android",
+      {
+        "en": "Networking",
+        "tr": "Ağ"
+      }
+    ],
+    "repoUrl": "https://github.com/behemehal/WoleApp",
+    "liveUrl": null,
+    "links": [],
+    "featured": false,
+    "status": "complete",
+    "year": "2022",
+    "language": "Dart",
+    "icon": "smartphone",
+    "about": {
+      "en": [
+        "WoleApp is the phone-sized companion to the Wole CLI: a Flutter app for Android that wakes devices on your network with a tap.",
+        "Save a device once with a name, IP and MAC address, mark the ones you use most as favourites, and send a magic packet from the list whenever you need it. Addresses are validated before anything is sent.",
+        "Packets go out over UDP to several common Wake-on-LAN ports at once, which helps with machines that only listen on one of them. Saved devices stay on the phone."
+      ],
+      "tr": [
+        "WoleApp, Wole CLI'ın telefona sığan hali: ağınızdaki cihazları tek dokunuşla uyandıran, Flutter ile geliştirilmiş bir Android uygulaması.",
+        "Bir cihazı adı, IP'si ve MAC adresiyle bir kez kaydediyorsunuz, en çok kullandıklarınızı favorilere ekliyorsunuz ve ihtiyacınız olduğunda listeden magic packet gönderiyorsunuz. Adresler gönderimden önce doğrulanıyor.",
+        "Paketler UDP üzerinden aynı anda birkaç yaygın Wake-on-LAN portuna gidiyor; bu, yalnızca bunlardan birini dinleyen makinelerde işe yarıyor. Kayıtlı cihazlar telefonda kalıyor."
+      ]
+    },
+    "sections": [
+      {
+        "heading": {
+          "en": "Features",
+          "tr": "Özellikler"
+        },
+        "items": {
+          "en": [
+            "Saved devices with names, IP and MAC addresses",
+            "Favourites for the devices you wake most",
+            "Input validation for IP and MAC addresses",
+            "Sends over UDP to several Wake-on-LAN ports at once"
+          ],
+          "tr": [
+            "Adı, IP'si ve MAC adresiyle kayıtlı cihazlar",
+            "En sık uyandırdığınız cihazlar için favoriler",
+            "IP ve MAC adresleri için giriş doğrulaması",
+            "UDP üzerinden aynı anda birkaç Wake-on-LAN portuna gönderim"
+          ]
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "License",
+          "tr": "Lisans"
+        },
+        "value": "GPL-2.0"
+      },
+      {
+        "label": {
+          "en": "Platform",
+          "tr": "Platform"
+        },
+        "value": "Android"
+      },
+      {
+        "label": {
+          "en": "Framework",
+          "tr": "Framework"
+        },
+        "value": "Flutter"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "slug": "event-listener",
+    "name": "event_listener",
+    "description": {
+      "en": "A Node.js-style event listener library for Dart (also ported to Rust as rust_event_listener).",
+      "tr": "Dart için Node.js tarzı bir event listener kütüphanesi (rust_event_listener adıyla Rust'a da taşındı)."
+    },
+    "longDescription": {
+      "en": "A Dart library that brings familiar Node.js-style event handling to Dart and Flutter apps, with a simple API for event-driven patterns. Published on pub.dev, and later ported to Rust as rust_event_listener.",
+      "tr": "Node.js'ten tanıdık olay yönetimini Dart ve Flutter uygulamalarına getiren, olay güdümlü kalıplar için sade bir API sunan Dart kütüphanesi. pub.dev'de yayınlandı, ardından rust_event_listener adıyla Rust'a taşındı."
+    },
+    "techTags": [
+      "Dart",
+      {
+        "en": "Library",
+        "tr": "Kütüphane"
+      },
+      {
+        "en": "Events",
+        "tr": "Olaylar"
+      },
+      "pub.dev"
+    ],
+    "repoUrl": "https://github.com/behemehal/event_listener",
+    "liveUrl": "https://pub.dev/packages/event_listener",
+    "links": [
+      {
+        "label": {
+          "en": "Rust port",
+          "tr": "Rust sürümü"
+        },
+        "url": "https://crates.io/crates/rust_event_listener"
+      }
+    ],
+    "stars": 2,
+    "featured": false,
+    "status": "complete",
+    "year": "2020",
+    "language": "Dart",
+    "icon": "radio",
+    "about": {
+      "en": [
+        "event_listener brings Node.js's EventEmitter API to Dart and Flutter. If you've written on, once and emit in JavaScript, you already know how to use it.",
+        "Listeners can fire every time or just once, and can be removed one by one or all at once. The emitter also raises its own newListener and removeListener events, so you can observe the listener list itself.",
+        "I later ported it to Rust as rust_event_listener, with the same on/emit model and a configurable maximum listener count."
+      ],
+      "tr": [
+        "event_listener, Node.js'in EventEmitter API'sini Dart ve Flutter'a getiriyor. JavaScript'te on, once ve emit yazdıysanız nasıl kullanılacağını zaten biliyorsunuz.",
+        "Dinleyiciler her seferinde ya da yalnızca bir kez tetiklenebiliyor; tek tek veya hepsi birden kaldırılabiliyor. Emitter ayrıca kendi newListener ve removeListener olaylarını yayınlıyor; böylece dinleyici listesinin kendisini de izleyebiliyorsunuz.",
+        "Daha sonra aynı on/emit modelini ve ayarlanabilir azami dinleyici sayısını koruyarak rust_event_listener adıyla Rust'a taşıdım."
+      ]
+    },
+    "sections": [
+      {
+        "heading": {
+          "en": "API",
+          "tr": "API"
+        },
+        "items": {
+          "en": [
+            "on — listen for every emit",
+            "once — fire a single time, then unsubscribe",
+            "emit — call every listener with a payload",
+            "removeEventListener and remove-all",
+            "Built-in newListener and removeListener events"
+          ],
+          "tr": [
+            "on — her emit'i dinliyor",
+            "once — bir kez tetiklenip aboneliği bırakıyor",
+            "emit — tüm dinleyicileri bir veriyle çağırıyor",
+            "removeEventListener ve tümünü kaldırma",
+            "Yerleşik newListener ve removeListener olayları"
+          ]
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "License",
+          "tr": "Lisans"
+        },
+        "value": "MIT"
+      },
+      {
+        "label": {
+          "en": "Package",
+          "tr": "Paket"
+        },
+        "value": "event_listener (pub.dev)"
+      },
+      {
+        "label": {
+          "en": "Latest version",
+          "tr": "Son sürüm"
+        },
+        "value": "0.2.0"
+      },
+      {
+        "label": {
+          "en": "Rust port",
+          "tr": "Rust sürümü"
+        },
+        "value": "rust_event_listener (crates.io)"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "slug": "safeen",
+    "name": "SafeEn",
+    "description": {
+      "en": "A local database with clean, strict data integrity and easy portability, written in Rust.",
+      "tr": "Rust ile yazılmış, temiz ve katı veri bütünlüğü sunan, kolayca taşınabilen yerel bir veritabanı."
+    },
+    "longDescription": {
+      "en": "A Rust-based local database focused on data integrity and portability. Designed for applications that need reliable local storage with strong consistency guarantees and simple deployment across environments. Published on crates.io as safe_en.",
+      "tr": "Veri bütünlüğüne ve taşınabilirliğe odaklanan, Rust tabanlı yerel bir veritabanı. Güçlü tutarlılık garantileriyle güvenilir yerel depolamaya ve farklı ortamlara kolay dağıtıma ihtiyaç duyan uygulamalar için tasarlandı. crates.io'da safe_en adıyla yayınlandı."
+    },
+    "techTags": [
+      "Rust",
+      {
+        "en": "Database",
+        "tr": "Veritabanı"
+      },
+      {
+        "en": "Data Integrity",
+        "tr": "Veri Bütünlüğü"
+      },
+      "crates.io"
+    ],
+    "repoUrl": "https://github.com/behemehal/SafeEn",
+    "liveUrl": "https://crates.io/crates/safe_en",
+    "links": [],
+    "featured": false,
+    "status": "development",
+    "year": "2022",
+    "language": "Rust",
+    "icon": "database",
+    "about": {
+      "en": [
+        "SafeEn is a local database for cases where data integrity and portability matter more than scale. A database is one file with typed columns, and every value is checked against its column's type before it's stored.",
+        "Files carry a magic number, a format version and a CRC-32 checksum. If a file is corrupted, SafeEn reports it instead of quietly loading bad data. The layout is fixed little-endian, so the same file reads the same on any machine.",
+        "The library has no dependencies and supports no_std with only alloc, so it runs on bare metal and in the browser as well as on desktops and servers. Schemas, rows and queries are written with macros that read like a small query language."
+      ],
+      "tr": [
+        "SafeEn, ölçekten çok veri bütünlüğünün ve taşınabilirliğin önemli olduğu durumlar için yerel bir veritabanı. Bir veritabanı, tipli sütunlardan oluşan tek bir dosya; her değer saklanmadan önce sütununun tipine göre denetleniyor.",
+        "Dosyalar bir magic number, bir format sürümü ve CRC-32 checksum taşıyor. Bir dosya bozulduysa SafeEn bozuk veriyi sessizce yüklemek yerine bunu bildiriyor. Dosya düzeni sabit little-endian; aynı dosya her makinede aynı şekilde okunuyor.",
+        "Kütüphanenin hiçbir bağımlılığı yok ve yalnızca alloc ile no_std'yi destekliyor; masaüstü ve sunucuların yanı sıra bare metal'de ve tarayıcıda da çalışıyor. Şemalar, satırlar ve sorgular, küçük bir sorgu dili gibi okunan makrolarla yazılıyor."
+      ]
+    },
+    "sections": [
+      {
+        "heading": {
+          "en": "Integrity",
+          "tr": "Bütünlük"
+        },
+        "items": {
+          "en": [
+            "Typed schema: every value is checked before it's stored",
+            "Nullable and array columns declared in the schema",
+            "Magic number, format version and CRC-32 on every file",
+            "Corruption is reported, never silently loaded"
+          ],
+          "tr": [
+            "Tipli şema: her değer saklanmadan önce denetleniyor",
+            "Null olabilen ve dizi tipindeki sütunlar şemada tanımlanıyor",
+            "Her dosyada magic number, format sürümü ve CRC-32",
+            "Bozulma her zaman bildiriliyor, asla sessizce yüklenmiyor"
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "Queries",
+          "tr": "Sorgular"
+        },
+        "items": {
+          "en": [
+            "query! macro with comparisons, &&, || and !",
+            "between, in, has, starts / ends, is null",
+            "Ordering, sum, mean, min, max and distinct",
+            "Count or take the first match without materialising rows"
+          ],
+          "tr": [
+            "Karşılaştırma, &&, || ve ! destekli query! makrosu",
+            "between, in, has, starts / ends, is null",
+            "Sıralama, sum, mean, min, max ve distinct",
+            "Satırları oluşturmadan sayma ya da ilk eşleşmeyi alma"
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "Where it runs",
+          "tr": "Nerede çalışır"
+        },
+        "items": {
+          "en": [
+            "No dependencies",
+            "no_std with alloc — bare metal and WebAssembly",
+            "One portable file with a fixed little-endian layout"
+          ],
+          "tr": [
+            "Sıfır bağımlılık",
+            "alloc ile no_std — bare metal ve WebAssembly",
+            "Sabit little-endian düzenli, taşınabilir tek bir dosya"
+          ]
+        }
+      }
+    ],
+    "stats": [
+      {
+        "value": "0",
+        "label": {
+          "en": "dependencies",
+          "tr": "bağımlılık"
+        }
+      },
+      {
+        "value": "16K+",
+        "label": {
+          "en": "crates.io downloads",
+          "tr": "crates.io indirmesi"
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "License",
+          "tr": "Lisans"
+        },
+        "value": "GPL-2.0"
+      },
+      {
+        "label": {
+          "en": "Package",
+          "tr": "Paket"
+        },
+        "value": "safe_en (crates.io)"
+      },
+      {
+        "label": {
+          "en": "Latest version",
+          "tr": "Son sürüm"
+        },
+        "value": "2.0.0"
+      },
+      {
+        "label": {
+          "en": "Minimum Rust",
+          "tr": "Minimum Rust"
+        },
+        "value": "1.81"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "slug": "bnots",
+    "name": "Bnots",
+    "description": {
+      "en": "A note-taking app that combines simplicity with Markdown support, built with Flutter.",
+      "tr": "Sadeliği Markdown desteğiyle birleştiren, Flutter ile geliştirilmiş bir not uygulaması."
+    },
+    "longDescription": {
+      "en": "A cross-platform note-taking app built with Flutter, featuring Markdown support and a clean, distraction-free interface. Made for people who want a simple yet capable tool for organizing their thoughts.",
+      "tr": "Markdown desteği ve sade, dikkat dağıtmayan bir arayüze sahip, Flutter ile geliştirilmiş çapraz platform bir not uygulaması. Düşüncelerini düzenlemek için basit ama yetenekli bir araç isteyenler için yapıldı."
+    },
+    "techTags": [
+      "Dart",
+      "Flutter",
+      "Markdown",
+      {
+        "en": "Cross-platform",
+        "tr": "Çapraz Platform"
+      }
+    ],
+    "repoUrl": "https://github.com/behemehal/Bnots",
+    "liveUrl": null,
+    "links": [],
+    "featured": false,
+    "status": "complete",
+    "year": "2022",
+    "language": "Dart",
+    "icon": "edit",
+    "about": {
+      "en": [
+        "Bnots is a note app for people who want plain notes with a little structure. Write in Markdown and it renders headings, links, lists and quotes; leave it out and a note is just text.",
+        "Notes can be colour-coded from a palette so related ones stand out in the list. They're stored locally on the device.",
+        "The app ships with a built-in Markdown guide, in English and Turkish, for anyone who hasn't used Markdown before."
+      ],
+      "tr": [
+        "Bnots, sade notlara biraz yapı katmak isteyenler için bir not uygulaması. Markdown ile yazdığınızda başlıkları, bağlantıları, listeleri ve alıntıları biçimlendiriyor; yazmadığınızda not yalnızca düz metin.",
+        "Notlar bir renk paletiyle işaretlenebiliyor; böylece birbiriyle ilgili notlar listede öne çıkıyor. Notlar cihazda yerel olarak saklanıyor.",
+        "Markdown'ı daha önce hiç kullanmamış olanlar için İngilizce ve Türkçe yerleşik bir Markdown rehberiyle geliyor."
+      ]
+    },
+    "sections": [
+      {
+        "heading": {
+          "en": "Features",
+          "tr": "Özellikler"
+        },
+        "items": {
+          "en": [
+            "Markdown rendering for headings, links, lists and quotes",
+            "Colour-coded notes",
+            "Notes stored locally on the device",
+            "Built-in Markdown guide in English and Turkish"
+          ],
+          "tr": [
+            "Başlıklar, bağlantılar, listeler ve alıntılar için Markdown desteği",
+            "Renklerle işaretlenen notlar",
+            "Cihazda yerel olarak saklanan notlar",
+            "İngilizce ve Türkçe yerleşik Markdown rehberi"
+          ]
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "License",
+          "tr": "Lisans"
+        },
+        "value": "GPL-2.0"
+      },
+      {
+        "label": {
+          "en": "Platform",
+          "tr": "Platform"
+        },
+        "value": "Android"
+      },
+      {
+        "label": {
+          "en": "Framework",
+          "tr": "Framework"
+        },
+        "value": "Flutter"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "slug": "device-database",
+    "name": "Device-Database",
+    "description": {
+      "en": "A JavaScript library that detects and identifies development boards and IoT devices (Raspberry Pi, Orange Pi, and more).",
+      "tr": "Geliştirme kartlarını ve IoT cihazlarını (Raspberry Pi, Orange Pi ve dahası) tespit edip tanımlayan bir JavaScript kütüphanesi."
+    },
+    "longDescription": {
+      "en": "A JavaScript library that detects and identifies development boards, single-board computers, and IoT hardware. Useful for tools and applications that need to adapt to whatever board they're running on. Published on npm as device-database.",
+      "tr": "Geliştirme kartlarını, tek kartlı bilgisayarları ve IoT donanımlarını tespit edip tanımlayan bir JavaScript kütüphanesi. Üzerinde çalıştığı karta göre kendini ayarlaması gereken araçlar ve uygulamalar için kullanışlı. npm'de device-database adıyla yayınlandı."
+    },
+    "techTags": [
+      "JavaScript",
+      "IoT",
+      {
+        "en": "Hardware Detection",
+        "tr": "Donanım Tespiti"
+      },
+      "npm"
+    ],
+    "repoUrl": "https://github.com/ahmetcanaksu/Device-Database",
+    "liveUrl": "https://www.npmjs.com/package/device-database",
+    "links": [],
+    "featured": false,
+    "status": "complete",
+    "year": "2019",
+    "language": "JavaScript",
+    "icon": "cpu",
+    "about": {
+      "en": [
+        "Device-Database tells a Node.js program which single-board computer it's running on. It reads /proc/cpuinfo, extracts the hardware and revision codes, and looks them up in its own database of boards.",
+        "A match returns the model, board revision, RAM size and manufacturer — enough for a tool to adapt its pin layout or defaults to the board underneath it.",
+        "It covers 11 Raspberry Pi models, from the Zero and Compute Module 3 to the 3B+, and 11 Orange Pi boards."
+      ],
+      "tr": [
+        "Device-Database, bir Node.js programına hangi tek kartlı bilgisayarda çalıştığını söylüyor. /proc/cpuinfo'yu okuyor, donanım ve revizyon kodlarını çıkarıyor ve bunları kendi kart veritabanında arıyor.",
+        "Bir eşleşme; modeli, kart revizyonunu, RAM miktarını ve üreticiyi döndürüyor — bir aracın pin düzenini ya da varsayılanlarını altındaki karta göre ayarlaması için yeterli.",
+        "Zero ve Compute Module 3'ten 3B+'ya kadar 11 Raspberry Pi modelini ve 11 Orange Pi kartını kapsıyor."
+      ]
+    },
+    "sections": [
+      {
+        "heading": {
+          "en": "What it returns",
+          "tr": "Ne döndürür"
+        },
+        "items": {
+          "en": [
+            "Parsed /proc/cpuinfo data",
+            "The device's hardware, revision and serial",
+            "Database match: model, revision, RAM and manufacturer",
+            "A simple check for whether the board is known"
+          ],
+          "tr": [
+            "Ayrıştırılmış /proc/cpuinfo verisi",
+            "Cihazın donanım, revizyon ve seri numarası bilgisi",
+            "Veritabanı eşleşmesi: model, revizyon, RAM ve üretici",
+            "Kartın bilinip bilinmediğine dair basit bir kontrol"
+          ]
+        }
+      },
+      {
+        "heading": {
+          "en": "Supported boards",
+          "tr": "Desteklenen kartlar"
+        },
+        "items": {
+          "en": [
+            "Raspberry Pi: Zero, Zero W, A+, B+, 2B, 3, 3A+, 3B, 3B+, CM3, CM3+",
+            "Orange Pi: Zero, One, Lite, 2, PC, PC Plus, PC 2, Plus, Plus 2, Plus 2E, Prime"
+          ],
+          "tr": [
+            "Raspberry Pi: Zero, Zero W, A+, B+, 2B, 3, 3A+, 3B, 3B+, CM3, CM3+",
+            "Orange Pi: Zero, One, Lite, 2, PC, PC Plus, PC 2, Plus, Plus 2, Plus 2E, Prime"
+          ]
+        }
+      }
+    ],
+    "stats": [
+      {
+        "value": "22",
+        "label": {
+          "en": "boards recognised",
+          "tr": "tanınan kart"
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "License",
+          "tr": "Lisans"
+        },
+        "value": "Apache-2.0"
+      },
+      {
+        "label": {
+          "en": "Package",
+          "tr": "Paket"
+        },
+        "value": "device-database (npm)"
+      },
+      {
+        "label": {
+          "en": "Latest version",
+          "tr": "Son sürüm"
+        },
+        "value": "1.4.8"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "slug": "rpifan",
+    "name": "rpifan",
+    "description": {
+      "en": "A Node.js library that switches a Raspberry Pi cooling fan on and off by CPU temperature.",
+      "tr": "Raspberry Pi soğutma fanını CPU sıcaklığına göre açıp kapatan bir Node.js kütüphanesi."
+    },
+    "longDescription": {
+      "en": "A Node.js library that switches a Raspberry Pi cooling fan on and off by CPU temperature, so the fan only runs when the board needs it. Thresholds are configurable, with sensible defaults. One of my earliest open-source projects.",
+      "tr": "Raspberry Pi soğutma fanını CPU sıcaklığına göre açıp kapatan bir Node.js kütüphanesi; fan yalnızca kart gerçekten ısındığında çalışıyor. Eşikler ayarlanabiliyor, varsayılanları da hazır. İlk açık kaynak projelerimden biri."
+    },
+    "techTags": [
+      "JavaScript",
+      "Node.js",
+      "Raspberry Pi",
+      "IoT"
+    ],
+    "repoUrl": "https://github.com/ahmetcanaksu/rpifan",
+    "liveUrl": null,
+    "links": [],
+    "stars": 2,
+    "featured": false,
+    "status": "complete",
+    "year": "2018",
+    "language": "JavaScript",
+    "icon": "wind",
+    "about": {
+      "en": [
+        "rpifan keeps a Raspberry Pi cool without keeping its fan running all the time. Hand it the GPIO pin the fan is wired to and it watches the CPU temperature, switching the fan as the board heats up and cools down.",
+        "Temperature thresholds are configurable; leave them out and it runs in automatic mode with built-in defaults.",
+        "It's one of my earliest open-source projects, written in 2018, and published on npm."
+      ],
+      "tr": [
+        "rpifan, bir Raspberry Pi'ı fanını sürekli çalıştırmadan serin tutuyor. Fanın bağlı olduğu GPIO pinini verdiğinizde CPU sıcaklığını izliyor ve kart ısındıkça ve soğudukça fanı açıp kapatıyor.",
+        "Sıcaklık eşikleri ayarlanabiliyor; belirtmezseniz yerleşik varsayılanlarla otomatik modda çalışıyor.",
+        "2018'de yazdığım ilk açık kaynak projelerimden biri; npm'de yayınlandı."
+      ]
+    },
+    "sections": [
+      {
+        "heading": {
+          "en": "How it works",
+          "tr": "Nasıl çalışır"
+        },
+        "items": {
+          "en": [
+            "Reads the CPU temperature from the Pi's firmware",
+            "Switches the fan through a GPIO pin",
+            "Configurable min / max temperature thresholds",
+            "Automatic mode with sensible defaults"
+          ],
+          "tr": [
+            "CPU sıcaklığını Pi'ın firmware'inden okuyor",
+            "Fanı bir GPIO pini üzerinden açıp kapatıyor",
+            "Ayarlanabilir minimum / maksimum sıcaklık eşikleri",
+            "Makul varsayılanlarla otomatik mod"
+          ]
+        }
+      }
+    ],
+    "info": [
+      {
+        "label": {
+          "en": "License",
+          "tr": "Lisans"
+        },
+        "value": "Apache-2.0"
+      },
+      {
+        "label": {
+          "en": "Package",
+          "tr": "Paket"
+        },
+        "value": "rpifan (npm)"
+      },
+      {
+        "label": {
+          "en": "Platform",
+          "tr": "Platform"
+        },
+        "value": "Raspberry Pi"
+      }
+    ]
+  }
 ]

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useLang } from "../i18n/LangContext";
 
 const socials = [
   { href: "https://github.com/ahmetcanaksu", label: "GitHub" },
@@ -8,13 +9,14 @@ const socials = [
 ];
 
 const Footer = () => {
+  const { t } = useLang();
   const year = new Date().getFullYear();
   return (
     <footer className="mt-24 border-t border-rule">
       <div className="wrap flex flex-col gap-6 py-10 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="font-display text-lg font-semibold text-ink">
-            Let&apos;s build something.
+            {t({ en: "Let's build something.", tr: "Birlikte bir şeyler yapalım." })}
           </p>
           <a href="mailto:hello@ahmetcanaksu.com" className="link mt-1 inline-block">
             hello@ahmetcanaksu.com
@@ -36,7 +38,7 @@ const Footer = () => {
             ))}
           </nav>
           <p className="meta">
-            © {year} Ahmetcan Aksu · Istanbul ·{" "}
+            © {year} Ahmetcan Aksu · {t({ en: "Istanbul", tr: "İstanbul" })} ·{" "}
             <Link to="/" className="hover:text-accent">
               ahmetcanaksu.com
             </Link>

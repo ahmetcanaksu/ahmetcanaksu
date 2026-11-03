@@ -2,8 +2,14 @@
     {
         "id": 1,
         "name": "Rusty6502",
-        "description": "A Rust emulator for the MOS 6502 microprocessor.",
-        "longDescription": "A complete emulation of the MOS Technology 6502 microprocessor written in Rust — the CPU behind the NES, Commodore 64, and Apple II. An exploration of instruction-set architecture, opcode decoding, and cycle-accurate timing.",
+        "description": {
+            "en": "A Rust emulator for the MOS 6502 microprocessor.",
+            "tr": "MOS 6502 mikroişlemcisi için Rust ile yazılmış bir emülatör."
+        },
+        "longDescription": {
+            "en": "A complete emulation of the MOS Technology 6502 microprocessor written in Rust — the CPU behind the NES, Commodore 64, and Apple II. An exploration of instruction-set architecture, opcode decoding, and cycle-accurate timing.",
+            "tr": "NES, Commodore 64 ve Apple II'nin kalbindeki işlemci olan MOS Technology 6502'nin Rust ile yazılmış eksiksiz bir emülasyonu. Komut kümesi mimarisini, opcode çözümlemeyi ve döngü hassasiyetinde zamanlamayı kurcaladığım bir çalışma."
+        },
         "techTags": [
             "Rust",
             "Emulation",
@@ -13,15 +19,24 @@
         ],
         "repoUrl": "https://github.com/ahmetcanaksu/Rusty6502",
         "liveUrl": null,
-        "category": "Computer Architecture",
+        "category": {
+            "en": "Computer Architecture",
+            "tr": "Bilgisayar Mimarisi"
+        },
         "status": "active",
         "year": "2022"
     },
     {
         "id": 6,
         "name": "RChip-8",
-        "description": "A highly portable CHIP-8 emulator written in Rust.",
-        "longDescription": "A CHIP-8 virtual machine and emulator built in Rust with portability as a first-class goal — designed to run across desktop and constrained targets. A study in interpreter design, opcode decoding, and display/timing emulation.",
+        "description": {
+            "en": "A highly portable CHIP-8 emulator written in Rust.",
+            "tr": "Rust ile yazılmış, son derece taşınabilir bir CHIP-8 emülatörü."
+        },
+        "longDescription": {
+            "en": "A CHIP-8 virtual machine and emulator built in Rust with portability as a first-class goal — designed to run across desktop and constrained targets. A study in interpreter design, opcode decoding, and display/timing emulation.",
+            "tr": "Taşınabilirliği birinci hedef alarak Rust ile geliştirdiğim bir CHIP-8 sanal makinesi ve emülatörü — hem masaüstünde hem de kısıtlı donanımlarda çalışacak şekilde tasarlandı. Yorumlayıcı tasarımı, opcode çözümleme ve ekran/zamanlama emülasyonu üzerine bir çalışma."
+        },
         "techTags": [
             "Rust",
             "Emulation",
@@ -30,15 +45,24 @@
         ],
         "repoUrl": "https://github.com/ahmetcanaksu/RChip-8",
         "liveUrl": null,
-        "category": "Computer Architecture",
+        "category": {
+            "en": "Computer Architecture",
+            "tr": "Bilgisayar Mimarisi"
+        },
         "status": "experimental",
         "year": "2026"
     },
     {
         "id": 2,
         "name": "RemoteWindow",
-        "description": "A window-sharing app that streams application windows over the network.",
-        "longDescription": "A network-based window-sharing application in Rust for real-time sharing of application windows across machines. Research into remote-desktop protocols, network streaming, and efficient graphics transmission.",
+        "description": {
+            "en": "A window-sharing app that streams application windows over the network.",
+            "tr": "Uygulama pencerelerini ağ üzerinden aktaran bir pencere paylaşım uygulaması."
+        },
+        "longDescription": {
+            "en": "A network-based window-sharing application in Rust for real-time sharing of application windows across machines. Research into remote-desktop protocols, network streaming, and efficient graphics transmission.",
+            "tr": "Uygulama pencerelerini makineler arasında gerçek zamanlı paylaşmak için Rust ile yazdığım, ağ tabanlı bir pencere paylaşım uygulaması. Uzak masaüstü protokolleri, ağ üzerinden streaming ve grafiklerin verimli aktarımı üzerine bir araştırma."
+        },
         "techTags": [
             "Rust",
             "Networking",
@@ -48,15 +72,24 @@
         ],
         "repoUrl": "https://github.com/ahmetcanaksu/RemoteWindow",
         "liveUrl": null,
-        "category": "Networking",
+        "category": {
+            "en": "Networking",
+            "tr": "Ağ"
+        },
         "status": "active",
         "year": "2023"
     },
     {
         "id": 3,
         "name": "TunnelExperiment",
-        "description": "A middleman server that forwards incoming TCP requests to a given server.",
-        "longDescription": "An experimental TCP proxy that acts as a middleman, forwarding network requests to a target server. Research into network protocols, connection management, and proxy-server architectures.",
+        "description": {
+            "en": "A middleman server that forwards incoming TCP requests to a given server.",
+            "tr": "Gelen TCP isteklerini belirlenen bir sunucuya ileten aracı sunucu."
+        },
+        "longDescription": {
+            "en": "An experimental TCP proxy that acts as a middleman, forwarding network requests to a target server. Research into network protocols, connection management, and proxy-server architectures.",
+            "tr": "Araya girip ağ isteklerini hedef sunucuya ileten deneysel bir TCP proxy. Ağ protokolleri, bağlantı yönetimi ve proxy sunucu mimarileri üzerine bir araştırma."
+        },
         "techTags": [
             "Rust",
             "Networking",
@@ -66,15 +99,24 @@
         ],
         "repoUrl": "https://github.com/ahmetcanaksu/TunnelExperiment",
         "liveUrl": null,
-        "category": "Networking",
+        "category": {
+            "en": "Networking",
+            "tr": "Ağ"
+        },
         "status": "experimental",
         "year": "2023"
     },
     {
         "id": 4,
         "name": "LaserNet",
-        "description": "Bi-directional laser communication research on microcontrollers — timing and packet loss.",
-        "longDescription": "An experimental bi-directional laser communication system built with microcontrollers to study optical communication: timing synchronization, packet-loss analysis, and signal integrity in free-space optical links. An exploration of the challenges of reliable communication over laser.",
+        "description": {
+            "en": "Bi-directional laser communication research on microcontrollers — timing and packet loss.",
+            "tr": "Mikrodenetleyicilerle çift yönlü lazer haberleşmesi araştırması — zamanlama ve paket kaybı."
+        },
+        "longDescription": {
+            "en": "An experimental bi-directional laser communication system built with microcontrollers to study optical communication: timing synchronization, packet-loss analysis, and signal integrity in free-space optical links. An exploration of the challenges of reliable communication over laser.",
+            "tr": "Optik haberleşmeyi incelemek için mikrodenetleyicilerle kurduğum deneysel, çift yönlü bir lazer haberleşme sistemi: zamanlama senkronizasyonu, paket kaybı analizi ve serbest uzay optik bağlantılarında sinyal bütünlüğü. Lazer üzerinden güvenilir haberleşmenin zorluklarını keşfettiğim bir çalışma."
+        },
         "techTags": [
             "Microcontrollers",
             "Optical Communication",
@@ -84,15 +126,27 @@
         ],
         "repoUrl": "https://github.com/ahmetcanaksu/LaserNet",
         "liveUrl": null,
-        "category": "Embedded Systems",
+        "category": {
+            "en": "Embedded Systems",
+            "tr": "Gömülü Sistemler"
+        },
         "status": "experimental",
         "year": "2025"
     },
     {
         "id": 5,
-        "name": "Comparison of Pairing Functions: Szudzik, Cantor, and Bit Interleaving",
-        "description": "A visual and mathematical comparison of Szudzik's, Cantor's, and bit-interleaving pairing functions, with an interactive chart and code.",
-        "longDescription": "This experiment explores and visualizes three pairing functions (Szudzik, Cantor, bit interleaving) that uniquely map two integers into one. Includes an interactive chart and code for comparison.",
+        "name": {
+            "en": "Comparison of Pairing Functions: Szudzik, Cantor, and Bit Interleaving",
+            "tr": "Eşleme Fonksiyonlarının Karşılaştırması: Szudzik, Cantor ve Bit Serpiştirme"
+        },
+        "description": {
+            "en": "A visual and mathematical comparison of Szudzik's, Cantor's, and bit-interleaving pairing functions, with an interactive chart and code.",
+            "tr": "Szudzik, Cantor ve bit serpiştirme eşleme fonksiyonlarının etkileşimli grafik ve kodla görsel ve matematiksel karşılaştırması."
+        },
+        "longDescription": {
+            "en": "This experiment explores and visualizes three pairing functions (Szudzik, Cantor, bit interleaving) that uniquely map two integers into one. Includes an interactive chart and code for comparison.",
+            "tr": "Bu deneyde, iki tam sayıyı tek bir tam sayıya birebir eşleyen üç eşleme fonksiyonunu (Szudzik, Cantor, bit serpiştirme) inceleyip görselleştiriyorum. Karşılaştırma için etkileşimli bir grafik ve kod da var."
+        },
         "techTags": [
             "Math",
             "Visualization",
@@ -101,15 +155,27 @@
         ],
         "repoUrl": null,
         "liveUrl": "#/research/pairing-functions",
-        "category": "Mathematics",
+        "category": {
+            "en": "Mathematics",
+            "tr": "Matematik"
+        },
         "status": "complete",
         "year": "2025"
     },
     {
         "id": 7,
-        "name": "Compressing Color: YUV, YIQ & Chroma Subsampling",
-        "description": "An interactive look at how analog TV and modern video shrink an image by exploiting the eye’s weak color acuity.",
-        "longDescription": "A live, in-browser demo of RGB → Y′CbCr / YIQ colour-space conversion and 4:2:2 / 4:2:0 chroma subsampling — separating luma from chroma, blurring the color, and measuring the byte savings and error (PSNR) in real time on a canvas.",
+        "name": {
+            "en": "Compressing Color: YUV, YIQ & Chroma Subsampling",
+            "tr": "Rengi Sıkıştırmak: YUV, YIQ ve Kroma Alt Örnekleme"
+        },
+        "description": {
+            "en": "An interactive look at how analog TV and modern video shrink an image by exploiting the eye’s weak color acuity.",
+            "tr": "Analog televizyonun ve modern videonun, gözün renkteki zayıf keskinliğinden yararlanarak görüntüyü nasıl küçülttüğüne etkileşimli bir bakış."
+        },
+        "longDescription": {
+            "en": "A live, in-browser demo of RGB → Y′CbCr / YIQ colour-space conversion and 4:2:2 / 4:2:0 chroma subsampling — separating luma from chroma, blurring the color, and measuring the byte savings and error (PSNR) in real time on a canvas.",
+            "tr": "RGB → Y′CbCr / YIQ renk uzayı dönüşümünün ve 4:2:2 / 4:2:0 kroma alt örneklemenin tarayıcıda canlı çalışan bir demosu — lumayı kromadan ayırıp rengi bulanıklaştırıyor, kazanılan baytı ve hatayı (PSNR) bir canvas üzerinde gerçek zamanlı ölçüyor."
+        },
         "techTags": [
             "Color Science",
             "Canvas",
@@ -119,7 +185,10 @@
         ],
         "repoUrl": null,
         "liveUrl": "#/research/color-compression",
-        "category": "Signal Processing",
+        "category": {
+            "en": "Signal Processing",
+            "tr": "Sinyal İşleme"
+        },
         "status": "complete",
         "year": "2026"
     }

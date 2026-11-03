@@ -7,6 +7,27 @@
     <link rel="apple-touch-icon" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!--
+      First visit to the English root from a Turkish browser: go to /tr/, keeping
+      the #/page. Only "/" is ever redirected — an explicit /tr/ link is never
+      bounced back, and a choice made with the EN/TR switch (stored under "lang")
+      wins over the browser. Crawlers send English, so they are never redirected.
+    -->
+    <script>
+      (function () {
+        try {
+          var p = location.pathname;
+          if (p !== "/" && p !== "/index.html") return;
+          var saved = null;
+          try { saved = localStorage.getItem("lang"); } catch (e) {}
+          var wantsTr = saved
+            ? saved === "tr"
+            : /^tr\b/i.test((navigator.languages && navigator.languages[0]) || navigator.language || "");
+          if (wantsTr) location.replace("/tr/" + location.search + location.hash);
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,15 +37,15 @@
     />
 
     <!-- Primary Meta Tags -->
-    <title>Ahmetcan Aksu - Software Developer</title>
-    <meta name="title" content="Ahmetcan Aksu - Software Developer" />
+    <title>Ahmetcan Aksu - Full Stack Developer · Fintech & AI</title>
+    <meta name="title" content="Ahmetcan Aksu - Full Stack Developer · Fintech & AI" />
     <meta
       name="description"
-      content="Software developer and open-source enthusiast from Istanbul, Turkey. Creator of Ellie programming language and UtilStation. Specialized in Rust, React, and backend development."
+      content="Full stack developer from Istanbul building in .NET, Node.js, React and Rust: bank and TEFAS integrations, applications on LLMs, and the Ellie programming language."
     />
     <meta
       name="keywords"
-      content="Ahmetcan Aksu, Software Developer, Rust, React, Programming Language, Ellie Language, UtilStation, Backend Developer, Turkey, Istanbul"
+      content="Ahmetcan Aksu, Full Stack Developer, Software Developer, Backend Developer, Fintech, AI, LLM, TEFAS, Rust, React, Programming Language, Ellie Language, UtilStation, Backend Developer, Turkey, Istanbul"
     />
     <meta name="author" content="Ahmetcan Aksu" />
     <meta name="robots" content="index, follow" />
@@ -32,24 +53,26 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ahmetcanaksu.com/" />
-    <meta property="og:title" content="Ahmetcan Aksu - Software Developer" />
+    <meta property="og:title" content="Ahmetcan Aksu - Full Stack Developer · Fintech & AI" />
     <meta
       property="og:description"
-      content="Software developer and open-source enthusiast from Istanbul, Turkey. Creator of Ellie programming language and UtilStation."
+      content="Full stack development in .NET, Node.js, React and Rust: bank and TEFAS integrations, applications on LLMs, and the Ellie programming language."
     />
     <meta property="og:image" content="https://ahmetcanaksu.com/og-image.jpg" />
     <meta property="og:site_name" content="Ahmetcan Aksu Portfolio" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="tr_TR" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://ahmetcanaksu.com/" />
     <meta
       property="twitter:title"
-      content="Ahmetcan Aksu - Software Developer"
+      content="Ahmetcan Aksu - Full Stack Developer · Fintech & AI"
     />
     <meta
       property="twitter:description"
-      content="Software developer and open-source enthusiast from Istanbul, Turkey. Creator of Ellie programming language and UtilStation."
+      content="Full stack development in .NET, Node.js, React and Rust: bank and TEFAS integrations, applications on LLMs, and the Ellie programming language."
     />
     <meta
       property="twitter:image"
@@ -59,6 +82,9 @@
 
     <!-- Additional SEO -->
     <link rel="canonical" href="https://ahmetcanaksu.com/" />
+    <link rel="alternate" hreflang="en" href="https://ahmetcanaksu.com/" />
+    <link rel="alternate" hreflang="tr" href="https://ahmetcanaksu.com/tr/" />
+    <link rel="alternate" hreflang="x-default" href="https://ahmetcanaksu.com/" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#f7f4ee" />
 

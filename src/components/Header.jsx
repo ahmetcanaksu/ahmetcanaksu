@@ -1,20 +1,59 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
+import { useLang, LANGS } from "../i18n/LangContext";
 
 const navItems = [
-  { path: "/journey", label: "Journey" },
-  { path: "/about", label: "About" },
-  { path: "/projects", label: "Projects" },
-  { path: "/research", label: "Research" },
-  { path: "/blog", label: "Writing" },
-  { path: "/resume", label: "Résumé" },
-  { path: "/contact", label: "Contact" },
+  { path: "/journey", label: { en: "Journey", tr: "Yolculuk" } },
+  { path: "/about", label: { en: "About", tr: "Hakkımda" } },
+  { path: "/projects", label: { en: "Projects", tr: "Projeler" } },
+  { path: "/research", label: { en: "Research", tr: "Araştırma" } },
+  { path: "/blog", label: { en: "Writing", tr: "Yazılar" } },
+  { path: "/resume", label: { en: "Résumé", tr: "Özgeçmiş" } },
+  { path: "/contact", label: { en: "Contact", tr: "İletişim" } },
 ];
+
+/* EN / TR. Each is a real link to the other language's URL (crawlable, and
+   it opens in a new tab on middle-click); a plain click switches in place. */
+const LangSwitch = ({ className = "" }) => {
+  const { lang, setLang, hrefFor, t } = useLang();
+  useLocation(); // re-render on navigation so hrefFor() carries the current #/page
+  return (
+    <div
+      className={`flex items-center gap-1 font-mono text-xs ${className}`}
+      role="group"
+      aria-label={t({ en: "Language", tr: "Dil" })}
+    >
+      {LANGS.map((l, i) => (
+        <span key={l} className="flex items-center gap-1">
+          {i > 0 && <span className="text-rule">/</span>}
+          <a
+            href={hrefFor(l)}
+            hrefLang={l}
+            lang={l}
+            aria-current={lang === l ? "true" : undefined}
+            onClick={(e) => {
+              if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+              e.preventDefault();
+              setLang(l);
+            }}
+            className={`uppercase transition-colors ${
+              lang === l ? "text-accent" : "text-ink-3 hover:text-ink"
+            }`}
+            title={l === "tr" ? "Türkçe" : "English"}
+          >
+            {l}
+          </a>
+        </span>
+      ))}
+    </div>
+  );
+};
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLang();
 
   useEffect(() => setOpen(false), [location.pathname]);
   useEffect(() => {
@@ -55,21 +94,25 @@ const Header = () => {
                       : "border-b-2 border-transparent pb-0.5"
                   }
                 >
-                  {item.label}
+                  {t(item.label)}
                 </span>
               )}
             </NavLink>
           ))}
+          <LangSwitch className="ml-1 border-l border-rule pl-5" />
         </nav>
 
-        <button
-          className="btn-ghost md:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Menu"
-          aria-expanded={open}
-        >
-          {open ? <FiX className="h-5 w-5" /> : <FiMenu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <LangSwitch />
+          <button
+            className="btn-ghost"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={t({ en: "Menu", tr: "Menü" })}
+            aria-expanded={open}
+          >
+            {open ? <FiX className="h-5 w-5" /> : <FiMenu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -90,7 +133,7 @@ const Header = () => {
                       }`
                     }
                   >
-                    {item.label}
+                    {t(item.label)}
                   </NavLink>
                 </li>
               ))}

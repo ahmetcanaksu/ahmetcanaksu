@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Journey from "./pages/Journey";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";
 import Research from "./pages/Research";
 import Blog from "./pages/Blog";
 import Resume from "./pages/Resume";
@@ -24,6 +25,7 @@ function App() {
             <Route path="/journey" element={<Journey />} />
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:slug" element={<ProjectDetail />} />
             <Route path="/research" element={<Research />} />
             <Route
               path="/research/pairing-functions"

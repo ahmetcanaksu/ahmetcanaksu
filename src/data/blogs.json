@@ -1,10 +1,19 @@
 [
     {
         "id": 1,
-        "title": "Rust ile WebAssembly yazıyoruz",
-        "excerpt": "Rust programlama dili kullanarak WebAssembly modülleri nasıl geliştirileceğini öğrenin. Modern web uygulamalarında yüksek performans için Rust+WASM kombinasyonu.",
+        "title": {
+            "en": "Writing WebAssembly with Rust",
+            "tr": "Rust ile WebAssembly yazıyoruz"
+        },
+        "excerpt": {
+            "en": "How to build WebAssembly modules with the Rust programming language — and why the Rust + WASM pairing is a good fit for high-performance modern web apps.",
+            "tr": "Rust programlama dili kullanarak WebAssembly modülleri nasıl geliştirileceğini öğrenin. Modern web uygulamalarında yüksek performans için Rust+WASM kombinasyonu."
+        },
         "date": "2023-12-01",
-        "readTime": "7 min read",
+        "readTime": {
+            "en": "7 min read",
+            "tr": "7 dk okuma"
+        },
         "tags": [
             "Rust",
             "WebAssembly",
@@ -15,14 +24,24 @@
         "url": "https://www.linkedin.com/pulse/rust-ile-webassembly-yaz%C4%B1yoruz-ahmetcan-aksu/?trackingId=HYV97J0LS96u8vtsNryQpw%3D%3D",
         "featured": true,
         "type": "external",
-        "platform": "LinkedIn"
+        "platform": "LinkedIn",
+        "lang": "tr"
     },
     {
         "id": 2,
-        "title": "Rust ile web servisi yazıyoruz",
-        "excerpt": "Rust programlama dili ile yüksek performanslı web servisleri nasıl geliştirilir? Pratik örnekler ve best practice'ler ile Rust web development rehberi.",
+        "title": {
+            "en": "Writing a web service with Rust",
+            "tr": "Rust ile web servisi yazıyoruz"
+        },
+        "excerpt": {
+            "en": "How do you build high-performance web services in Rust? A practical guide to Rust web development, with worked examples and best practices.",
+            "tr": "Rust programlama dili ile yüksek performanslı web servisleri nasıl geliştirilir? Pratik örnekler ve best practice'ler ile Rust web development rehberi."
+        },
         "date": "2023-11-15",
-        "readTime": "6 min read",
+        "readTime": {
+            "en": "6 min read",
+            "tr": "6 dk okuma"
+        },
         "tags": [
             "Rust",
             "Web Development",
@@ -33,14 +52,24 @@
         "url": "https://www.linkedin.com/pulse/rust-ile-web-servisi-yaz%C4%B1yoruz-ahmetcan-aksu/",
         "featured": true,
         "type": "external",
-        "platform": "LinkedIn"
+        "platform": "LinkedIn",
+        "lang": "tr"
     },
     {
         "id": 3,
-        "title": "Rust ile HTTP üzerinden dosya indirmek",
-        "excerpt": "Rust programlama dili kullanarak HTTP protokolü üzerinden dosya indirme işlemlerini nasıl gerçekleştireceğinizi öğrenin. Asenkron programlama ve error handling dahil.",
+        "title": {
+            "en": "Downloading files over HTTP with Rust",
+            "tr": "Rust ile HTTP üzerinden dosya indirmek"
+        },
+        "excerpt": {
+            "en": "How to download files over HTTP in Rust, including asynchronous programming and error handling.",
+            "tr": "Rust programlama dili kullanarak HTTP protokolü üzerinden dosya indirme işlemlerini nasıl gerçekleştireceğinizi öğrenin. Asenkron programlama ve error handling dahil."
+        },
         "date": "2023-11-01",
-        "readTime": "5 min read",
+        "readTime": {
+            "en": "5 min read",
+            "tr": "5 dk okuma"
+        },
         "tags": [
             "Rust",
             "HTTP",
@@ -51,6 +80,7 @@
         "url": "https://www.linkedin.com/pulse/rust-ile-http-%25C3%25BCzerinden-dosya-indirmek-ahmetcan-aksu/",
         "featured": false,
         "type": "external",
-        "platform": "LinkedIn"
+        "platform": "LinkedIn",
+        "lang": "tr"
     }
 ]

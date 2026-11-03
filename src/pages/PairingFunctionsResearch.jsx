@@ -10,6 +10,7 @@ import {
   CategoryScale,
 } from "chart.js";
 import PageHeader from "../components/PageHeader";
+import { useLang } from "../i18n/LangContext";
 
 ChartJS.register(
   LineElement,
@@ -22,6 +23,7 @@ ChartJS.register(
 );
 
 const PairingFunctionsExperiment = () => {
+  const { t } = useLang();
   const szudzik = (x, y) => (x >= y ? x * x + x + y : y * y + x);
   const cantor = (x, y) => ((x + y) * (x + y + 1)) / 2 + y;
   const bitInterleave = (x, y) => {
@@ -67,7 +69,7 @@ const PairingFunctionsExperiment = () => {
       mk("y", ys, "#a8a093"),
       mk("Szudzik", sz, "#b4421d"),
       mk("Cantor", ca, "#2b6cb0"),
-      mk("Bit interleave", bi, "#3a7d44"),
+      mk(t({ en: "Bit interleave", tr: "Bit serpiştirme" }), bi, "#3a7d44"),
     ],
   };
 
@@ -84,12 +86,12 @@ const PairingFunctionsExperiment = () => {
     interaction: { mode: "index", intersect: false },
     scales: {
       x: {
-        title: { display: true, text: "Iteration", color: tick },
+        title: { display: true, text: t({ en: "Iteration", tr: "Adım" }), color: tick },
         ticks: { color: tick },
         grid: { color: grid },
       },
       y: {
-        title: { display: true, text: "Value", color: tick },
+        title: { display: true, text: t({ en: "Value", tr: "Değer" }), color: tick },
         ticks: { color: tick },
         grid: { color: grid },
       },
@@ -99,27 +101,52 @@ const PairingFunctionsExperiment = () => {
   return (
     <div className="wrap py-16 sm:py-20">
       <PageHeader
-        kicker="Experiment"
-        title="Pairing functions, compared."
+        kicker={t({ en: "Experiment", tr: "Deney" })}
+        title={t({
+          en: "Pairing functions, compared.",
+          tr: "Eşleme fonksiyonları, karşılaştırmalı.",
+        })}
       >
-        A visual and mathematical look at three ways to map two integers into one
-        — Szudzik&apos;s, Cantor&apos;s, and bit interleaving.
+        {t({
+          en: "A visual and mathematical look at three ways to map two integers into one — Szudzik's, Cantor's, and bit interleaving.",
+          tr: "İki tam sayıyı tek bir tam sayıya eşlemenin üç yoluna görsel ve matematiksel bir bakış — Szudzik, Cantor ve bit serpiştirme.",
+        })}
       </PageHeader>
 
       <div className="prose-paper max-w-3xl">
-        <p>
-          Pairing functions uniquely encode a pair of integers as a single
-          integer. Starting from sequences <strong>x</strong> (from 1) and{" "}
-          <strong>y</strong> (from 2), both incrementing over 100 steps, we
-          compare how each function grows relative to its inputs.
-        </p>
+        {t({
+          en: (
+            <p>
+              Pairing functions uniquely encode a pair of integers as a single
+              integer. Starting from sequences <strong>x</strong> (from 1) and{" "}
+              <strong>y</strong> (from 2), both incrementing over 100 steps, we
+              compare how each function grows relative to its inputs.
+            </p>
+          ),
+          tr: (
+            <p>
+              Eşleme fonksiyonları, bir tam sayı çiftini tek bir tam sayı olarak
+              birebir kodlar. <strong>x</strong> (1&apos;den) ve{" "}
+              <strong>y</strong> (2&apos;den) dizilerini 100 adım boyunca birer
+              birer artırarak, her fonksiyonun girdilerine göre nasıl büyüdüğünü
+              karşılaştırıyorum.
+            </p>
+          ),
+        })}
 
-        <h2>Formulas</h2>
-        <pre>{`Szudzik   x >= y ? x² + x + y : y² + x
+        <h2>{t({ en: "Formulas", tr: "Formüller" })}</h2>
+        <pre>
+          {t({
+            en: `Szudzik   x >= y ? x² + x + y : y² + x
 Cantor    (x + y)(x + y + 1) / 2 + y
-Interleave  weave the bits of x and y into one integer`}</pre>
+Interleave  weave the bits of x and y into one integer`,
+            tr: `Szudzik   x >= y ? x² + x + y : y² + x
+Cantor    (x + y)(x + y + 1) / 2 + y
+Interleave  x ve y'nin bitlerini tek bir tam sayıda iç içe ör`,
+          })}
+        </pre>
 
-        <h2>Implementation</h2>
+        <h2>{t({ en: "Implementation", tr: "Uygulama" })}</h2>
         <pre>{`function szudzik(x, y) {
   return x >= y ? x * x + x + y : y * y + x;
 }
@@ -136,7 +163,9 @@ function bitInterleave(x, y) {
 }`}</pre>
       </div>
 
-      <h2 className="mt-12 mb-4 text-2xl font-semibold">Growth</h2>
+      <h2 className="mt-12 mb-4 text-2xl font-semibold">
+        {t({ en: "Growth", tr: "Büyüme" })}
+      </h2>
       <div className="rounded-sm border border-rule bg-paper-2/40 p-4">
         <div style={{ width: "100%", height: 420 }}>
           <Line data={data} options={options} />

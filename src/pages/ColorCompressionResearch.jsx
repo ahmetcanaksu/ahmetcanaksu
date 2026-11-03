@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import PageHeader from "../components/PageHeader";
+import { useLang } from "../i18n/LangContext";
 
 const W = 320;
 const H = 176;
@@ -73,7 +74,10 @@ Cr =  0.500·R − 0.419·G − 0.081·B   (+128)`,
   },
   yiq: {
     name: "YIQ (NTSC)",
-    chroma: ["I · in-phase", "Q · quadrature"],
+    chroma: [
+      { en: "I · in-phase", tr: "I · eş fazlı" },
+      { en: "Q · quadrature", tr: "Q · dik fazlı" },
+    ],
     to: (r, g, b) => [
       0.299 * r + 0.587 * g + 0.114 * b,
       0.596 * r - 0.274 * g - 0.322 * b,
@@ -114,6 +118,7 @@ const Stage = ({ n, title, badge, caption, canvasRef }) => (
 );
 
 const ColorCompressionExperiment = () => {
+  const { t } = useLang();
   const [space, setSpace] = useState("yuv");
   const [mode, setMode] = useState("420");
   const [stats, setStats] = useState({ bpp: 1.5, reduction: 50, psnr: 0 });
@@ -243,28 +248,50 @@ const ColorCompressionExperiment = () => {
 
   return (
     <div className="wrap py-16 sm:py-20">
-      <PageHeader kicker="Experiment · live" title="Compressing color.">
-        How analog TV and modern video shrink an image by throwing away color
-        detail your eyes barely notice. Everything below is computed live in your
-        browser on a canvas — no libraries.
+      <PageHeader
+        kicker={t({ en: "Experiment · live", tr: "Deney · canlı" })}
+        title={t({ en: "Compressing color.", tr: "Rengi sıkıştırmak." })}
+      >
+        {t({
+          en: "How analog TV and modern video shrink an image by throwing away color detail your eyes barely notice. Everything below is computed live in your browser on a canvas — no libraries.",
+          tr: "Analog televizyon ve modern video, gözünüzün zar zor fark ettiği renk ayrıntısını atarak görüntüyü nasıl küçültüyor? Aşağıdaki her şey tarayıcınızda, bir canvas üzerinde canlı hesaplanıyor — hiçbir kütüphane kullanmadan.",
+        })}
       </PageHeader>
 
       <div className="prose-paper max-w-3xl">
-        <p>
-          A pixel in RGB spends one byte each on red, green and blue — three bytes,
-          all treated equally. But human vision has far more brightness receptors
-          than color ones, so we&apos;re much better at seeing fine{" "}
-          <strong>luminance</strong> detail than fine <strong>color</strong>. The
-          trick, used by NTSC television in the 1950s and by JPEG and every video
-          codec since, is to separate an image into a brightness channel and two
-          color-difference channels — then keep brightness sharp and blur the color.
-        </p>
+        {t({
+          en: (
+            <p>
+              A pixel in RGB spends one byte each on red, green and blue — three
+              bytes, all treated equally. But human vision has far more brightness
+              receptors than color ones, so we&apos;re much better at seeing fine{" "}
+              <strong>luminance</strong> detail than fine <strong>color</strong>.
+              The trick, used by NTSC television in the 1950s and by JPEG and every
+              video codec since, is to separate an image into a brightness channel
+              and two color-difference channels — then keep brightness sharp and
+              blur the color.
+            </p>
+          ),
+          tr: (
+            <p>
+              RGB&apos;de bir piksel kırmızıya, yeşile ve maviye birer bayt harcar —
+              üç bayt, hepsi eşit muamele görür. Oysa insan gözünde parlaklığa
+              duyarlı reseptörler renge duyarlı olanlardan çok daha fazladır; bu
+              yüzden ince <strong>parlaklık</strong> ayrıntısını ince{" "}
+              <strong>renk</strong> ayrıntısından çok daha iyi görürüz. 1950&apos;lerde
+              NTSC televizyonun, sonra da JPEG&apos;in ve o günden beri her video
+              codec&apos;inin kullandığı numara şu: görüntüyü bir parlaklık kanalına
+              ve iki renk farkı kanalına ayır — parlaklığı keskin tut, rengi
+              bulanıklaştır.
+            </p>
+          ),
+        })}
       </div>
 
       {/* Controls */}
       <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
         <div className="flex items-center gap-4">
-          <span className="meta">Color space</span>
+          <span className="meta">{t({ en: "Color space", tr: "Renk uzayı" })}</span>
           {Object.keys(SPACES).map((k) => (
             <button key={k} onClick={() => setSpace(k)} className={btn(space === k)}>
               {SPACES[k].name}
@@ -272,7 +299,7 @@ const ColorCompressionExperiment = () => {
           ))}
         </div>
         <div className="flex items-center gap-4">
-          <span className="meta">Subsampling</span>
+          <span className="meta">{t({ en: "Subsampling", tr: "Alt örnekleme" })}</span>
           {Object.keys(MODES).map((k) => (
             <button key={k} onClick={() => setMode(k)} className={btn(mode === k)}>
               {MODES[k].label}
@@ -285,35 +312,47 @@ const ColorCompressionExperiment = () => {
       <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <Stage
           n="01"
-          title="Original · RGB"
+          title={t({ en: "Original · RGB", tr: "Orijinal · RGB" })}
           badge="3 B/px · 24-bit"
           canvasRef={orig}
-          caption="Every pixel stores R, G and B — three bytes, full resolution."
+          caption={t({
+            en: "Every pixel stores R, G and B — three bytes, full resolution.",
+            tr: "Her piksel R, G ve B'yi saklar — üç bayt, tam çözünürlük.",
+          })}
         />
         <Stage
           n="02"
           title="Luma · Y"
-          badge="kept sharp"
+          badge={t({ en: "kept sharp", tr: "keskin kalır" })}
           canvasRef={luma}
-          caption="Brightness only — the channel we keep at full resolution, and all a black-&-white set ever showed."
+          caption={t({
+            en: "Brightness only — the channel we keep at full resolution, and all a black-&-white set ever showed.",
+            tr: "Yalnızca parlaklık — tam çözünürlükte tuttuğumuz kanal; siyah-beyaz bir televizyonun gösterdiği de zaten sadece buydu.",
+          })}
         />
         <Stage
           n="03"
-          title={`Chroma · ${conv.chroma[0]} / ${conv.chroma[1]}`}
-          badge="the color"
+          title={`${t({ en: "Chroma", tr: "Kroma" })} · ${t(conv.chroma[0])} / ${t(conv.chroma[1])}`}
+          badge={t({ en: "the color", tr: "renk" })}
           canvasRef={chroma}
-          caption="Color with brightness removed. This is the part we're allowed to blur."
+          caption={t({
+            en: "Color with brightness removed. This is the part we're allowed to blur.",
+            tr: "Parlaklığı çıkarılmış renk. Bulanıklaştırmamıza izin verilen kısım bu.",
+          })}
         />
         <Stage
           n="04"
-          title={`Reconstructed · ${m.label}`}
+          title={`${t({ en: "Reconstructed", tr: "Yeniden oluşturulan" })} · ${m.label}`}
           badge={
             stats.reduction > 0
               ? `${stats.bpp} B/px · −${stats.reduction}%`
               : `${stats.bpp} B/px`
           }
           canvasRef={recon}
-          caption={`Full-res luma + ${m.label} chroma, converted back to RGB. Often near-indistinguishable from the original.`}
+          caption={t({
+            en: `Full-res luma + ${m.label} chroma, converted back to RGB. Often near-indistinguishable from the original.`,
+            tr: `Tam çözünürlüklü luma + ${m.label} kroma, tekrar RGB'ye çevrildi. Çoğu zaman orijinalinden ayırt etmek neredeyse imkânsız.`,
+          })}
         />
       </div>
 
@@ -321,61 +360,106 @@ const ColorCompressionExperiment = () => {
       <div className="mt-6 grid gap-5 lg:grid-cols-3">
         <Stage
           n="05"
-          title="Error · ×6"
-          badge="what was lost"
+          title={t({ en: "Error · ×6", tr: "Hata · ×6" })}
+          badge={t({ en: "what was lost", tr: "kaybolan" })}
           canvasRef={diff}
-          caption="Per-pixel difference, amplified 6×. Color bleeds at sharp edges — exactly where subsampling costs the most, and where flat areas cost nothing."
+          caption={t({
+            en: "Per-pixel difference, amplified 6×. Color bleeds at sharp edges — exactly where subsampling costs the most, and where flat areas cost nothing.",
+            tr: "Piksel başına fark, 6 kat büyütülmüş. Renk keskin kenarlarda taşıyor — alt örneklemenin en pahalıya patladığı yer tam da burası; düz alanlarda ise bedeli sıfır.",
+          })}
         />
         <div className="lg:col-span-2 rounded-sm border border-rule p-5">
-          <p className="meta">Numbers for {m.label}</p>
+          <p className="meta">
+            {t({ en: `Numbers for ${m.label}`, tr: `${m.label} için sayılar` })}
+          </p>
           <dl className="mt-4 grid grid-cols-3 gap-4">
             <div>
-              <dt className="meta">Per pixel</dt>
+              <dt className="meta">{t({ en: "Per pixel", tr: "Piksel başına" })}</dt>
               <dd className="mt-1 font-display text-2xl font-semibold text-ink">
                 {stats.bpp}<span className="text-base text-ink-3"> B</span>
               </dd>
             </div>
             <div>
-              <dt className="meta">Data saved</dt>
+              <dt className="meta">{t({ en: "Data saved", tr: "Kazanılan veri" })}</dt>
               <dd className="mt-1 font-display text-2xl font-semibold text-accent">
                 {stats.reduction}%
               </dd>
             </div>
             <div>
-              <dt className="meta">Quality (PSNR)</dt>
+              <dt className="meta">{t({ en: "Quality (PSNR)", tr: "Kalite (PSNR)" })}</dt>
               <dd className="mt-1 font-display text-2xl font-semibold text-ink">
                 {stats.psnr >= 99 ? "∞" : stats.psnr}
                 <span className="text-base text-ink-3"> dB</span>
               </dd>
             </div>
           </dl>
-          <p className="mt-4 text-sm leading-relaxed text-ink-2">
-            <strong>4:4:4</strong> keeps full color (same size as RGB, just
-            decorrelated). <strong>4:2:2</strong> halves color horizontally — 2
-            bytes/pixel, a third smaller. <strong>4:2:0</strong> halves it both
-            ways — 1.5 bytes/pixel, half the data — and is what JPEG, H.264 and
-            most streaming video use by default.
-          </p>
+          {t({
+            en: (
+              <p className="mt-4 text-sm leading-relaxed text-ink-2">
+                <strong>4:4:4</strong> keeps full color (same size as RGB, just
+                decorrelated). <strong>4:2:2</strong> halves color horizontally —
+                2 bytes/pixel, a third smaller. <strong>4:2:0</strong> halves it
+                both ways — 1.5 bytes/pixel, half the data — and is what JPEG,
+                H.264 and most streaming video use by default.
+              </p>
+            ),
+            tr: (
+              <p className="mt-4 text-sm leading-relaxed text-ink-2">
+                <strong>4:4:4</strong> rengi tam tutar (boyutu RGB ile aynı, sadece
+                kanallar ayrıştırılmış). <strong>4:2:2</strong> rengi yatayda
+                yarıya indirir — piksel başına 2 bayt, üçte bir daha küçük.{" "}
+                <strong>4:2:0</strong> iki yönde de yarıya indirir — piksel başına
+                1,5 bayt, verinin yarısı — ve JPEG, H.264 ile çoğu video
+                yayınının varsayılan olarak kullandığı da budur.
+              </p>
+            ),
+          })}
         </div>
       </div>
 
       {/* Math */}
       <div className="prose-paper mt-14 max-w-3xl">
-        <h2>The transform</h2>
-        <p>
-          The forward matrix for <strong>{conv.name}</strong>. Y is a weighted sum
-          that matches the eye&apos;s brightness response; the other two rows encode
-          color as differences from it:
-        </p>
+        <h2>{t({ en: "The transform", tr: "Dönüşüm" })}</h2>
+        {t({
+          en: (
+            <p>
+              The forward matrix for <strong>{conv.name}</strong>. Y is a weighted
+              sum that matches the eye&apos;s brightness response; the other two
+              rows encode color as differences from it:
+            </p>
+          ),
+          tr: (
+            <p>
+              <strong>{conv.name}</strong> için ileri dönüşüm matrisi. Y, gözün
+              parlaklık tepkisine uyan ağırlıklı bir toplam; diğer iki satır ise
+              rengi ondan farklar olarak kodluyor:
+            </p>
+          ),
+        })}
         <pre>{conv.matrix}</pre>
-        <p>
-          Because Y already carries most of the perceptible detail, the two color
-          rows can be stored at a fraction of the resolution. Averaging them over
-          2×1 ({MODES["422"].label}) or 2×2 ({MODES["420"].label}) blocks and
-          stretching them back is the whole of chroma subsampling — a lossy step so
-          well-matched to human vision that it&apos;s been hiding in plain sight on
-          every screen for seventy years.
-        </p>
+        {t({
+          en: (
+            <p>
+              Because Y already carries most of the perceptible detail, the two
+              color rows can be stored at a fraction of the resolution. Averaging
+              them over 2×1 ({MODES["422"].label}) or 2×2 ({MODES["420"].label})
+              blocks and stretching them back is the whole of chroma subsampling —
+              a lossy step so well-matched to human vision that it&apos;s been
+              hiding in plain sight on every screen for seventy years.
+            </p>
+          ),
+          tr: (
+            <p>
+              Algılanabilir ayrıntının büyük kısmını zaten Y taşıdığı için iki renk
+              satırı çözünürlüğün küçük bir kısmıyla saklanabilir. Bunların
+              ortalamasını 2×1 ({MODES["422"].label}) ya da 2×2 (
+              {MODES["420"].label}) bloklar üzerinden alıp tekrar genişletmek,
+              kroma alt örneklemenin tamamı bu — insan görüşüne o kadar iyi oturan
+              kayıplı bir adım ki, yetmiş yıldır her ekranda gözümüzün önünde
+              saklanıyor.
+            </p>
+          ),
+        })}
       </div>
     </div>
   );
