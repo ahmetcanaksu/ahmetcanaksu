@@ -134,23 +134,14 @@
 
   .summary{ margin:0; font-size:10.1pt; }
 
-  /* ---------- highlights: the 6-second version, in a light band ---------- */
-  .highlights{
-    background:#f2f5fb;
-    border-left:3px solid var(--accent);
-    padding:7px 12px 8px;
-    margin-top:12px;
-  }
-  .highlights h2{ border-bottom:0; padding-bottom:0; margin-bottom:4px; }
-  .highlights ul{ margin:0; padding-left:15px; }
-  .highlights li{ margin-bottom:2.5px; color:var(--ink-soft); }
-  .highlights li::marker{ color: var(--accent); }
-
   /* bold lead phrases: the eye can skim just these */
   li b, .summary b{ color: var(--ink); font-weight:700; }
 
   /* ---------- entries ---------- */
-  .entry{ margin-bottom: 9px; }
+  /* An entry never splits across pages: a job title on one page with half its
+     bullets on the next reads as two jobs. Chrome still splits an entry that is
+     taller than a whole page, so the long current role is safe. */
+  .entry{ margin-bottom: 9px; break-inside: avoid; page-break-inside: avoid; }
   .entry:last-child{ margin-bottom:0; }
   .entry-head{ break-after: avoid; page-break-after: avoid; }
   .entry-line{
@@ -275,12 +266,12 @@ const DATA = {
 
   /* ---------------------------------------------------------------- header */
   name: "Ahmetcan Aksu",
-  /* The headline is what an ATS and a recruiter match first: name the three
-     things this CV proves — backend, fintech, AI. */
-  role:    { en: "Software Developer — Backend, Fintech & AI",
-             tr: "Yazılım Geliştirici — Backend, Fintek & Yapay Zeka" },
-  tagline: { en: "Node.js · TypeScript · C# / .NET · Rust · LLM agents & tool calling",
-             tr: "Node.js · TypeScript · C# / .NET · Rust · LLM ajanları & tool calling" },
+  /* The headline is what an ATS and a recruiter match first. Keep it the
+     same as the LinkedIn headline. */
+  role:    { en: "Full Stack Developer — Fintech & AI",
+             tr: "Full Stack Developer — Fintek & Yapay Zeka" },
+  tagline: { en: "C# / .NET · Node.js · TypeScript · React · Rust · LLM applications & tool calling",
+             tr: "C# / .NET · Node.js · TypeScript · React · Rust · LLM tabanlı uygulamalar & tool calling" },
 
   contact: {
     email:    "hello@ahmetcanaksu.com",
@@ -298,28 +289,11 @@ const DATA = {
 
   /* --------------------------------------------------------------- summary
      Three sentences. A recruiter gives a CV 6–8 seconds and reads the top
-     third; the summary and the highlights below have to carry it alone.
+     third; the summary and the skills right below it have to carry it alone.
      **double asterisks** render as bold, in every text field below. */
   summary: {
-    en: "Backend developer with 4+ years of professional experience, most recently in regulated fintech. I build the systems that move money — fund orders, bank integrations, KYC and compliance flows — in C#/.NET and Node.js/TypeScript, and I build with LLMs: tool-calling agents on Claude, OpenAI-compatible APIs and local models. My systems depth comes from designing my own programming language and VM in Rust.",
-    tr: "Son dönemi regüle fintek alanında geçen, 4+ yıllık profesyonel deneyime sahip bir backend geliştiriciyim. Para hareket ettiren sistemleri — fon emirleri, banka entegrasyonları, KYC ve mevzuat süreçleri — C#/.NET ve Node.js/TypeScript ile geliştiriyorum; LLM'lerle de üretiyorum: Claude, OpenAI uyumlu API'ler ve yerel modeller üzerinde tool calling yapan ajanlar. Sistem derinliğim, Rust ile kendi programlama dilimi ve sanal makinemi tasarlamaktan geliyor."
-  },
-
-  /* ------------------------------------------------------------ highlights
-     The 6-second version of this CV: one line each, the claim in bold first. */
-  highlights: {
-    en: [
-      "**TEFAS & custodian-bank integrations** — owned end to end at Fonmap, an SPK-licensed fund platform with 100,000+ Google Play downloads.",
-      "**100,000+ messages per hour** — real-time messaging pipeline at Qpien on WebSockets and RabbitMQ.",
-      "**LLM agents** — AI Sprite Studio: a 16-tool agent that draws and animates pixel art, tuned for local 8B models.",
-      "**Ellie** — a type-safe language, compiler and bytecode VM in Rust; the engine fits in 49KB; 49 GitHub stars."
-    ],
-    tr: [
-      "**TEFAS & saklamacı banka entegrasyonları** — SPK lisanslı, Google Play'de 100.000+ indirmeli fon platformu Fonmap'te uçtan uca geliştirip canlıya aldım.",
-      "**Saatte 100.000+ mesaj** — Qpien'de WebSocket ve RabbitMQ üzerinde gerçek zamanlı mesajlaşma altyapısı.",
-      "**LLM ajanları** — AI Sprite Studio: piksel sanat çizip canlandıran, yerel 8B modeller için optimize edilmiş 16 araçlı bir ajan.",
-      "**Ellie** — Rust ile tip güvenli bir dil, derleyici ve bytecode VM; motor 49KB'a sığıyor; 49 GitHub yıldızı."
-    ]
+    en: "Full stack developer, strongest on the backend, with 4+ years of professional experience building production systems in C#/.NET, Node.js/TypeScript, React and Rust: bank and TEFAS integrations, KYC and compliance flows, and real-time messaging at 100,000+ messages per hour. I also build applications on LLMs (Claude, OpenAI-compatible APIs, local models), and I designed my own programming language and VM in Rust.",
+    tr: "C#/.NET, Node.js/TypeScript, React ve Rust ile canlı ortamda çalışan sistemler geliştirmede 4+ yıllık profesyonel deneyime sahip, ağırlığı backend'de olan bir full stack geliştiriciyim: banka ve TEFAS entegrasyonları, KYC ve mevzuat süreçleri, saatte 100.000+ mesaj işleyen gerçek zamanlı mesajlaşma. Bunun yanında LLM tabanlı uygulamalar geliştiriyorum (Claude, OpenAI uyumlu API'ler, yerel modeller) ve Rust ile kendi programlama dilimi ve sanal makinemi tasarladım."
   },
 
   /* ------------------------------------------------------------ experience
@@ -334,25 +308,25 @@ const DATA = {
       from: "2024-02", to: null,           /* to: null  =>  "Present" */
       bullets: {
         en: [
-          "**TEFAS integration:** owned the order pipeline end to end in .NET — submission, status tracking, cancellation and blockage release as fault-tolerant background jobs with distributed locking, plus the daily fund price reader; wrote 40+ of the platform's scheduled jobs.",
+          "**TEFAS integration:** owned the order pipeline end to end in .NET — submission, status tracking, cancellation and blockage release as fault-tolerant background jobs with distributed locking; daily fund prices are pulled in automatically on the same infrastructure.",
           "**Custodian-bank integration:** account opening, electronic document signing, blockage requests, money transfers and portfolio asset transfers, with request-level logging for reconciliation.",
           "**KYC & onboarding:** identity-document and proof-of-address upload, AML checks and sanctions screening, phone and device verification, secure session and refresh-token handling.",
           "**Chain transactions:** multi-step fund swaps (sell, settle, buy) that rebalance a portfolio in one request, with partial-failure and cancellation handling.",
           "**Regulated flows:** GSYF/GYF fund issuance and pricing, qualified-investor applications and approvals, time-stamped transaction documents, account statements and exchange reports.",
           "**AI in the product:** AI portfolio recommendations, portfolio outlooks and AI fund risk evaluations with plain-language explanations and disclaimers.",
-          "**Platform & back office:** took the backend and back-office API from pre-production to go-live; notification and e-mail reporting jobs; Redis caching and bulk queries; migrated to TypeScript, then to C#/.NET (EF Core); Cloudflare R2 CDN; Elasticsearch logging."
+          "**Platform & back office:** took the backend and back-office API from pre-production to go-live; notification and e-mail reporting jobs; Redis caching and bulk queries; migrated to TypeScript, then to C#/.NET (EF Core); Docker and Nginx deployments with GitHub Actions CI/CD; Cloudflare R2 CDN; Elasticsearch logging."
         ],
         tr: [
-          "**TEFAS entegrasyonu:** emir altyapısını .NET ile uçtan uca geliştirdim; emir iletimi, durum takibi, iptal ve blokaj çözme süreçlerini dağıtık kilitlemeli, hataya dayanıklı arka plan işleri olarak kurdum, günlük fon fiyatı okuyucusunu yazdım; platformun zamanlanmış işlerinin 40'tan fazlası bana ait.",
+          "**TEFAS entegrasyonu:** emir altyapısını .NET ile uçtan uca geliştirdim. Emir iletimi, durum takibi, iptal ve blokaj çözme, dağıtık kilitlemeli ve hataya dayanıklı arka plan işleri olarak çalışıyor; günlük fon fiyatları da aynı altyapıyla otomatik olarak alınıyor.",
           "**Saklamacı banka entegrasyonu:** hesap açılışı, elektronik belge imzalama, blokaj talepleri, para transferleri ve portföy varlık transferleri; mutabakat için istek bazında loglama.",
           "**KYC & müşteri kabulü:** kimlik belgesi ve adres belgesi yükleme, AML kontrolleri ve yaptırım listesi taraması, telefon ve cihaz doğrulama, güvenli oturum ve refresh token yönetimi.",
           "**Zincir işlemler:** portföyü tek talepte yeniden dengeleyen çok adımlı fon değişimleri (satış, takas, alım); kısmi hata ve iptal senaryolarıyla birlikte.",
           "**Mevzuat süreçleri:** GSYF/GYF ihraçları ve fiyatlaması, nitelikli yatırımcı başvuruları ve onayları, zaman damgalı işlem belgeleri, hesap ekstreleri ve borsa raporları.",
           "**Üründe yapay zeka:** yapay zeka destekli portföy önerileri, portföy görünümleri ve sade dilli açıklamalar ile yasal uyarılar içeren yapay zeka fon risk değerlendirmeleri.",
-          "**Platform & back office:** backend'i ve back-office API'sini ön üretimden canlıya taşıdım; bildirim ve e-posta raporlama işleri; Redis önbellekleme ve toplu sorgular; önce TypeScript'e, ardından C#/.NET'e (EF Core) geçiş; Cloudflare R2 CDN; Elasticsearch loglaması."
+          "**Platform & back office:** backend'i ve back-office API'sini ön üretimden canlıya taşıdım; bildirim ve e-posta raporlama işleri; Redis önbellekleme ve toplu sorgular; önce TypeScript'e, ardından C#/.NET'e (EF Core) geçiş; Docker ve Nginx ile dağıtım, GitHub Actions ile CI/CD; Cloudflare R2 CDN; Elasticsearch loglaması."
         ]
       },
-      stack: "C# / .NET, Entity Framework Core, MSSQL, Hangfire, Redis, Elasticsearch, Node.js, TypeScript, React"
+      stack: "C# / .NET, EF Core, MSSQL, Hangfire, Redis, Elasticsearch, Node.js, TypeScript, React, Docker, Nginx"
     },
     {
       title: { en: "Full Stack Developer", tr: "Full Stack Geliştirici" },
@@ -362,14 +336,14 @@ const DATA = {
       bullets: {
         en: [
           "**Real-time messaging:** WebSockets and RabbitMQ with asynchronous, parallel processing at 100,000+ messages per hour.",
-          "**Integrations:** Instagram, Trendyol and Shopify in an all-in-one e-commerce platform; React/TypeScript front end, Node.js/GraphQL APIs on Redis and MongoDB."
+          "**Integrations:** WhatsApp, Instagram and Telegram messaging, marketplaces (Trendyol, Hepsiburada, N11) and store platforms (Shopify, WooCommerce, Ikas, Ticimax) in one dashboard; React/Redux front end, Node.js/GraphQL APIs on Redis and MongoDB."
         ],
         tr: [
           "**Gerçek zamanlı mesajlaşma:** WebSocket ve RabbitMQ üzerinde, asenkron ve paralel işlemeyle saatte 100.000+ mesaj.",
-          "**Entegrasyonlar:** her şeyi bir arada sunan bir e-ticaret platformunda Instagram, Trendyol ve Shopify; React/TypeScript arayüz, Redis ve MongoDB üzerinde Node.js/GraphQL API'leri."
+          "**Entegrasyonlar:** WhatsApp, Instagram ve Telegram mesajlaşması, pazaryerleri (Trendyol, Hepsiburada, N11) ve e-ticaret altyapıları (Shopify, WooCommerce, Ikas, Ticimax) tek panelde; React/Redux arayüz, Redis ve MongoDB üzerinde Node.js/GraphQL API'leri."
         ]
       },
-      stack: "React, TypeScript, Node.js, GraphQL, WebSockets, RabbitMQ, Redis, MongoDB"
+      stack: "React, Redux, TypeScript, Node.js, GraphQL (Apollo), WebSockets, RabbitMQ, Redis, MongoDB, AWS S3"
     },
     {
       title: { en: "Full Stack Developer (Intern)", tr: "Full Stack Geliştirici (Staj)" },
@@ -399,18 +373,18 @@ const DATA = {
   projects: [
     {
       title: { en: "AI Sprite Studio — Creator", tr: "AI Sprite Studio — Geliştirici" },
-      meta:  { en: "2026 · TypeScript · LLM agents", tr: "2026 · TypeScript · LLM ajanları" },
+      meta:  { en: "2026 · TypeScript · LLM application", tr: "2026 · TypeScript · LLM uygulaması" },
       bullets: {
-        en: ["**Tool-calling agent** that edits through the same 16 undoable tools as the user; palette-indexed grids, symmetry and frame deltas keep it within the token budget of local 8B models (LM Studio)."],
-        tr: ["Kullanıcıyla aynı 16 geri alınabilir araçla düzenleme yapan **tool calling ajanı**; palet indeksli ızgaralar, simetri ve kare farkları yerel 8B modellerin (LM Studio) token bütçesinde kalmasını sağlıyor."]
+        en: ["**The model edits through tool calls,** using the same 16 undoable tools as the user; palette-indexed grids, symmetry and frame deltas keep it within the token budget of local 8B models (LM Studio)."],
+        tr: ["**Model, tool calling ile** kullanıcıyla aynı 16 geri alınabilir aracı kullanarak düzenleme yapıyor; palet indeksli ızgaralar, simetri ve kare farkları yerel 8B modellerin (LM Studio) token bütçesinde kalmasını sağlıyor."]
       }
     },
     {
       title: { en: "AIStudio — AI Video Studio", tr: "AIStudio — Yapay Zeka Video Stüdyosu" },
       meta:  { en: "2026 · TypeScript · Claude, Groq, LM Studio", tr: "2026 · TypeScript · Claude, Groq, LM Studio" },
       bullets: {
-        en: ["**An agent with 20+ tools** writes animated HTML video frames; deterministic export from headless Chrome under a virtual clock to ffmpeg, with ElevenLabs narration."],
-        tr: ["**20+ araçlı bir ajan** animasyonlu HTML video kareleri yazıyor; sanal saatli headless Chrome'dan ffmpeg'e deterministik dışa aktarım, ElevenLabs seslendirmesiyle."]
+        en: ["**The model uses 20+ tools** to write animated HTML video frames; deterministic export from headless Chrome under a virtual clock to ffmpeg, with ElevenLabs narration."],
+        tr: ["**Model, 20+ araç kullanarak** animasyonlu HTML video kareleri yazıyor; sanal saatli headless Chrome'dan ffmpeg'e deterministik dışa aktarım, ElevenLabs seslendirmesiyle."]
       }
     },
     {
@@ -438,8 +412,8 @@ const DATA = {
       meta:  { en: "100+ repositories · Rust · TypeScript · Dart", tr: "100+ depo · Rust · TypeScript · Dart" },
       link:  "github.com/behemehal · github.com/ahmetcanaksu",
       bullets: {
-        en: ["**UtilStation** (utilstation.com, 85+ developer tools); Rust crates Menemen, Rust-NMEA, SafeEn and Wole on crates.io; CHIP-8 and 6502 emulators; Flutter apps."],
-        tr: ["**UtilStation** (utilstation.com, 85+ geliştirici aracı); crates.io'da Rust paketleri Menemen, Rust-NMEA, SafeEn ve Wole; CHIP-8 ve 6502 emülatörleri; Flutter uygulamaları."]
+        en: ["**L.A.S.E.R**, a React Native puzzle game live on Google Play; **QuicKV** and **Envelope**, Tauri desktop apps (Redis client, HTTP client); **UtilStation** (85+ developer tools); Rust crates Menemen, Rust-NMEA, SafeEn and Wole on crates.io; CHIP-8 and 6502 emulators."],
+        tr: ["Google Play'de yayında React Native bulmaca oyunu **L.A.S.E.R**; Tauri masaüstü uygulamaları **QuicKV** ve **Envelope** (Redis ve HTTP istemcileri); **UtilStation** (85+ geliştirici aracı); crates.io'da Rust paketleri Menemen, Rust-NMEA, SafeEn ve Wole; CHIP-8 ve 6502 emülatörleri."]
       }
     }
   ],
@@ -449,16 +423,18 @@ const DATA = {
     { label: { en: "Programming", tr: "Programlama" },
       value: "TypeScript, JavaScript, C#, Rust, Dart, C, C++, Java, SQL" },
     { label: { en: "AI & LLMs",  tr: "Yapay Zeka & LLM" },
-      value: { en: "LLM agents & tool calling, Claude API, OpenAI-compatible APIs (Groq, LM Studio), local LLMs (Qwen3-VL, Gemma), vision models",
-               tr: "LLM ajanları & tool calling, Claude API, OpenAI uyumlu API'ler (Groq, LM Studio), yerel LLM'ler (Qwen3-VL, Gemma), görüntü modelleri" } },
+      value: { en: "LLM applications & tool calling, Claude API, OpenAI-compatible APIs (Groq, LM Studio), local LLMs (Qwen3-VL, Gemma), vision models",
+               tr: "LLM tabanlı uygulamalar & tool calling, Claude API, OpenAI uyumlu API'ler (Groq, LM Studio), yerel LLM'ler (Qwen3-VL, Gemma), görüntü modelleri" } },
     { label: { en: "Backend",    tr: "Backend" },
-      value: "Node.js, Deno, Express, GraphQL (Apollo), REST, WebSockets, .NET, Entity Framework Core, Hangfire, RabbitMQ" },
+      value: "Node.js, Deno, Bun, Express, GraphQL (Apollo), REST, WebSockets, .NET, Entity Framework Core, Hangfire, RabbitMQ" },
     { label: { en: "Frontend",   tr: "Frontend" },
-      value: "React, Redux, Svelte, Electron, Flutter, HTML/CSS, WebAssembly" },
+      value: "React, Redux, Svelte, HTML/CSS, WebAssembly" },
+    { label: { en: "Mobile & Desktop", tr: "Mobil & Masaüstü" },
+      value: "React Native, Flutter, Tauri, Electron" },
     { label: { en: "Databases",  tr: "Veritabanları" },
-      value: "MSSQL, PostgreSQL, MongoDB, Redis, Elasticsearch, MinIO" },
+      value: "MSSQL, PostgreSQL, MongoDB, Redis, Elasticsearch, MinIO, Cloudflare R2" },
     { label: { en: "Infra & Tools", tr: "Altyapı & Araçlar" },
-      value: "Docker, Linux, AWS, Cloudflare R2, Git, Puppeteer, CI/CD" },
+      value: "Docker, Nginx, Linux & Bash, GitHub Actions CI/CD, Cloudflare, AWS, Git, Puppeteer" },
     { label: { en: "Systems & Embedded", tr: "Sistem & Gömülü" },
       value: { en: "Algorithm design, compiler and bytecode VM design, ARM, ESP32/ESP8266, Arduino, Raspberry Pi, TCP/UDP, FFI",
                tr: "Algoritma tasarımı, derleyici ve bytecode VM tasarımı, ARM, ESP32/ESP8266, Arduino, Raspberry Pi, TCP/UDP, FFI" } }
@@ -505,7 +481,6 @@ const DATA = {
   /* ------------------------------------------ section headings & UI labels */
   labels: {
     summary:      { en: "Summary",                    tr: "Özet" },
-    highlights:   { en: "Highlights",                 tr: "Öne Çıkanlar" },
     experience:   { en: "Experience",                 tr: "Deneyim" },
     projects:     { en: "Projects & Open Source",     tr: "Projeler & Açık Kaynak" },
     skills:       { en: "Technical Skills",           tr: "Teknik Yetenekler" },
@@ -564,11 +539,6 @@ function bullets(list, cls){
   const items = (list && (list[LANG] || list.en)) || [];
   if (!items.length) return "";
   return `<ul${cls ? ` class="${cls}"` : ""}>${items.map(b => `<li>${rich(b)}</li>`).join("")}</ul>`;
-}
-
-function renderHighlights(){
-  if (!DATA.highlights) return "";
-  return `<section class="highlights"><h2>${esc(t(DATA.labels.highlights))}</h2>${bullets(DATA.highlights)}</section>`;
 }
 
 function renderHeader(){
@@ -720,10 +690,9 @@ function render(){
   document.getElementById("sheet").innerHTML =
     renderHeader() +
     section(t(DATA.labels.summary), `<p class="summary">${rich(t(DATA.summary))}</p>`) +
-    renderHighlights() +
+    renderSkills() +
     renderExperience() +
     renderProjects() +
-    renderSkills() +
     renderEducation() +
     renderCertificates() +
     /* Single column throughout: parsers read a PDF by lines, and two lists side
